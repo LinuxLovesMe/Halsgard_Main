@@ -91,6 +91,7 @@
       <sprite>sprites\HpLight</sprite>
     </sprites>
     <sprite>sprites\River</sprite>
+    <sprite>sprites\Raindrop</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background5</background>
@@ -180,12 +181,18 @@
       <object>objects\Parallax</object>
       <object>objects\Slash</object>
     </objects>
+    <objects name="NewRain">
+      <object>objects\RainControl</object>
+      <object>objects\Splash</object>
+      <object>objects\RaindropObj</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\MenuLevel</room>
     <room>rooms\MuseumLevel</room>
     <room>rooms\EndOfGame</room>
     <room>rooms\StreetLevel</room>
+    <room>rooms\ExperimentalRoom</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

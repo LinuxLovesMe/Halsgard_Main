@@ -2,8 +2,8 @@ switch (curr_pos)
 {
     case 0:
     {
-        room_goto(StreetLevel);
-        //room_goto_next();
+        room_goto(ExperimentalRoom);
+        //room_goto(StreetLevel);
         break;
     }
         

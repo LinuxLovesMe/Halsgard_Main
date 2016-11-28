@@ -56,7 +56,8 @@ draw_clear(c_black);
 if(instance_exists(Light)){
     with(Light){
         if(room == StreetLevel){
-            lightSize = 4;
+            lightSize = random_range(3.8, 4.2);
+            lightStrength = random_range(0.8, 1);
         }
         draw_set_blend_mode(bm_src_color);
         draw_sprite_ext(CircleLight, 0, 

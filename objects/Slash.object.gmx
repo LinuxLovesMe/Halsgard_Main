@@ -121,11 +121,12 @@ if(seconds == 0 and minutes == 0){
     room_goto(MuseumLevel);
 }
 
+//Timer counter
 if(seconds == -1){
     seconds = 59;
     minutes--; 
 }
-
+//Shows remaining time 
 if(global.level == 0){
     var substring = ": ";
     if(seconds &lt; 10 and seconds &gt;= 0){
@@ -135,6 +136,17 @@ if(global.level == 0){
         string(minutes) 
         + substring + string(seconds)
         + "#Врагов убито: " + string(global.kills);
+}
+
+//Generate runic stones if hero splits one of them
+if(!instance_exists(Runic1)){
+    var inst = instance_find(Platform, irandom(instance_number(Platform) - 1));
+    instance_create(inst.x, inst.y, Runic1);
+}
+
+if(!instance_exists(Runic2)){
+    var inst = instance_find(Platform, irandom(instance_number(Platform) - 1));
+    instance_create(inst.x, inst.y, Runic2);
 }
 </string>
           </argument>

@@ -37,7 +37,6 @@ weapon = weapons.bullet1;
 image_speed = 0.3;
 animation = "stay";
 
-shootPrepare = false;
 shooted = false;
 angle = 0;
 
@@ -94,7 +93,7 @@ cooldown = true;
             <kind>1</kind>
             <string>event_inherited();
 
-if(shootPrepare or shooted){
+if(shooted){
     animation = "shoot";
     sprite_index = PlayerShoot;
     image_index = 0;   
@@ -113,9 +112,9 @@ if(animation == "right" or animation == "left"){
 }
 if(animation == "jump"){
     sprite_index = PlayerJump;
-    if(image_index &gt;=  4 and place_free(x, y + 1))
+    if(image_index &gt;=  4 and position_empty(x, y + 1))
         image_index = 4;
-    if(image_index &lt; 5 and !place_free(x, y + 1))
+    if(image_index &lt; 5 and !position_empty(x, y + 1))
         image_index = 5;
     if(image_index &gt;= 5.7)
         animation = "stay";  
@@ -190,7 +189,7 @@ if(maxhealth &lt;= 0){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(not place_free(x, y+ 1) and !shootPrepare){//If hero stays at ground
+            <string>if(!place_free(x, y + 1) or place_meeting(x, y + 1, Platform)){//If hero stays at ground
     vspeed = -22;
     animation = "jump";
 }
@@ -217,9 +216,7 @@ if(maxhealth &lt;= 0){
           <argument>
             <kind>1</kind>
             <string>if(x &lt; room_width){
-    if(shootPrepare)
-        shootPrepare = false;
-    if(!place_free(x, y + 1))
+    if(!place_free(x, y + 1) or place_meeting(x, y + 1, Platform))
        animation = "right";
     image_xscale = 1;
     x += 5;
@@ -247,9 +244,9 @@ if(maxhealth &lt;= 0){
           <argument>
             <kind>1</kind>
             <string>if(x &gt; 0){
-    if(shootPrepare)
-        shootPrepare = false;
-    if(!place_free(x, y + 1))
+    //if(shootPrepare)
+    //    shootPrepare = false;
+    if(!place_free(x, y + 1) or place_meeting(x, y + 1, Platform))
         animation = "left";
     image_xscale = -1;
     x -= 5;
@@ -342,7 +339,7 @@ if(!shooted){
 }*/
 
 draw_self();
-if(shootPrepare){
+/*if(shootPrepare){
     angle = point_direction(x, y - sprite_height / 2, mouse_x, mouse_y);
     if((angle &gt; 270 and angle &lt; 360 or  angle &gt; 0 and angle &lt; 90) and image_xscale == 1){
         draw_sprite_ext(PlayerHand, 0, x,
@@ -355,7 +352,7 @@ if(shootPrepare){
             1, 1, angle - 180, c_white, 1);   
     }
 }
-    
+ */   
 if(shooted){
     if((angle &gt; 270 and angle &lt; 360 or  angle &gt; 0 and angle &lt; 90) and image_xscale == 1){
         draw_sprite_ext(PlayerHand, 0,
@@ -375,30 +372,6 @@ if(shooted){
         y - sprite_height / 2 + handVSpeed,
         1, 1, angle, c_white, 1);    */
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="70">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(maxhealth &gt; 0)
-    maxhealth -= 1;
 </string>
           </argument>
         </arguments>

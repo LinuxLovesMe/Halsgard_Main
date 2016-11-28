@@ -143,10 +143,10 @@
         <object>objects\Runic1</object>
         <object>objects\Runic2</object>
       </objects>
+      <object>objects\Platform</object>
     </objects>
     <objects name="UI">
       <object>objects\HEObject</object>
-      <object>objects\InfoObj</object>
       <object>objects\GeneralInfo</object>
       <object>objects\ChainObj</object>
     </objects>

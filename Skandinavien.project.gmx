@@ -67,16 +67,20 @@
     <sprites name="UI">
       <sprite>sprites\HealthbarElement</sprite>
       <sprite>sprites\TileButton</sprite>
-      <sprite>sprites\TileButtonMask</sprite>
-      <sprite>sprites\Letters</sprite>
       <sprite>sprites\Info</sprite>
-      <sprite>sprites\Frame1</sprite>
-      <sprite>sprites\Frame2</sprite>
       <sprite>sprites\Rune1</sprite>
       <sprite>sprites\Rune2</sprite>
       <sprite>sprites\PlayerHP</sprite>
       <sprite>sprites\PeterHP</sprite>
-      <sprite>sprites\Chain</sprite>
+      <sprites name="Chain">
+        <sprite>sprites\Chain</sprite>
+        <sprite>sprites\Amulet</sprite>
+      </sprites>
+      <sprites name="Dialog">
+        <sprite>sprites\Dialog</sprite>
+      </sprites>
+      <sprite>sprites\SliderV</sprite>
+      <sprite>sprites\BarV</sprite>
     </sprites>
     <sprites name="Split Parts">
       <sprite>sprites\split1</sprite>
@@ -92,6 +96,9 @@
     </sprites>
     <sprite>sprites\River</sprite>
     <sprite>sprites\Raindrop</sprite>
+    <sprites name="Portraits">
+      <sprite>sprites\portrait</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\background5</background>
@@ -110,6 +117,7 @@
     <script>scripts\SplitObject.gml</script>
     <script>scripts\scr_rep.gml</script>
     <script>scripts\scr_menu.gml</script>
+    <script>scripts\Text.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\sh_aberration.shader</shader>
@@ -118,6 +126,7 @@
   <fonts name="fonts">
     <font>fonts\Simple</font>
     <font>fonts\Runic</font>
+    <font>fonts\Kramola</font>
   </fonts>
   <objects name="objects">
     <objects name="Characters">
@@ -147,9 +156,12 @@
       <object>objects\Platform</object>
     </objects>
     <objects name="UI">
+      <object>objects\SliderVert</object>
+      <object>objects\BarVert</object>
       <object>objects\HEObject</object>
       <object>objects\GeneralInfo</object>
       <object>objects\ChainObj</object>
+      <object>objects\Dialogue</object>
     </objects>
     <objects name="Split Parts">
       <object>objects\splitObj1</object>
@@ -170,6 +182,11 @@
       <object>objects\Ripple</object>
       <object>objects\Split</object>
       <object>objects\SmallLight</object>
+      <objects name="NewRain">
+        <object>objects\RainControl</object>
+        <object>objects\Splash</object>
+        <object>objects\RaindropObj</object>
+      </objects>
     </objects>
     <object>objects\obj_menu</object>
     <object>objects\obj_replay</object>
@@ -181,10 +198,9 @@
       <object>objects\Parallax</object>
       <object>objects\Slash</object>
     </objects>
-    <objects name="NewRain">
-      <object>objects\RainControl</object>
-      <object>objects\Splash</object>
-      <object>objects\RaindropObj</object>
+    <objects name="Text objects">
+      <object>objects\obj_text</object>
+      <object>objects\obj_spawner</object>
     </objects>
   </objects>
   <rooms name="rooms">

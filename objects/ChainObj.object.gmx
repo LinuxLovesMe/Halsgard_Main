@@ -116,12 +116,27 @@ for(var i = 0; i &lt; 6; i++){
     lights[i].lightStrength = 0;
 }
 
+var j = 6;
 for(i = 0; i &lt; PlayerObject.maxhealth; i++){
     lights[i].lightStrength = 1;
     draw_sprite(PlayerHP, 0, 
         ChainObj.x + positions[i, 0],
         ChainObj.y + positions[i, 1]);
+    draw_sprite(Amulet, j, x + sprite_width / 2 - 7, y + 130);
+    j--;        
 }
+
+/*for(i = PlayerObject.maxhealth; i &gt; 0; i--){
+    draw_sprite(Amulet, i + 6, x + sprite_width / 2 - 7, y + 130);      
+}*/
+
+var k = 6 - (PlayerObject.maxhealth - 1);
+for(i = PlayerObject.maxhealth; i &lt; 6; i++){
+    draw_sprite(Amulet, k + i, x + sprite_width / 2 - 7, y + 130);   
+    //k++;
+}
+
+draw_sprite(Amulet, 0, x + sprite_width / 2  - 7, y + 130);
 
 if(PlayerObject.weapon == weapons.bullet1){
     draw_sprite(Rune1, 0, x + 639, y + 136);

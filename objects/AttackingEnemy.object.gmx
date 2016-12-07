@@ -38,6 +38,13 @@ near = false;
 sprite_index = choose(DraugrBeats, AnarchistBeats);
 
 image_speed = 0.3;
+
+fire = 0;
+burned = false;
+frozen = 0;
+
+glowAlpha = 0;
+glowIncr = 0.05;
 </string>
           </argument>
         </arguments>
@@ -64,7 +71,9 @@ image_speed = 0.3;
 
 if maxhealth &lt;= 0{
     global.kills++;
-    instance_destroy();   
+    instance_destroy();
+    fire.destroy = true;
+    burned = false;
 }
 
 if(x &lt; PlayerObject.x){
@@ -79,15 +88,49 @@ if(abs(x - PlayerObject.x) &lt; abs(sprite_width)){
 }else{
    near = false;
 }
-
-if(!near){
-    if(x &gt; PlayerObject.x){
-        hspeed = -2;
+   
+if(frozen == 0){
+    if(!near){
+        if(x &gt; PlayerObject.x){
+            hspeed = -2;
+        }else{
+            hspeed = 2;
+        }
     }else{
-        hspeed = 2;
+        hspeed = 0;
     }
 }else{
+    glowAlpha += glowIncr;
+    if(glowAlpha &lt; 0 || glowAlpha &gt; 1)
+        glowIncr = -glowIncr;
     hspeed = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If enemy became fire
+if(burned){
+    fire.minX = x - sprite_width / 2;
+    fire.maxX = x + sprite_width / 2;
+    fire.minY = y - sprite_height / 2;
+    fire.maxY = y + sprite_height / 2;
 }
 </string>
           </argument>
@@ -114,6 +157,8 @@ if(!near){
             <string>if(sprite_index == AnarchistBeats){
     maxhealth--;
     other.destroy = true;
+    if(frozen &lt; 3)
+        frozen++;
 }
 </string>
           </argument>
@@ -140,6 +185,9 @@ if(!near){
             <string>if(sprite_index == DraugrBeats){
     maxhealth--;
     other.destroy = true;
+    if(!burned)
+        fire = instance_create(x, y, Fire);
+    burned = true;
 }
 </string>
           </argument>
@@ -164,6 +212,63 @@ if(!near){
           <argument>
             <kind>1</kind>
             <string>vspeed = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(frozen == 1){
+    draw_sprite_ext(Ice, 1, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(Ice, 1, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}else if(frozen == 2){
+    draw_sprite_ext(Ice, 0, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(Ice, 0, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+
 </string>
           </argument>
         </arguments>

@@ -285,8 +285,7 @@ if(!shooted){
         if(weapon == weapons.bullet1)
                 bullet = instance_create(x, y - sprite_height / 2, BulletObj);
         if(weapon == weapons.bullet2)
-            bullet = instance_create(x, y - sprite_height / 2, Bullet2Obj);
-               
+            bullet = instance_create(x, y - sprite_height / 2, Bullet2Obj);       
         bullet.speed = 15;
         bullet.direction = angle;
         

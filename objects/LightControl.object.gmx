@@ -59,7 +59,7 @@ if(instance_exists(Light)){
             lightSize = random_range(3.8, 4.2);
             lightStrength = random_range(0.8, 1);
         }
-        draw_set_blend_mode(bm_src_color);
+        draw_set_blend_mode(bm_src_colour);
         draw_sprite_ext(CircleLight, 0, 
             x * other.surfScale, 
             y * other.surfScale, 
@@ -91,6 +91,7 @@ if(instance_exists(SmallLight)){
 }
 surface_reset_target();
 draw_surface_ext(surf, 0, 0, 1 / surfScale, 1 / surfScale, 0, c_white, 1);
+draw_set_blend_mode(bm_normal);
 </string>
           </argument>
         </arguments>

@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="2" name="datafiles">
     <datafile>
       <name>Runic_altno.TTF</name>
       <exists>-1</exists>
@@ -20,6 +20,23 @@
         </Config>
       </ConfigOptions>
       <filename>Runic_altno.TTF</filename>
+    </datafile>
+    <datafile>
+      <name>testDialog.txt</name>
+      <exists>-1</exists>
+      <size>0</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>testDialog.txt</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -68,8 +85,6 @@
       <sprite>sprites\HealthbarElement</sprite>
       <sprite>sprites\TileButton</sprite>
       <sprite>sprites\Info</sprite>
-      <sprite>sprites\Rune1</sprite>
-      <sprite>sprites\Rune2</sprite>
       <sprite>sprites\PlayerHP</sprite>
       <sprite>sprites\PeterHP</sprite>
       <sprites name="Chain">
@@ -99,6 +114,12 @@
     <sprites name="Portraits">
       <sprite>sprites\portrait</sprite>
     </sprites>
+    <sprites name="Weapons">
+      <sprite>sprites\Rune2</sprite>
+      <sprite>sprites\Rune1</sprite>
+      <sprite>sprites\fireball</sprite>
+    </sprites>
+    <sprite>sprites\Ice</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background5</background>
@@ -175,6 +196,7 @@
       <object>objects\Bullet2Obj</object>
     </objects>
     <objects name="Effects">
+      <object>objects\Fire</object>
       <object>objects\Dust</object>
       <object>objects\Light</object>
       <object>objects\LightControl</object>

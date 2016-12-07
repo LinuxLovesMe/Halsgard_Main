@@ -25,6 +25,50 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Create ice and sparks
+
+ps = part_system_create();
+part_system_depth(ps, -600);
+
+ice = part_type_create();
+part_type_shape(ice, pt_shape_cloud);
+part_type_size(ice, 0.5, 0.8, 0, 0);
+part_type_colour2(ice, c_white, c_blue);
+part_type_speed(ice, 3, 3, 0, 0);
+part_type_direction(ice, 0, 360, 0, 1);
+part_type_blend(ice, true);
+part_type_life(ice, 1, 5);
+part_type_alpha2(ice, 1, 0.5);
+
+spark = part_type_create();
+part_type_shape(spark, pt_shape_snow);
+part_type_size(spark, 0.05, 0.08, 0, 0);
+part_type_colour2(spark, c_white, c_blue);
+part_type_speed(spark, 1, 3, 0, 0);
+part_type_direction(spark, 0, 360, 0, 0);
+part_type_blend(spark, true);
+part_type_life(spark, 4, 8);
+part_type_alpha2(spark, 1, 0.5);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>xCreate = 0;
 yCreate = 0;
 image_xscale = 0.2;
@@ -36,6 +80,35 @@ destroy = false;
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Add new particles
+
+part_particles_create(ps, x, y, ice, 5);
+part_particles_create(ps, 
+    x - 12 + random(24),
+    y - 12 + random(24),
+    spark, 40);
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -90,6 +163,32 @@ if(BossEnemy.pointsInHealth == 0){
     BossEnemy.pointsInHealth = 5;
     BossEnemy.maxhealth--;
 }
+instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>part_type_destroy(ice);
+part_type_destroy(spark);
+part_system_destroy(ps);
 instance_destroy();
 </string>
           </argument>

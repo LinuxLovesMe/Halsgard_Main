@@ -157,7 +157,7 @@ if(burned){
             <string>if(sprite_index == AnarchistBeats){
     maxhealth--;
     other.destroy = true;
-    if(frozen &lt; 3)
+    if(frozen &lt; 5)
         frozen++;
 }
 </string>
@@ -235,14 +235,24 @@ if(burned){
           <argument>
             <kind>1</kind>
             <string>if(frozen == 1){
+    draw_sprite_ext(Ice, 0, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(Ice, 0, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}else if(frozen == 2){
     draw_sprite_ext(Ice, 1, x, y, 0.2, 0.2, 0, c_white, 0.3);
     draw_set_blend_mode(bm_add);
     draw_sprite_ext(Ice, 1, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
     draw_set_blend_mode(bm_normal);
-}else if(frozen == 2){
-    draw_sprite_ext(Ice, 0, x, y, 0.2, 0.2, 0, c_white, 0.3);
+}else if(frozen == 3){
+    draw_sprite_ext(Ice, 2, x, y, 0.2, 0.2, 0, c_white, 0.3);
     draw_set_blend_mode(bm_add);
-    draw_sprite_ext(Ice, 0, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_sprite_ext(Ice, 2, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}else if(frozen == 4){
+    draw_sprite_ext(Ice, 3, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(Ice, 3, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
     draw_set_blend_mode(bm_normal);
 }
 </string>

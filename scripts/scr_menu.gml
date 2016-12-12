@@ -4,6 +4,7 @@ switch (curr_pos)
     {
         //room_goto(ExperimentalRoom);
         room_goto(StreetLevel);
+        //room_goto(MuseumLevel);
         break;
     }
         

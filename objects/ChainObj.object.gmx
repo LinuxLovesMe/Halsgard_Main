@@ -3,7 +3,7 @@
   <spriteName>Chain</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-50</depth>
+  <depth>1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -51,6 +51,7 @@ for(var i = 0; i &lt; PlayerObject.maxhealth; i++){
         positions[i, 1], SmallLight);
 }
 
+image_alpha = 0.5;
 
 
 </string>
@@ -118,25 +119,22 @@ for(var i = 0; i &lt; 6; i++){
 
 var j = 6;
 for(i = 0; i &lt; PlayerObject.maxhealth; i++){
-    lights[i].lightStrength = 1;
+    lights[i].lightStrength = 0.1;
     draw_sprite(PlayerHP, 0, 
         ChainObj.x + positions[i, 0],
         ChainObj.y + positions[i, 1]);
-    draw_sprite(Amulet, j, x + sprite_width / 2 - 7, y + 130);
+    draw_sprite_ext(Amulet, j, x + sprite_width / 2 - 7, y + 130, 1, 1, 0, c_white, 0.5);
+//    draw_sprite(Amulet, j, x + sprite_width / 2 - 7, y + 130);
     j--;        
 }
 
-/*for(i = PlayerObject.maxhealth; i &gt; 0; i--){
-    draw_sprite(Amulet, i + 6, x + sprite_width / 2 - 7, y + 130);      
-}*/
-
 var k = 6 - (PlayerObject.maxhealth - 1);
 for(i = PlayerObject.maxhealth; i &lt; 6; i++){
-    draw_sprite(Amulet, k + i, x + sprite_width / 2 - 7, y + 130);   
+    draw_sprite_ext(Amulet, k + i, x + sprite_width / 2 - 7, y + 130, 1, 1, 0, c_white, 0.5);   
     //k++;
 }
 
-draw_sprite(Amulet, 0, x + sprite_width / 2  - 7, y + 130);
+draw_sprite_ext(Amulet, 0, x + sprite_width / 2  - 7, y + 130, 1, 1, 0, c_white, 0.5);
 
 if(PlayerObject.weapon == weapons.bullet1){
     draw_sprite(Rune1, 0, x + 639, y + 136);

@@ -55,12 +55,8 @@ surfScale = 1 / 8;
 draw_clear(c_black);
 if(instance_exists(Light)){
     with(Light){
-        if(room == StreetLevel){
-            lightSize = random_range(3.8, 4.2);
-            lightStrength = random_range(0.8, 1);
-        }
         draw_set_blend_mode(bm_src_colour);
-        draw_sprite_ext(CircleLight, 0, 
+        draw_sprite_ext(sprite_index, 0, 
             x * other.surfScale, 
             y * other.surfScale, 
             lightSize* other.surfScale, 

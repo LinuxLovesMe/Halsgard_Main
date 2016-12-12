@@ -91,8 +91,8 @@ repeat(room_speed * 3){
           <argument>
             <kind>1</kind>
             <string>part_emitter_region(partRainSys, partRainEmit, 
-    view_xview[0] - 400, view_xview[0] + view_wview[0] + 200, 
-    view_yview[0] - 100, view_yview[0] - 100, 
+    view_xview[0] - 600, view_xview[0] + view_wview[0] + 300, 
+    view_yview[0] - 300, view_yview[0] - 300, 
     ps_shape_line, ps_distr_linear);
 
 </string>

@@ -19,7 +19,7 @@
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>Controller</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -31,7 +31,7 @@ global.message = "";
 instance_create(0, 0, Camera);
 instance_create(100, 100, PlayerObject);
 instance_create(10, 10, GeneralInfo); 
-instance_create(0, 0, ChainObj);
+//instance_create(0, 0, ChainObj);
 </string>
           </argument>
         </arguments>

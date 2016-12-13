@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0] = 1000;
-vspeed = 20;
-hspeed = -20;
+vspeed = 40;
+hspeed = -40;
 collidedBefore=false;
 </string>
           </argument>

@@ -55,6 +55,9 @@
         <sprite>sprites\PlayerStay</sprite>
         <sprite>sprites\PlayerShoot</sprite>
         <sprite>sprites\PlayerHand</sprite>
+        <sprite>sprites\PlayerIdle</sprite>
+        <sprite>sprites\Shooter1</sprite>
+        <sprite>sprites\Shooter2</sprite>
       </sprites>
       <sprite>sprites\EasyEnemy1</sprite>
       <sprite>sprites\EasyEnemy2</sprite>
@@ -152,11 +155,12 @@
   </fonts>
   <objects name="objects">
     <objects name="Characters">
-      <object>objects\PlayerObject</object>
+      <object>objects\PlayerOld</object>
       <object>objects\Entity</object>
       <object>objects\Enemy</object>
       <object>objects\BossEnemy</object>
       <object>objects\AttackingEnemy</object>
+      <object>objects\PlayerObject</object>
     </objects>
     <objects name="Objects">
       <object>objects\GroundObject</object>

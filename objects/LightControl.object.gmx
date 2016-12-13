@@ -54,18 +54,19 @@ surfScale = 1 / 8;
 
 draw_clear(c_black);
 if(instance_exists(Light)){
-    with(Light){
-        draw_set_blend_mode(bm_src_colour);
+    draw_set_blend_mode(bm_src_colour);
+    with(Light){    
         draw_sprite_ext(sprite_index, 0, 
             x * other.surfScale, 
             y * other.surfScale, 
             lightSize* other.surfScale, 
             lightSize * other.surfScale, 
             0, c_white, lightStrength);
-        draw_set_blend_mode(bm_normal);
     }
+    draw_set_blend_mode(bm_normal);
 }
 if(instance_exists(SmallLight)){
+    draw_set_blend_mode(bm_add);
     with(SmallLight){
         lightSize = 2.5;
         var subimg = 0;
@@ -75,19 +76,17 @@ if(instance_exists(SmallLight)){
             subimg = 2;
         else if(PlayerObject.maxhealth &gt; 0 and PlayerObject.maxhealth &lt;= 2)
             subimg = 1;
-        draw_set_blend_mode(bm_add);
         draw_sprite_ext(HpLight, subimg, 
             x * other.surfScale, 
             y * other.surfScale, 
             lightSize* other.surfScale, 
             lightSize * other.surfScale, 
             0, c_white, lightStrength);
-        draw_set_blend_mode(bm_normal);
     }
+    draw_set_blend_mode(bm_normal);
 }
 surface_reset_target();
 draw_surface_ext(surf, 0, 0, 1 / surfScale, 1 / surfScale, 0, c_white, 1);
-draw_set_blend_mode(bm_normal);
 </string>
           </argument>
         </arguments>

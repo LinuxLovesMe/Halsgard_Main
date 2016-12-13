@@ -33,7 +33,7 @@ alarm[0] = room_speed * 4;
 
 instance_create(0, 0, LightControl);
 instance_create(0, 0, Rain);
-
+//instance_create(0, 0, RainControl);
 alarm[1] = room_speed;
 
 minutes = 5;

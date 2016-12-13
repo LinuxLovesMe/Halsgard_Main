@@ -71,9 +71,10 @@ glowIncr = 0.05;
 
 if maxhealth &lt;= 0{
     global.kills++;
-    instance_destroy();
-    fire.destroy = true;
+    if(fire != 0)
+        fire.destroy = true;
     burned = false;
+    instance_destroy();
 }
 
 if(x &lt; PlayerObject.x){

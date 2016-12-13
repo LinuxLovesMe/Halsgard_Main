@@ -241,7 +241,6 @@
     <instance objName="StreetLampObj" x="1470" y="1650" name="inst_17A972E0" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="StreetLampObj" x="1980" y="1650" name="inst_5CBFA427" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="StreetLampObj" x="2640" y="1650" name="inst_AF8CBFC2" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="RainControl" x="30" y="1500" name="inst_B4261D5F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

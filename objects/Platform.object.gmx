@@ -31,7 +31,7 @@
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="PlayerObject">
+    <event eventtype="4" ename="PlayerOld">
       <action>
         <libid>1</libid>
         <id>603</id>

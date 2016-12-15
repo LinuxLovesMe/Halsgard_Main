@@ -40,6 +40,8 @@ enum weapons{
 };
 
 weapon = weapons.bullet1;
+
+platformCondition = false;
 </string>
           </argument>
         </arguments>
@@ -89,9 +91,18 @@ health = maxhealth;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>platformCondition = position_meeting(x, y + 1, Platform)
+    and instance_nearest(x, y, Platform).visible == true;
+
+if(position_meeting(x, y + 1, Platform)
+    and instance_nearest(x, y, Platform).visible == false){
+    
+    if(hero_state != "jump")
+        hero_state = "fly";   
+}
+
 if((!place_free(x, y + 1) 
-    or position_meeting(x, y + 1, Platform))
+    or platformCondition)
     and hero_state == "fly"){
     
     hero_state = "idle";
@@ -127,7 +138,7 @@ if (hero_state == "left")
     {
         image_speed = 0.2;
         if(!place_free(x, y + 1)
-            or position_meeting(x, y + 1, Platform)) 
+            or platformCondition) 
         {
             sprite_index = PlayerWalk;
         }
@@ -143,7 +154,7 @@ if (hero_state == "right")
 {
     image_speed = 0.2;
     if(!place_free(x, y + 1)
-        or position_meeting(x, y + 1, Platform))
+        or platformCondition)
     {
             sprite_index = PlayerWalk;
     }
@@ -165,13 +176,13 @@ if (hero_state == "jump")
     sprite_index = PlayerJump;
     
     if (image_index &gt;= 4 and !(!place_free(x, y + 1)
-        or position_meeting(x, y + 1, Platform)))
+        or platformCondition))
     {
         image_index = 4;
     }
     
     if (image_index &gt; 4 and image_index &lt; 5 and (!place_free(x, y + 1)
-        or position_meeting(x, y + 1, Platform)))
+        or platformCondition))
     {
         image_index = 5;
         jumped = false;
@@ -183,7 +194,7 @@ if (hero_state == "jump")
     }
     
     if (!place_free(x, y + 1)
-        or position_meeting(x, y + 1, Platform))
+        or platformCondition)
     {
         if (!jumped)
         {
@@ -227,9 +238,10 @@ if (hero_state == "jump")
             <string>if(x &lt; room_width)
 {
     if (!place_free(x, y + 1) 
-        or position_meeting(x, y + 1, Platform))
+        or platformCondition)
     {
-        hero_state = "right";
+        if(hero_state != "jump")
+            hero_state = "right";
     }else{
         if(hero_state != "jump")
             hero_state = "fly";
@@ -261,9 +273,10 @@ if (hero_state == "jump")
             <string>if(x &gt; 0)
 {
     if (!place_free(x, y + 1)
-        or position_meeting(x, y + 1, Platform))
+        or platformCondition)
     {
-        hero_state = "left";
+        if(hero_state != "jump")
+            hero_state = "left";
     }else{
         if(hero_state != "jump")
             hero_state = "fly";
@@ -293,7 +306,7 @@ if (hero_state == "jump")
           <argument>
             <kind>1</kind>
             <string>if (!place_free(x, y + 1)
-    or position_meeting(x, y + 1, Platform))
+    or platformCondition)
 {
     hero_state = "jump";
     vert_speed = -jump_speed;
@@ -365,7 +378,7 @@ if (hero_state == "jump")
           <argument>
             <kind>1</kind>
             <string>if (!place_free(x, y + 1)
-    or position_meeting(x, y + 1, Platform))
+    or platformCondition)
 {
     hero_state = "idle";
 }else{
@@ -395,7 +408,7 @@ if (hero_state == "jump")
           <argument>
             <kind>1</kind>
             <string>if (!place_free(x, y + 1)
-    or position_meeting(x, y + 1, Platform))
+    or platformCondition)
 {
     hero_state = "idle";
 }else{

@@ -3,7 +3,7 @@
   <spriteName>RunicStone</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-300</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>drawText = false;
-
+remove = false;
 </string>
           </argument>
         </arguments>
@@ -49,7 +49,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(PlayerObject.x &gt; x  - sprite_width / 2 and PlayerObject.x &lt; x + sprite_width / 2){
+            <string>/*if(PlayerObject.x &gt; x  - sprite_width / 2 and PlayerObject.x &lt; x + sprite_width / 2){
     if(global.level != 2){
         drawText = true;
         global.message = "Нажмите Shift, чтобы забрать руну";
@@ -61,7 +61,7 @@ else{
         global.level = 0;
         drawText = false;
     }
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -84,14 +84,26 @@ else{
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check(vk_shift)){
+            <string>if(global.level != 2){
+    drawText = true;
+    global.message = "Нажмите Shift, чтобы забрать руну";
+    global.level = 1;
+}
+
+if(global.level == 1 and drawText == true){
+    global.level = 0;
+    drawText = false;
+}
+
+if(keyboard_check(vk_shift)){
     if(drawText){
         global.level = 0;
         drawText = false;
         PlayerObject.weapon = weapons.bullet2;  
     }
     SplitObject();
-    instance_destroy();
+    remove = true;
+    //instance_destroy();
 }
 </string>
           </argument>

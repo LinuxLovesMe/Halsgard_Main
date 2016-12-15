@@ -1,4 +1,4 @@
-var chunk = 6;
+var chunk = 10;
 
 for(i = 0; i < sprite_width; i += chunk){
     for(j = 0; j < sprite_height; j += chunk){
@@ -7,4 +7,4 @@ for(i = 0; i < sprite_width; i += chunk){
         
     }
 }
-instance_destroy();
+//instance_destroy();

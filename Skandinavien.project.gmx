@@ -83,6 +83,7 @@
         <sprite>sprites\RunicStone2</sprite>
         <sprite>sprites\RunicStone</sprite>
         <sprite>sprites\StreetLamp</sprite>
+        <sprite>sprites\PlatformSpr</sprite>
       </sprites>
     </sprites>
     <sprites name="UI">
@@ -179,8 +180,8 @@
         <object>objects\Runic1</object>
         <object>objects\Runic2</object>
         <object>objects\StreetLampObj</object>
+        <object>objects\Platform</object>
       </objects>
-      <object>objects\Platform</object>
     </objects>
     <objects name="UI">
       <object>objects\SliderVert</object>
@@ -226,6 +227,8 @@
       <object>objects\Camera</object>
       <object>objects\Parallax</object>
       <object>objects\Slash</object>
+      <object>objects\AppearController</object>
+      <object>objects\AppearPoint</object>
     </objects>
     <objects name="Text objects">
       <object>objects\obj_text</object>

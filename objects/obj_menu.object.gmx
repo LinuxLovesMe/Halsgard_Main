@@ -25,11 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menu[0] = "ÍÎÂÎÅ ÏÐÈÊËÞ×ÅÍÈÅ";
-menu[1] = "ÍÀÑÒÐÎÉÊÈ";
-menu[2] = "ÏÎÊÈÍÓÒÜ ÏÐÈÊËÞ×ÅÍÈÅ";
+            <string>menu[0] = "НОВОЕ ПРИКЛЮЧЕНИЕ";
+menu[1] = "НАСТРОЙКИ";
+menu[2] = "ПОКИНУТЬ ПРИКЛЮЧЕНИЕ";
 
-space = 84;
+space = 74;
 curr_pos = 0;
 </string>
           </argument>
@@ -89,13 +89,11 @@ if (push) scr_menu();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_sprite(River, 0, 0, 0);
-
-draw_set_font(Runic);
+            <string>draw_set_font(Runic);
 draw_set_colour(c_black);
 
-x = 945;
-y = 380;
+x = 794;
+y = 364;
 
 var m;
 for (m = 0; m &lt; array_length_1d(menu); m++)
@@ -105,7 +103,7 @@ for (m = 0; m &lt; array_length_1d(menu); m++)
 
 var line = y + (curr_pos * space);
 
-draw_line_width(x, line + 42, 1010, line + 42, 3);
+draw_line_width(x, line + 42, 860, line + 42, 3);
 </string>
           </argument>
         </arguments>

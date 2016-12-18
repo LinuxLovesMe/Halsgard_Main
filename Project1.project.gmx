@@ -25,6 +25,11 @@
       <sprite>sprites\spr_shooter_1</sprite>
       <sprite>sprites\spr_shooter_2</sprite>
     </sprites>
+    <sprites name="monsters">
+      <sprite>sprites\spr_draugr_walk</sprite>
+      <sprite>sprites\spr_punk_walk</sprite>
+      <sprite>sprites\spr_draugr_rising</sprite>
+    </sprites>
     <sprites name="weapons">
       <sprite>sprites\spr_rune_1</sprite>
       <sprite>sprites\spr_rune_2</sprite>

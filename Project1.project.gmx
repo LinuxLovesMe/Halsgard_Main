@@ -24,6 +24,7 @@
       <sprite>sprites\spr_hero_jump</sprite>
       <sprite>sprites\spr_shooter_1</sprite>
       <sprite>sprites\spr_shooter_2</sprite>
+      <sprite>sprites\spr_hero_melee</sprite>
     </sprites>
     <sprites name="monsters">
       <sprite>sprites\spr_draugr_walk</sprite>

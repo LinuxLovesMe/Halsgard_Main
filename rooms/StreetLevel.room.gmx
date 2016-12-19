@@ -318,7 +318,6 @@
     <instance objName="obj_lamp" x="1675" y="1680" name="inst_8E0C03EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lamp" x="2586" y="1680" name="inst_2E92BE80" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lamp" x="3395" y="1686" name="inst_4B6AE25A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_mainhero" x="96" y="1936" name="inst_730D4A1D" locked="0" code="" scaleX="-0.600000023841858" scaleY="0.5" colour="4294967295" rotation="0"/>
     <instance objName="obj_fast_platform" x="576" y="1344" name="inst_2C1508E6" locked="0" code="" scaleX="-0.600000023841858" scaleY="0.600000023841858" colour="3539992575" rotation="0"/>
     <instance objName="obj_slow_platform" x="496" y="1696" name="inst_28442B32" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="4211081215" rotation="0"/>
     <instance objName="obj_slow_platform" x="1548" y="1698" name="inst_F6FDEF15" locked="0" code="" scaleX="0.600000023841858" scaleY="0.600000023841858" colour="3372220415" rotation="0"/>
@@ -364,6 +363,9 @@
     <instance objName="obj_stone_point" x="3024" y="786" name="inst_318FFEED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_point" x="3392" y="786" name="inst_43E98CCB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_point" x="3728" y="786" name="inst_2FD65644" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="Controller" x="144" y="368" name="inst_774CBE76" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="Enemy1" x="576" y="1936" name="inst_4FD40DD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="Enemy2" x="48" y="1920" name="inst_4B0C71E7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

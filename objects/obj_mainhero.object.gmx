@@ -34,6 +34,10 @@ jump_speed = 14;
 jumped = false;
 
 platformCondition = false;
+
+image_xscale = 0.6;
+image_yscale = 0.6;
+
 </string>
           </argument>
         </arguments>
@@ -56,9 +60,7 @@ platformCondition = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>show_debug_message(hero_state);
-
-platformCondition = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
+            <string>platformCondition = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
 
 if (position_meeting(x, y + 1, obj_platform) and (!platformCondition))
 {    

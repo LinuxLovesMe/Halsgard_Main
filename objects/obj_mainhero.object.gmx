@@ -34,10 +34,6 @@ jump_speed = 14;
 jumped = false;
 
 platformCondition = false;
-
-image_xscale = 0.6;
-image_yscale = 0.6;
-
 </string>
           </argument>
         </arguments>
@@ -113,7 +109,6 @@ if (hero_state == "left")
     {
         sprite_index = spr_hero_walk;
     }
-    image_xscale = 0.6;
     if (!audio_is_playing(walk_sound))
     {
         audio_play_sound(walk_sound, 10, false);
@@ -127,7 +122,6 @@ if (hero_state == "right")
     {
         sprite_index = spr_hero_walk;
     }
-    image_xscale = -0.6;
     if (!audio_is_playing(walk_sound))
     {
         audio_play_sound(walk_sound, 10, false);
@@ -352,7 +346,6 @@ else
         runicBullet.direction = 0;
         runicBullet.xCreate = x;
         runicBullet.yCreate = y;
-        sprite_index = spr_shooter_1;
     }
     hero_state = "shoot";
     runicBullet.speed = 18;        

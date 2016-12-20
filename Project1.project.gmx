@@ -22,8 +22,6 @@
       <sprite>sprites\spr_hero_walk</sprite>
       <sprite>sprites\spr_hero_idle</sprite>
       <sprite>sprites\spr_hero_jump</sprite>
-      <sprite>sprites\spr_shooter_1</sprite>
-      <sprite>sprites\spr_shooter_2</sprite>
       <sprite>sprites\spr_hero_melee</sprite>
     </sprites>
     <sprites name="monsters">

@@ -31,9 +31,13 @@ vert_speed = 0;
 move_speed = 5;
 jump_speed = 14;
 
+maxhealth = 8;
 jumped = false;
 
 platformCondition = false;
+
+color_warning = c_orange;
+color_danger = make_color_hsv(0, 250, 180);
 </string>
           </argument>
         </arguments>
@@ -56,7 +60,9 @@ platformCondition = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>platformCondition = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
+            <string>show_debug_message(hero_state);
+
+platformCondition = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
 
 if (position_meeting(x, y + 1, obj_platform) and (!platformCondition))
 {    
@@ -90,16 +96,6 @@ if (hero_state == "idle")
 {
     image_speed = 0.04;
     sprite_index = spr_hero_idle;
-}
-
-if (hero_state == "shoot")
-{
-    image_speed = 0.25;
-    sprite_index = spr_shooter_1;
-    if (image_index &gt; image_number - 0.4)
-    {
-        hero_state = "idle";
-    }
 }
 
 if (hero_state == "left")
@@ -173,6 +169,25 @@ if (hero_state == "jump")
 
     y += vert_speed;
 }
+
+if (maxhealth &gt; 6)
+{
+    image_blend = c_white;
+    background_index[1] = street_level_back;
+}
+else
+{
+    if (maxhealth &gt; 3)
+    {
+        image_blend = color_warning;
+        background_index[1] = level_0101;
+    }
+    else
+    {
+        image_blend = color_danger;
+        background_index[1] = level_0102;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -219,6 +234,7 @@ if (hero_state == "jump")
         }
     }
     x += move_speed;
+    image_xscale = -0.6;
 }
 else
 {
@@ -273,6 +289,7 @@ else
         }
     }
     x -= move_speed;
+    image_xscale = 0.6;
 }
 else
 {
@@ -331,24 +348,49 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (hero_state == "idle" or hero_state == "shoot")
+            <string>if (hero_state == "idle")
 {
     if (image_xscale &gt; 0)
     {
-        runicBullet = instance_create(x - 50, y - 20, obj_rune_1);
+        runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
         runicBullet.direction = 180;
         runicBullet.xCreate = x;
         runicBullet.yCreate = y;
     }
     else
     {
-        runicBullet = instance_create(x + 50, y - 20, obj_rune_1);
+        runicBullet = instance_create(x + 50, y - 116, obj_rune_1);
         runicBullet.direction = 0;
         runicBullet.xCreate = x;
         runicBullet.yCreate = y;
     }
-    hero_state = "shoot";
-    runicBullet.speed = 18;        
+    runicBullet.speed = 18;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="72">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if ((maxhealth - 2) &gt;= 0)
+{
+    maxhealth -= 2;
 }
 </string>
           </argument>

@@ -64,6 +64,7 @@
     <sprite>sprites\spr_stone_1</sprite>
     <sprite>sprites\spr_stone_2</sprite>
     <sprite>sprites\Info</sprite>
+    <sprite>sprites\JournalSprite</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
@@ -102,7 +103,6 @@
       </objects>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
-      <object>objects\InfoObj</object>
     </objects>
     <objects name="street_level">
       <object>objects\obj_bridge</object>
@@ -121,13 +121,18 @@
       <object>objects\obj_stone_controller</object>
       <object>objects\Controller</object>
       <object>objects\TextControl</object>
+      <object>objects\EnemySpawner</object>
     </objects>
     <objects name="Characters">
       <object>objects\AttackingEnemy</object>
       <object>objects\obj_mainhero</object>
       <object>objects\EnemyAncestor</object>
-      <object>objects\Enemy1</object>
-      <object>objects\Enemy2</object>
+      <object>objects\Draugr</object>
+      <object>objects\Punk</object>
+    </objects>
+    <objects name="UI">
+      <object>objects\InfoObj</object>
+      <object>objects\Journal</object>
     </objects>
   </objects>
   <rooms name="rooms">

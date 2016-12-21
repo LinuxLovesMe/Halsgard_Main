@@ -31,7 +31,7 @@
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_mainhero">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -48,9 +48,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_shift))
-{
-    remove = true;
+            <string>if(distance_to_object(obj_mainhero) &lt;= 0){
+
+    global.promptText = "Нажмите Shift, чтобы забрать руну";
+
+    if (keyboard_check(vk_shift)){
+        remove = true;
+        global.promptText = "";
+    }
+}else{
+    global.promptText = "";
 }
 </string>
           </argument>

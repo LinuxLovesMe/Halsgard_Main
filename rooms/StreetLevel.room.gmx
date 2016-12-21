@@ -364,8 +364,9 @@
     <instance objName="obj_stone_point" x="3392" y="786" name="inst_43E98CCB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_stone_point" x="3728" y="786" name="inst_2FD65644" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Controller" x="144" y="368" name="inst_774CBE76" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="Enemy1" x="624" y="1888" name="inst_4FD40DD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="Enemy2" x="48" y="1904" name="inst_4B0C71E7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="Draugr" x="624" y="1888" name="inst_4FD40DD6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="Punk" x="48" y="1904" name="inst_4B0C71E7" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="EnemySpawner" x="224" y="368" name="inst_F7CC9C7C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

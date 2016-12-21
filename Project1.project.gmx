@@ -3,6 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles">
+    <datafile>
+      <name>textPrologue.txt</name>
+      <exists>-1</exists>
+      <size>0</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>textPrologue.txt</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\menu_music</sound>
@@ -44,6 +63,7 @@
     </sprites>
     <sprite>sprites\spr_stone_1</sprite>
     <sprite>sprites\spr_stone_2</sprite>
+    <sprite>sprites\Info</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
@@ -82,6 +102,7 @@
       </objects>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
+      <object>objects\InfoObj</object>
     </objects>
     <objects name="street_level">
       <object>objects\obj_bridge</object>
@@ -99,6 +120,7 @@
       <object>objects\obj_scene_controller</object>
       <object>objects\obj_stone_controller</object>
       <object>objects\Controller</object>
+      <object>objects\TextControl</object>
     </objects>
     <objects name="Characters">
       <object>objects\AttackingEnemy</object>

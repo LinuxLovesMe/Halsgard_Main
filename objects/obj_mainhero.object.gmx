@@ -60,19 +60,19 @@ color_danger = make_color_hsv(0, 250, 180);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>show_debug_message(hero_state);
+            <string>platformCondition = position_meeting(x, y + 1, obj_platform) 
+    and instance_nearest(x, y, obj_platform).visible == true;
 
-platformCondition = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
-
-if (position_meeting(x, y + 1, obj_platform) and (!platformCondition))
-{    
+if (position_meeting(x, y + 1, obj_platform)
+    and instance_nearest(x, y, obj_platform).visible == false){
+    
     if (hero_state != "jump")
     {
         hero_state = "falling";
     }
 }
 
-if (((!place_free(x, y + 1)) or platformCondition) and hero_state == "falling")
+if ((!place_free(x, y + 1) or platformCondition) and hero_state == "falling")
 {    
     hero_state = "idle";
 }
@@ -87,6 +87,7 @@ if (hero_state == "falling")
     {
         y += 1936 - y;
     }
+    y += jump_speed;
     image_speed = 0;
     sprite_index = spr_hero_jump;
     image_index = 4;
@@ -210,38 +211,30 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (x &lt; room_width - 56)
+            <string>if (x &lt; room_width - sprite_width / 2)
 {
     if (!place_free(x, y + 1) or platformCondition)
     {
         if (hero_state != "jump")
-        {
             hero_state = "right";
-        }
         else
         {
             if (hero_state != "jump")
-            {
                 hero_state = "falling";
-            }
         }
     }
     else
     {
         if (hero_state != "jump")
-        {
             hero_state = "falling";
-        }
     }
     x += move_speed;
-    image_xscale = -0.6;
+    image_xscale = -1;
 }
 else
 {
     if (hero_state != "jump")
-    {
         hero_state = "falling";
-    }
 }
 </string>
           </argument>
@@ -265,38 +258,30 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (x &gt; 56)
+            <string>if (x &gt; sprite_width / 2)
 {
     if (!place_free(x, y + 1) or platformCondition)
     {
         if (hero_state != "jump")
-        {
             hero_state = "left";
-        }
         else
         {
             if (hero_state != "jump")
-            {
                 hero_state = "falling";
-            }
         }        
     }
     else
     {
         if (hero_state != "jump")
-        {
             hero_state = "falling";
-        }
     }
     x -= move_speed;
-    image_xscale = 0.6;
+    image_xscale = 1;
 }
 else
 {
     if (hero_state != "jump")
-    {
         hero_state = "falling";
-    }
 }
 </string>
           </argument>

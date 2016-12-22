@@ -2,13 +2,13 @@ switch (curr_pos)
 {
     case 0:
     {
-        room_goto(StreetLevel);
+        room_goto(SteetLevel);
         break;
     }
         
     case 1:
     {
-        room_goto(StreetLevel);
+        room_goto(SteetLevel);
         break;
     }
     

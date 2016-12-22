@@ -5,9 +5,9 @@
   </Configs>
   <datafiles number="1" name="datafiles">
     <datafile>
-      <name>textPrologue.txt</name>
+      <name>TextPrologue.txt</name>
       <exists>-1</exists>
-      <size>0</size>
+      <size>1855</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -19,7 +19,7 @@
           <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>textPrologue.txt</filename>
+      <filename>TextPrologue.txt</filename>
     </datafile>
   </datafiles>
   <NewExtensions/>
@@ -41,12 +41,19 @@
       <sprite>sprites\spr_hero_walk</sprite>
       <sprite>sprites\spr_hero_idle</sprite>
       <sprite>sprites\spr_hero_jump</sprite>
-      <sprite>sprites\spr_hero_melee</sprite>
+      <sprite>sprites\spr_hero_damage</sprite>
     </sprites>
     <sprites name="monsters">
       <sprite>sprites\spr_draugr_walk</sprite>
       <sprite>sprites\spr_punk_walk</sprite>
       <sprite>sprites\spr_draugr_rising</sprite>
+    </sprites>
+    <sprites name="destr_effect">
+      <sprite>sprites\spr_dest_01</sprite>
+      <sprite>sprites\spr_dest_02</sprite>
+      <sprite>sprites\spr_dest_03</sprite>
+      <sprite>sprites\spr_dest_04</sprite>
+      <sprite>sprites\spr_dest_05</sprite>
     </sprites>
     <sprites name="weapons">
       <sprite>sprites\spr_rune_1</sprite>
@@ -59,21 +66,28 @@
       <sprite>sprites\spr_vsadnik</sprite>
       <sprite>sprites\spr_bridge</sprite>
       <sprite>sprites\spr_noise</sprite>
+      <sprite>sprites\spr_gnezdo</sprite>
       <sprite>sprites\spr_glory_edge</sprite>
     </sprites>
+    <sprite>sprites\spr_medical</sprite>
     <sprite>sprites\spr_stone_1</sprite>
     <sprite>sprites\spr_stone_2</sprite>
-    <sprite>sprites\Info</sprite>
-    <sprite>sprites\JournalSprite</sprite>
+    <sprite>sprites\spr_information</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
     <background>background\street_level_back</background>
+    <background>background\street_level_pain</background>
+    <background>background\background_razlom</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_menu.gml</script>
+    <script>scripts\scr_destruction.gml</script>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>
@@ -87,6 +101,13 @@
       <object>objects\obj_birds</object>
     </objects>
     <objects name="effects">
+      <objects name="destr_effect">
+        <object>objects\obj_dest_01</object>
+        <object>objects\obj_dest_02</object>
+        <object>objects\obj_dest_03</object>
+        <object>objects\obj_dest_04</object>
+        <object>objects\obj_dest_05</object>
+      </objects>
       <object>objects\obj_parallax</object>
       <object>objects\obj_light</object>
       <object>objects\obj_fade_effect</object>
@@ -94,50 +115,49 @@
       <object>objects\obj_rain</object>
       <object>objects\obj_rain_music</object>
     </objects>
-    <objects name="last_and_always">
+    <objects name="characters">
+      <object>objects\obj_enemy_draugr</object>
+      <object>objects\obj_enemy_punk</object>
+      <object>objects\obj_mainhero</object>
+      <object>objects\obj_enemy_parent</object>
+    </objects>
+    <objects name="always_items">
       <object>objects\obj_ground</object>
       <objects name="hero_weapons">
         <object>objects\obj_rune_1</object>
         <object>objects\obj_rune_2</object>
         <object>objects\obj_bullet</object>
       </objects>
+      <object>objects\obj_medical</object>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
     </objects>
     <objects name="street_level">
-      <object>objects\obj_bridge</object>
-      <object>objects\obj_platform</object>
       <object>objects\obj_tree_street</object>
-      <object>objects\obj_vsadnik</object>
+      <object>objects\obj_platform</object>
+      <object>objects\obj_bridge</object>
       <object>objects\obj_stone_point</object>
+      <object>objects\obj_gnezdo</object>
       <object>objects\obj_lamp</object>
+      <object>objects\obj_vsadnik</object>
       <object>objects\obj_zaborchik</object>
       <object>objects\obj_slow_platform</object>
       <object>objects\obj_fast_platform</object>
       <object>objects\obj_perm_platform</object>
     </objects>
-    <objects name="Controls">
+    <objects name="controls">
+      <object>objects\obj_textcontrol</object>
       <object>objects\obj_scene_controller</object>
       <object>objects\obj_stone_controller</object>
-      <object>objects\Controller</object>
-      <object>objects\TextControl</object>
-      <object>objects\EnemySpawner</object>
+      <object>objects\obj_enemy_spawner</object>
     </objects>
-    <objects name="Characters">
-      <object>objects\AttackingEnemy</object>
-      <object>objects\obj_mainhero</object>
-      <object>objects\EnemyAncestor</object>
-      <object>objects\Draugr</object>
-      <object>objects\Punk</object>
-    </objects>
-    <objects name="UI">
-      <object>objects\InfoObj</object>
-      <object>objects\Journal</object>
+    <objects name="ui_elements">
+      <object>objects\obj_information</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\Menu</room>
-    <room>rooms\StreetLevel</room>
+    <room>rooms\MainMenu</room>
+    <room>rooms\SteetLevel</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -74,6 +74,7 @@
   <scripts name="scripts">
     <script>scripts\scr_menu.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>

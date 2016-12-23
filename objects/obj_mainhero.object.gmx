@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>hero_state = "falling";
-grav = 0.5;
+grav = 1;
 vert_speed = 0;
 move_speed = 5;
-jump_speed = 14;
+jump_speed = 24;
 
 maxhealth = 8;
 jumped = false;

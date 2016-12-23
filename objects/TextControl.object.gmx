@@ -36,7 +36,6 @@ instance_create(-1000, -1000, Journal);
 Journal.visible = false;
 
 file = file_text_open_read("textPrologue.txt");
-global.greatInfo = "";
 alarm[0] = 1;
 </string>
           </argument>

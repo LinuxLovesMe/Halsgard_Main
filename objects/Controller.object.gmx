@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(100, room_height - 300, obj_mainhero);
-instance_create(x, y, obj_parallax);
+            <string>instance_create(x, y, obj_parallax);
 instance_create(x, y, TextControl);
 </string>
           </argument>

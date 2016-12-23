@@ -43,6 +43,7 @@
       <sprite>sprites\spr_hero_jump</sprite>
       <sprite>sprites\spr_hero_melee</sprite>
       <sprite>sprites\spr_hero_hand</sprite>
+      <sprite>sprites\spr_hero_shoot</sprite>
     </sprites>
     <sprites name="monsters">
       <sprite>sprites\spr_draugr_walk</sprite>

@@ -75,12 +75,16 @@
   <scripts name="scripts">
     <script>scripts\scr_menu.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>
   </fonts>
   <objects name="objects">
+    <objects name="hero_weapons">
+      <object>objects\obj_rune_1</object>
+      <object>objects\obj_rune_2</object>
+      <object>objects\obj_bullet</object>
+    </objects>
     <objects name="main_menu">
       <object>objects\obj_menu</object>
       <object>objects\obj_menu_music</object>
@@ -97,11 +101,6 @@
     </objects>
     <objects name="last_and_always">
       <object>objects\obj_ground</object>
-      <objects name="hero_weapons">
-        <object>objects\obj_rune_1</object>
-        <object>objects\obj_rune_2</object>
-        <object>objects\obj_bullet</object>
-      </objects>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
     </objects>

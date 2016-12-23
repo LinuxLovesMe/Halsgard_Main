@@ -25,7 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>hero_state = "falling";
+            <string>enum weapons{
+    bullet1,
+    bullet2
+};
+weapon = weapons.bullet1;
+
+hero_state = "falling";
 grav = 1;
 vert_speed = 0;
 move_speed = 5;
@@ -38,6 +44,12 @@ platformCondition = false;
 
 color_warning = c_orange;
 color_danger = make_color_hsv(0, 250, 180);
+
+//For shooting state
+shooted = false;
+hand_hspeed = 0;
+hand_vspeed = 0;
+reverse = false;
 </string>
           </argument>
         </arguments>
@@ -60,16 +72,16 @@ color_danger = make_color_hsv(0, 250, 180);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>platformCondition = position_meeting(x, y + 1, obj_platform) 
+            <string>///States of hero
+
+platformCondition = position_meeting(x, y + 1, obj_platform) 
     and instance_nearest(x, y, obj_platform).visible == true;
 
 if (position_meeting(x, y + 1, obj_platform)
     and instance_nearest(x, y, obj_platform).visible == false){
     
     if (hero_state != "jump")
-    {
         hero_state = "falling";
-    }
 }
 
 if ((!place_free(x, y + 1) or platformCondition) and hero_state == "falling")
@@ -77,21 +89,31 @@ if ((!place_free(x, y + 1) or platformCondition) and hero_state == "falling")
     hero_state = "idle";
 }
 
+
+
+
+
+
+
 if (hero_state == "falling")
 {
     if (y + jump_speed &lt; 1936)
-    {
         y += jump_speed;
-    }
     else
-    {
         y += 1936 - y;
-    }
+        
     y += jump_speed;
     image_speed = 0;
     sprite_index = spr_hero_jump;
     image_index = 4;
 }
+
+
+
+
+
+
+
 
 if (hero_state == "idle")
 {
@@ -103,42 +125,55 @@ if (hero_state == "left")
 {
     image_speed = 0.2;
     if(!place_free(x, y + 1) or platformCondition) 
-    {
         sprite_index = spr_hero_walk;
-    }
+        
     if (!audio_is_playing(walk_sound))
-    {
         audio_play_sound(walk_sound, 10, false);
-    }
 }
+
+
+
+
+
+
+
 
 if (hero_state == "right")
 {
     image_speed = 0.2;
     if(!place_free(x, y + 1) or platformCondition) 
-    {
         sprite_index = spr_hero_walk;
-    }
+        
     if (!audio_is_playing(walk_sound))
-    {
         audio_play_sound(walk_sound, 10, false);
-    }
+        
 }
+
+
+
+
+
+
+
+if(hero_state == "shoot")
+{
+    sprite_index = spr_hero_shoot;
+}
+
+
+
+
 
 if (hero_state == "jump")
 {
     if (vert_speed &lt; 14)
-    {
         vert_speed += grav;
-    }
     
     image_speed = 0.3;
     sprite_index = spr_hero_jump;
     
     if (image_index &gt;= 4 and !(!place_free(x, y + 1) or platformCondition))
-    {
         image_index = 4;
-    }
     
     if (image_index &gt; 4 and image_index &lt; 5 and (!place_free(x, y + 1) or platformCondition))
     {
@@ -147,29 +182,29 @@ if (hero_state == "jump")
     }
     
     if (image_index &gt;= 5.7)
-    {
         hero_state = "idle";
-    }
     
     if (!place_free(x, y + 1) or platformCondition)
     {
         if (!jumped)
-        {
             vert_speed = 0;
-        }
         else
-        {
             vert_speed = -jump_speed;
-        }
     }
 
     if (place_free(x, y + 1) and !platformCondition)
-    {
         audio_stop_sound(walk_sound);
-    }
 
     y += vert_speed;
 }
+
+
+
+
+
+
+
+
 
 if (maxhealth &gt; 6)
 {
@@ -188,6 +223,53 @@ else
         image_blend = color_danger;
         background_index[1] = level_0102;
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Calculate rotation of hand
+
+if(hero_state == "shoot")
+{
+    if(abs(hand_hspeed) &lt; 5 and abs(hand_vspeed) &lt; 5)
+    {
+        reverse = false;
+        hand_hspeed -= cos(angle * (pi / 180));
+        hand_vspeed += sin(angle * (pi / 180));
+    }else
+    {
+        if(reverse and (hand_hspeed &lt; 0 and hand_vspeed &gt; 0))
+        {
+            hand_hspeed += cos(angle * (pi / 180));
+            hand_vspeed -= sin(angle * (pi / 180));
+        }else
+        {
+            hero_state = "idle";
+        }
+        reverse = true;
+    }
+}else
+{
+    hand_hspeed = 0;
+    hand_vspeed = 0;
+    reverse = false;
 }
 </string>
           </argument>
@@ -288,6 +370,91 @@ else
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Create bullet with corresponding angle
+
+if(hero_state != "shoot")
+{
+    hero_state = "shoot";
+    
+    angle = point_direction(x, y - sprite_height / 2, mouse_x, mouse_y);
+    
+    if((angle &gt; 270 and angle &lt; 360 or angle &gt; 0 and angle &lt; 90) and image_xscale &lt; 0
+        or (angle &gt; 90 and angle &lt; 270 and image_xscale &gt; 0))
+    {
+        if(weapon = weapons.bullet1)    
+            runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
+        if(weapon = weapons.bullet2)
+            runicBullet = instance_create(x - 50, y - 116, obj_rune_2);
+        
+        runicBullet.speed = 15;
+        runicBullet.direction = angle;
+        runicBullet.x_create = x;
+        runicBullet.y_create = y;
+    }   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+if(hero_state == "shoot")
+{
+    if((angle &gt; 270 and angle &lt; 360 or angle &gt; 0 and angle &lt; 90) and image_xscale &lt; 0)
+    {
+        draw_sprite_ext(spr_hero_hand, 1,
+            x + hand_hspeed,
+            y - sprite_height / 2 + hand_vspeed,
+            1, 1, angle, c_white, 1);
+    }
+    if (angle &gt; 90 and angle &lt; 270 and image_xscale &gt; 0){
+        draw_sprite_ext(spr_hero_hand, 0,
+            x + hand_hspeed,
+            y - sprite_height / 2 + hand_vspeed,
+            1, 1, angle - 180, c_white, 1);   
+    }   
+}
+
+draw_self();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="9" enumb="87">
       <action>
         <libid>1</libid>
@@ -310,46 +477,6 @@ else
     hero_state = "jump";
     vert_speed = -jump_speed;
     jumped = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (hero_state == "idle")
-{
-    if (image_xscale &gt; 0)
-    {
-        runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
-        runicBullet.direction = 180;
-        runicBullet.xCreate = x;
-        runicBullet.yCreate = y;
-    }
-    else
-    {
-        runicBullet = instance_create(x + 50, y - 116, obj_rune_1);
-        runicBullet.direction = 0;
-        runicBullet.xCreate = x;
-        runicBullet.yCreate = y;
-    }
-    runicBullet.speed = 18;
 }
 </string>
           </argument>

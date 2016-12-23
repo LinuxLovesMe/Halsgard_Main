@@ -42,6 +42,7 @@
       <sprite>sprites\spr_hero_idle</sprite>
       <sprite>sprites\spr_hero_jump</sprite>
       <sprite>sprites\spr_hero_melee</sprite>
+      <sprite>sprites\spr_hero_hand</sprite>
     </sprites>
     <sprites name="monsters">
       <sprite>sprites\spr_draugr_walk</sprite>
@@ -58,7 +59,6 @@
       <sprite>sprites\spr_lamp</sprite>
       <sprite>sprites\spr_vsadnik</sprite>
       <sprite>sprites\spr_bridge</sprite>
-      <sprite>sprites\spr_noise</sprite>
       <sprite>sprites\spr_glory_edge</sprite>
     </sprites>
     <sprite>sprites\spr_stone_1</sprite>
@@ -90,7 +90,6 @@
       <object>objects\obj_parallax</object>
       <object>objects\obj_light</object>
       <object>objects\obj_fade_effect</object>
-      <object>objects\obj_noise</object>
       <object>objects\obj_rain</object>
       <object>objects\obj_rain_music</object>
     </objects>

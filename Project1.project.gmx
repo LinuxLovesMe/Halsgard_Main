@@ -66,15 +66,25 @@
     <sprite>sprites\spr_stone_2</sprite>
     <sprite>sprites\Info</sprite>
     <sprite>sprites\JournalSprite</sprite>
+    <sprites name="card_game_level">
+      <sprite>sprites\game_card</sprite>
+      <sprite>sprites\game_icon</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
     <background>background\street_level_back</background>
+    <background>background\card_game_backgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_menu.gml</script>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\sh_WnB.shader</shader>
+    <shader type="GLSLES">shaders\sh_sepya.shader</shader>
+    <shader type="GLSLES">shaders\sh_red.shader</shader>
+  </shaders>
   <fonts name="fonts">
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>
@@ -84,13 +94,6 @@
       <object>objects\obj_rune_1</object>
       <object>objects\obj_rune_2</object>
       <object>objects\obj_bullet</object>
-    </objects>
-    <objects name="main_menu">
-      <object>objects\obj_menu</object>
-      <object>objects\obj_menu_music</object>
-      <object>objects\obj_fire</object>
-      <object>objects\obj_river</object>
-      <object>objects\obj_birds</object>
     </objects>
     <objects name="effects">
       <object>objects\obj_parallax</object>
@@ -103,18 +106,6 @@
       <object>objects\obj_ground</object>
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
-    </objects>
-    <objects name="street_level">
-      <object>objects\obj_bridge</object>
-      <object>objects\obj_platform</object>
-      <object>objects\obj_tree_street</object>
-      <object>objects\obj_vsadnik</object>
-      <object>objects\obj_stone_point</object>
-      <object>objects\obj_lamp</object>
-      <object>objects\obj_zaborchik</object>
-      <object>objects\obj_slow_platform</object>
-      <object>objects\obj_fast_platform</object>
-      <object>objects\obj_perm_platform</object>
     </objects>
     <objects name="Controls">
       <object>objects\obj_scene_controller</object>
@@ -134,10 +125,36 @@
       <object>objects\InfoObj</object>
       <object>objects\Journal</object>
     </objects>
+    <objects name="levels">
+      <objects name="main_menu">
+        <object>objects\obj_menu</object>
+        <object>objects\obj_menu_music</object>
+        <object>objects\obj_fire</object>
+        <object>objects\obj_river</object>
+        <object>objects\obj_birds</object>
+      </objects>
+      <objects name="street_level">
+        <object>objects\obj_bridge</object>
+        <object>objects\obj_platform</object>
+        <object>objects\obj_tree_street</object>
+        <object>objects\obj_vsadnik</object>
+        <object>objects\obj_stone_point</object>
+        <object>objects\obj_lamp</object>
+        <object>objects\obj_zaborchik</object>
+        <object>objects\obj_slow_platform</object>
+        <object>objects\obj_fast_platform</object>
+        <object>objects\obj_perm_platform</object>
+      </objects>
+      <objects name="card_game">
+        <object>objects\game</object>
+        <object>objects\card</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\Menu</room>
     <room>rooms\StreetLevel</room>
+    <room>rooms\CardsRoom</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

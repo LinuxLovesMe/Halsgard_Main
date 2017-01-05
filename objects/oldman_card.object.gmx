@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>card</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,27 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>angle = 0;
-
-//Value - archer, mage or warrior
-value = 0;
-
-//Rotate = show the enemy's card
-rotate = false;
-
-scale = 1;
-
-xx = x; 
-yy = window_get_height() - y; 
-
-point_x[0] = 0;
-point_y[0] = 0;
-
-moved = false;
-
-clickable = false;
-
-card_speed = 5;
+            <string>event_inherited();
 </string>
           </argument>
         </arguments>
@@ -68,41 +48,10 @@ card_speed = 5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Card rotation 
-if(angle &lt; 180 and rotate)
-    angle += 2;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Move to point
+            <string>event_inherited();
 
-if(moved and point_distance(x, y, point_x[0], point_y[0]) &gt; card_speed)
-{
-    move_towards_point(point_x[0], point_y[0], card_speed);
-    if(point_distance(x, y, point_x[0], point_y[0]) &lt; card_speed * 3)
-    {
-        moved = false;
-        speed = 0;
-        x = point_x[0];
-        y = point_y[0];
-    }
+if(point_distance(x, y, point_x[0], point_y[0]) == 0){
+    rotate = true;
 }
 </string>
           </argument>
@@ -126,18 +75,7 @@ if(moved and point_distance(x, y, point_x[0], point_y[0]) &gt; card_speed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xx = x; 
-yy = y; 
-d3d_set_culling(true); 
-d3d_transform_set_rotation_y(angle); 
-d3d_transform_add_translation(xx, yy, 0); 
-//draw_sprite(game_card, 3, 0, 0);
-draw_sprite_ext(game_card, 3, 0, 0, scale, scale, 0, c_white, 1); 
-d3d_transform_set_rotation_y(angle + 180); 
-d3d_transform_add_translation(xx, yy, 0); 
-//draw_sprite(game_card, value, 0, 0);
-draw_sprite_ext(game_card, value, 0, 0, scale, scale, 0, c_white, 1);  
-d3d_transform_set_identity()
+            <string>event_inherited();
 </string>
           </argument>
         </arguments>

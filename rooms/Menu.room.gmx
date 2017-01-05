@@ -57,6 +57,7 @@
     <instance objName="obj_birds" x="840" y="54" name="inst_2EB1133F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_fire" x="225" y="438" name="inst_F3538428" locked="0" code="" scaleX="0.759999990463257" scaleY="0.759999990463257" colour="4294967295" rotation="0"/>
     <instance objName="obj_fire" x="84" y="468" name="inst_F32D8DCE" locked="0" code="" scaleX="0.899999976158142" scaleY="0.899999976158142" colour="4294967295" rotation="0"/>
+    <instance objName="obj_glass" x="96" y="448" name="inst_70286F33" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

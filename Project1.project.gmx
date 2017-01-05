@@ -70,6 +70,7 @@
       <sprite>sprites\game_card</sprite>
       <sprite>sprites\game_icon</sprite>
     </sprites>
+    <sprite>sprites\glass</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
@@ -84,6 +85,7 @@
     <shader type="GLSLES">shaders\sh_WnB.shader</shader>
     <shader type="GLSLES">shaders\sh_sepya.shader</shader>
     <shader type="GLSLES">shaders\sh_red.shader</shader>
+    <shader type="GLSLES">shaders\sh_glass.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\Runic</font>
@@ -148,8 +150,12 @@
       <objects name="card_game">
         <object>objects\game</object>
         <object>objects\card</object>
+        <object>objects\new_game</object>
+        <object>objects\player_card</object>
+        <object>objects\oldman_card</object>
       </objects>
     </objects>
+    <object>objects\obj_glass</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Menu</room>

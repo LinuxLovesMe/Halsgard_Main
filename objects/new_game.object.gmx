@@ -43,7 +43,7 @@ for(i = 0; i &lt; cards_number; i++){
     ds_list_add(oldman_cards, temp);
     v = ds_list_find_value(oldman_cards, ds_list_size(oldman_cards) - 1);
     v.value = choose(cards.archer, cards.warrior, cards.mage);
-    v.angle = 0;//Angle - side of card
+    v.angle = 180;//Angle - side of card
     
     temp = instance_create(-200, 200, player_card);
     ds_list_add(player_cards, temp);
@@ -181,7 +181,7 @@ temp = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>move_round = 0;
+            <string>move_round = 1;
 </string>
           </argument>
         </arguments>
@@ -372,22 +372,43 @@ if(move_round == 1 and temp == 0)//0 - computer first
     if(global.played_card_player != 0)
     {
         v = 0;   
-        for(var k = 0; k &lt; ds_list_size(oldman_cards) - 1; k++)
+        for(var k = 0; k &lt; ds_list_size(oldman_cards); k++)
         {
-            if(global.played_card_player.value == 0
-                and ds_list_find_value(oldman_cards, k ).value == 1
+            if ((global.played_card_player.value == 0
+                and ds_list_find_value(oldman_cards, k ).value == 1)
                 
-                or global.played_card_player.value == 1
-                and ds_list_find_value(oldman_cards, k ).value == 2
+                or (global.played_card_player.value == 1
+                and ds_list_find_value(oldman_cards, k ).value == 2)
                 
-                or global.played_card_player.value == 2
-                and ds_list_find_value(oldman_cards, k ).value == 0)
+                or (global.played_card_player.value == 2
+                and ds_list_find_value(oldman_cards, k ).value == 0))
+                {
+                    v = ds_list_find_value(oldman_cards, k);
+                    ds_list_delete(oldman_cards, k);
+                    break;
+                }
+        }
+        
+        if(v == 0)
+        {
+            for(var l = 0; l &lt; ds_list_size(oldman_cards); l++)
             {
-                v = ds_list_find_value(oldman_cards, k);
-                ds_list_delete(oldman_cards, k);
-                break;
+                if ((global.played_card_player.value == 0
+                    and ds_list_find_value(oldman_cards, l ).value == 0)
+                
+                    or (global.played_card_player.value == 1
+                    and ds_list_find_value(oldman_cards, l ).value == 1)
+                
+                    or (global.played_card_player.value == 2
+                    and ds_list_find_value(oldman_cards, l ).value == 2))
+                    {
+                        v = ds_list_find_value(oldman_cards, l);
+                        ds_list_delete(oldman_cards, l);
+                        break;
+                    }
             }
         }
+        
         if(v == 0)
         {
             i = random(ds_list_size(oldman_cards) - 1);
@@ -476,7 +497,7 @@ if(global.played_card_oldman != 0
     );
 }
 
-if(rounds = 6){
+if(rounds = 5){
     draw_set_colour(c_white);
     draw_set_font(Kramola);
     if(total_score &gt; 0)

@@ -101,12 +101,15 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///Move the chosen card
+if(click)
+{
+    with(player_card)
+        clickable = false;
+}
+
 if(click and 
     point_distance(x, y, point_x[0], point_y[0]) == 0)
-{
-    with(player_card){
-        clickable = false;
-    }    
+{    
     global.played_card_player = id;
     click = false;
 }
@@ -137,6 +140,7 @@ if(click and
     moved = true;
     point_x[0] = 300;
     point_y[0] = 300;
+    
 }
 
 

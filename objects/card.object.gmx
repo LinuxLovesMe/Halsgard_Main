@@ -46,35 +46,6 @@ moved = false;
 clickable = false;
 
 card_speed = 15;
-
-trig = false;
-drawing_card = 0;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="2">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(value == 3 and !trig){
-    trig = true;
-    drawing_card = random_range(5, 11);
-}
 </string>
           </argument>
         </arguments>
@@ -99,7 +70,7 @@ drawing_card = 0;
             <kind>1</kind>
             <string>///Card rotation 
 if(angle &lt; 180 and rotate)
-    angle += 2;
+    angle += 5;
 </string>
           </argument>
         </arguments>
@@ -161,14 +132,11 @@ d3d_set_culling(true);
 d3d_transform_set_rotation_y(angle); 
 d3d_transform_add_translation(xx, yy, 0); 
 //draw_sprite(game_card, 3, 0, 0);
-draw_sprite_ext(game_card, 3, 0, 0, scale, scale, 0, c_white, 1); 
+draw_sprite_ext(game_card, 6, 0, 0, scale, scale, 0, c_white, 1); 
 d3d_transform_set_rotation_y(angle + 180); 
 d3d_transform_add_translation(xx, yy, 0); 
 //draw_sprite(game_card, value, 0, 0);
-if(value != 3)
     draw_sprite_ext(game_card, value, 0, 0, scale, scale, 0, c_white, 1);  
-else
-    draw_sprite_ext(game_card, drawing_card, 0, 0, scale, scale, 0, c_white, 1);
 d3d_transform_set_identity()
 </string>
           </argument>

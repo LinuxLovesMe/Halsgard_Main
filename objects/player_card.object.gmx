@@ -27,6 +27,9 @@
             <kind>1</kind>
             <string>event_inherited();
 click = false;
+
+choose_trump = false;
+trump_choosed = false;
 </string>
           </argument>
         </arguments>
@@ -136,12 +139,25 @@ if(click and
           <argument>
             <kind>1</kind>
             <string>if(clickable){
-    click = true;
-    moved = true;
-    point_x[0] = 300;
-    point_y[0] = 300;
+    if(!choose_trump)
+    {   
+        click = true;
+        moved = true;
+        point_x[0] = 300;
+        point_y[0] = 300;
+    }else
+    {
+        value += 3;
+        with(player_card)
+        {
+            clickable = false;
+            choose_trump = false;
+        }
+        trump_choosed = true;         
+    }
     
 }
+
 
 
 </string>

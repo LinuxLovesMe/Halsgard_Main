@@ -28,9 +28,5 @@
     <frame index="5">images\game_card_5.png</frame>
     <frame index="6">images\game_card_6.png</frame>
     <frame index="7">images\game_card_7.png</frame>
-    <frame index="8">images\game_card_8.png</frame>
-    <frame index="9">images\game_card_9.png</frame>
-    <frame index="10">images\game_card_10.png</frame>
-    <frame index="11">images\game_card_11.png</frame>
   </frames>
 </sprite>

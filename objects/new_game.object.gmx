@@ -296,6 +296,7 @@ if(global.played_card_oldman != 0
                 scores = 0;
             else
                 scores = 1;
+            break;
         }
         
         case cards.super_mage:
@@ -307,6 +308,7 @@ if(global.played_card_oldman != 0
                 scores = 0;
             else
                 scores = 1;
+            break;
         }
         
         case cards.super_warrior:
@@ -318,6 +320,7 @@ if(global.played_card_oldman != 0
                 scores = 0;
             else
                 scores = 1;
+            break;
         }
     }
     
@@ -359,7 +362,6 @@ if(move_round == 0 and temp == 0 and rounds &lt; cards_number - 1)//0 - computer
     do{//AI is not so stupid to simply throw up the trump
         i = random(ds_list_size(oldman_cards) - 1);
         v = ds_list_find_value(oldman_cards, i);
-        show_debug_message("hesoyam");
     }until(v.value != cards.super_archer 
         or v.value != cards.super_mage 
         or v.value != cards.super_warrior)
@@ -439,16 +441,16 @@ if(move_round == 1 and temp == 0)//1 - player first
                 }
         }
         
-        if(v == 0)
+        if(v == 0 and rounds &gt; 3)//Enemy must not throw up his trump too early
         {
-            for(var k = 0; k &lt; ds_list_size(oldman_cards); k++)
+            for(var n = 0; n &lt; ds_list_size(oldman_cards); n++)
             {    
-                if(ds_list_find_value(oldman_cards, k ).value == 3
-                or ds_list_find_value(oldman_cards, k ).value == 4
-                or ds_list_find_value(oldman_cards, k ).value == 5)
+                if(ds_list_find_value(oldman_cards, n ).value == 3
+                    or ds_list_find_value(oldman_cards, n ).value == 4
+                    or ds_list_find_value(oldman_cards, n ).value == 5)
                 {
-                    v = ds_list_find_value(oldman_cards, k);
-                    ds_list_delete(oldman_cards, k);
+                    v = ds_list_find_value(oldman_cards, n);
+                    ds_list_delete(oldman_cards, n);
                     break;
                 }                    
             }

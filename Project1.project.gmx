@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="2" name="datafiles">
     <datafile>
       <name>textPrologue.txt</name>
       <exists>-1</exists>
@@ -20,6 +20,23 @@
         </Config>
       </ConfigOptions>
       <filename>textPrologue.txt</filename>
+    </datafile>
+    <datafile>
+      <name>advisor_text1.txt</name>
+      <exists>-1</exists>
+      <size>8782</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>advisor_text1.txt</filename>
     </datafile>
   </datafiles>
   <NewExtensions/>
@@ -71,6 +88,11 @@
       <sprite>sprites\game_icon</sprite>
     </sprites>
     <sprite>sprites\glass</sprite>
+    <sprite>sprites\spr_dialogue</sprite>
+    <sprites name="icons">
+      <sprite>sprites\icon_player</sprite>
+      <sprite>sprites\icon_oldman</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_back</background>
@@ -90,6 +112,7 @@
   <fonts name="fonts">
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>
+    <font>fonts\Kramola2</font>
   </fonts>
   <objects name="objects">
     <objects name="hero_weapons">
@@ -126,6 +149,8 @@
     <objects name="UI">
       <object>objects\InfoObj</object>
       <object>objects\Journal</object>
+      <object>objects\obj_dialogue</object>
+      <object>objects\obj_input_text</object>
     </objects>
     <objects name="levels">
       <objects name="main_menu">
@@ -158,6 +183,7 @@
     <object>objects\obj_glass</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\Exp</room>
     <room>rooms\CardsRoom</room>
     <room>rooms\Menu</room>
     <room>rooms\StreetLevel</room>

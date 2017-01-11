@@ -39,7 +39,9 @@
       <filename>advisor_text1.txt</filename>
     </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\HanifFlatUI</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sound>sound\menu_music</sound>
     <sound>sound\rain_sound</sound>
@@ -102,6 +104,8 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_menu.gml</script>
+    <script>scripts\header.gml</script>
+    <script>scripts\footer.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\sh_WnB.shader</shader>
@@ -113,6 +117,12 @@
     <font>fonts\Runic</font>
     <font>fonts\Kramola</font>
     <font>fonts\Kramola2</font>
+    <font>fonts\fontHuge</font>
+    <font>fonts\fontTitle</font>
+    <font>fonts\fontText</font>
+    <font>fonts\fontLabel</font>
+    <font>fonts\fontSmall</font>
+    <font>fonts\fontKeyboard</font>
   </fonts>
   <objects name="objects">
     <objects name="hero_weapons">
@@ -181,12 +191,26 @@
       </objects>
     </objects>
     <object>objects\obj_glass</object>
+    <object>objects\objConfig</object>
+    <object>objects\objColour</object>
+    <object>objects\objTextbox</object>
+    <object>objects\objButton</object>
+    <object>objects\objCheckbox</object>
+    <object>objects\objSelect</object>
+    <object>objects\objSidenav</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Exp</room>
+    <room>rooms\roomTextbox</room>
     <room>rooms\CardsRoom</room>
     <room>rooms\Menu</room>
     <room>rooms\StreetLevel</room>
+    <room>rooms\roomColour</room>
+    <room>rooms\roomConfig</room>
+    <room>rooms\roomButton</room>
+    <room>rooms\roomCheckbox</room>
+    <room>rooms\roomSelect</room>
+    <room>rooms\roomSidenav</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

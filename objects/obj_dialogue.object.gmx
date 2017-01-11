@@ -84,7 +84,8 @@ separator = 36;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(input_text.text_entered)
+            <string>///Check input text 
+if(input_text.text_entered)
 {
     for(k = 0; k &lt; array_length_2d(info, pointer); k++)
     {
@@ -132,10 +133,25 @@ draw_text_colour(xx + 30, yy + 250, "Осталось АР: 3", c_white, c_white
 draw_text_colour(xx + 30, yy + 270, "Принадлежность: -", c_white, c_white, c_white, c_white, 1);
 draw_text_colour(xx + 30, yy + 290, "Дружелюбность: 5", c_white, c_white, c_white, c_white, 1);
 
-//draw_text_colour(xx + 270, yy + 20, info[0, 0], c_white, c_white, c_white, c_white, 1);
-//draw_text_ext_transformed()
+var text = 0;
+text[0] = info[pointer, 0];
+
+for(k = 1; k &lt; array_length_2d(info, pointer); k++)
+{
+    text[k] = info[pointer, k];
+}
+
+for(k = 0; k &lt; array_length_1d(text); k++)
+{
+    sub_str = string_copy(text[k], 0, 5);
+    num = string_digits(sub_str);
+    text[k] = string_replace_all(text[k], "#", "");
+    text[k] = string_replace_all(text[k], "@", "");
+    text[k] = string_replace_all(text[k], num, "");
+}
+
 draw_text_ext_transformed_colour(
-    xx + 270, yy + 20, info[pointer, 0],
+    xx + 270, yy + 20, text[0],
     separator, string_w,
     1, 1, 0,
     c_white, c_white, c_white, c_white, 1
@@ -144,7 +160,7 @@ offset = 470;
 for(k = 1; k &lt; array_length_2d(info, pointer); k++)
 {
     draw_text_ext_transformed_colour(
-        xx + 270, yy + offset, info[pointer, k],
+        xx + 270, yy + offset, text[k],
         separator, sprite_width - 300,
         1, 1, 0,
         c_white, c_white, c_white, c_white, 1

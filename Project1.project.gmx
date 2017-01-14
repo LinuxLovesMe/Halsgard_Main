@@ -200,11 +200,11 @@
     <object>objects\objSidenav</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\StreetLevel</room>
     <room>rooms\Exp</room>
     <room>rooms\roomTextbox</room>
     <room>rooms\CardsRoom</room>
     <room>rooms\Menu</room>
-    <room>rooms\StreetLevel</room>
     <room>rooms\roomColour</room>
     <room>rooms\roomConfig</room>
     <room>rooms\roomButton</room>

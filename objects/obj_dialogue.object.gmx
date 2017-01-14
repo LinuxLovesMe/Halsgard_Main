@@ -87,10 +87,10 @@ separator = 36;
             <string>///Check input text 
 if(input_text.text_entered)
 {
-    for(k = 0; k &lt; array_length_2d(info, pointer); k++)
+    for(k = 1; k &lt; array_length_1d(text); k++)
     {
         if(string_pos(input_text.txt, info[pointer, k]) != 0)
-        {
+        {  
             pointer = real(string_digits(info[pointer, k])) - 1;
         }
     }
@@ -133,7 +133,7 @@ draw_text_colour(xx + 30, yy + 250, "Осталось АР: 3", c_white, c_white
 draw_text_colour(xx + 30, yy + 270, "Принадлежность: -", c_white, c_white, c_white, c_white, 1);
 draw_text_colour(xx + 30, yy + 290, "Дружелюбность: 5", c_white, c_white, c_white, c_white, 1);
 
-var text = 0;
+text = 0;
 text[0] = info[pointer, 0];
 
 for(k = 1; k &lt; array_length_2d(info, pointer); k++)

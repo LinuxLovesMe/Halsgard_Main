@@ -56,6 +56,7 @@ wait2 = false;
           <argument>
             <kind>1</kind>
             <string>///Punk create
+randomize();
 instance_create(choose(0, room_width),
     room_height - 2 * obj_ground.sprite_height,
     Punk);
@@ -83,6 +84,7 @@ wait2 = false;
           <argument>
             <kind>1</kind>
             <string>///Draugr create
+randomize();
 instance_create(irandom_range(100, room_width - 100),
     room_height - 2 * obj_ground.sprite_height,
     Draugr);

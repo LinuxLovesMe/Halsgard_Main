@@ -55,6 +55,28 @@ reverse = false;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -72,158 +94,12 @@ reverse = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///States of hero
+            <string>///Position on ground
 
 platformCondition = position_meeting(x, y + 1, obj_platform) 
     and instance_nearest(x, y, obj_platform).visible == true;
 
-if (position_meeting(x, y + 1, obj_platform)
-    and instance_nearest(x, y, obj_platform).visible == false){
-    
-    if (hero_state != "jump")
-        hero_state = "falling";
-}
-
-if ((!place_free(x, y + 1) or platformCondition) and hero_state == "falling")
-{    
-    hero_state = "idle";
-}
-
-
-
-
-
-
-
-if (hero_state == "falling")
-{
-    if (y + jump_speed &lt; 1936)
-        y += jump_speed;
-    else
-        y += 1936 - y;
-        
-    y += jump_speed;
-    image_speed = 0;
-    sprite_index = spr_hero_jump;
-    image_index = 4;
-}
-
-
-
-
-
-
-
-
-if (hero_state == "idle")
-{
-    image_speed = 0.04;
-    sprite_index = spr_hero_idle;
-}
-
-if (hero_state == "left")
-{
-    image_speed = 0.2;
-    if(!place_free(x, y + 1) or platformCondition) 
-        sprite_index = spr_hero_walk;
-        
-    if (!audio_is_playing(walk_sound))
-        audio_play_sound(walk_sound, 10, false);
-}
-
-
-
-
-
-
-
-
-if (hero_state == "right")
-{
-    image_speed = 0.2;
-    if(!place_free(x, y + 1) or platformCondition) 
-        sprite_index = spr_hero_walk;
-        
-    if (!audio_is_playing(walk_sound))
-        audio_play_sound(walk_sound, 10, false);
-        
-}
-
-
-
-
-
-
-
-if(hero_state == "shoot")
-{
-    sprite_index = spr_hero_shoot;
-}
-
-
-
-
-
-if (hero_state == "jump")
-{
-    if (vert_speed &lt; 14)
-        vert_speed += grav;
-    
-    image_speed = 0.3;
-    sprite_index = spr_hero_jump;
-    
-    if (image_index &gt;= 4 and !(!place_free(x, y + 1) or platformCondition))
-        image_index = 4;
-    
-    if (image_index &gt; 4 and image_index &lt; 5 and (!place_free(x, y + 1) or platformCondition))
-    {
-        image_index = 5;
-        jumped = false;
-    }
-    
-    if (image_index &gt;= 5.7)
-        hero_state = "idle";
-    
-    if (!place_free(x, y + 1) or platformCondition)
-    {
-        if (!jumped)
-            vert_speed = 0;
-        else
-            vert_speed = -jump_speed;
-    }
-
-    if (place_free(x, y + 1) and !platformCondition)
-        audio_stop_sound(walk_sound);
-
-    y += vert_speed;
-}
-
-
-
-
-
-
-
-
-
-if (maxhealth &gt; 6)
-{
-    image_blend = c_white;
-    background_index[1] = street_level_back;
-}
-else
-{
-    if (maxhealth &gt; 3)
-    {
-        image_blend = color_warning;
-        background_index[1] = level_0101;
-    }
-    else
-    {
-        image_blend = color_danger;
-        background_index[1] = level_0102;
-    }
-}
+onGround  = platformCondition or !place_free(x, y + 1)
 </string>
           </argument>
         </arguments>
@@ -275,8 +151,6 @@ if(hero_state == "shoot")
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="5" enumb="68">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -293,84 +167,112 @@ if(hero_state == "shoot")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (x &lt; room_width - sprite_width / 2)
+            <string>///State = left
+
+if (hero_state == "left")
 {
-    if (!place_free(x, y + 1) or platformCondition)
-    {
-        if (hero_state != "jump")
-            hero_state = "right";
-        else
-        {
-            if (hero_state != "jump")
-                hero_state = "falling";
-        }
-    }
-    else
-    {
-        if (hero_state != "jump")
-            hero_state = "falling";
-    }
-    x += move_speed;
-    image_xscale = -1;
-}
-else
-{
-    if (hero_state != "jump")
-        hero_state = "falling";
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (x &gt; sprite_width / 2)
-{
-    if (!place_free(x, y + 1) or platformCondition)
-    {
-        if (hero_state != "jump")
-            hero_state = "left";
-        else
-        {
-            if (hero_state != "jump")
-                hero_state = "falling";
-        }        
-    }
-    else
-    {
-        if (hero_state != "jump")
-            hero_state = "falling";
-    }
     x -= move_speed;
-    image_xscale = 1;
+    image_speed = 0.2;
+    if(onGround)
+    {
+        sprite_index = spr_hero_walk;
+        image_xscale = 1;
+        if(keyboard_check_released(ord('A')))
+            hero_state = "idle";
+            
+        
+    }else
+        hero_state = "falling";
+    
+        
+    if (!audio_is_playing(walk_sound))
+        audio_play_sound(walk_sound, 10, false);
 }
-else
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = right
+
+if (hero_state == "right")
 {
-    if (hero_state != "jump")
+    x += move_speed;
+    image_speed = 0.2;
+    if(onGround)
+    {
+        sprite_index = spr_hero_walk;
+        image_xscale = -1;
+        if(keyboard_check_released(ord('D')))
+            hero_state = "idle";
+            
+        
+    }else
+        hero_state = "falling";
+    
+        
+    if (!audio_is_playing(walk_sound))
+        audio_play_sound(walk_sound, 10, false);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = idle
+
+if (hero_state == "idle")
+{
+    image_speed = 0.04;
+    if(onGround){
+        sprite_index = spr_hero_idle;
+        
+        if(keyboard_check(ord('A')))
+            hero_state = "left";
+            
+        if(keyboard_check(ord('D')))
+            hero_state = "right";
+        
+    }
+    else
         hero_state = "falling";
 }
+
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -387,34 +289,24 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Create bullet with corresponding angle
+            <string>///State = fall
 
-if(hero_state != "shoot")
-{
-    hero_state = "shoot";
-    
-    angle = point_direction(x, y - sprite_height / 2, mouse_x, mouse_y);
-    
-    if((angle &gt; 270 and angle &lt; 360 or angle &gt; 0 and angle &lt; 90) and image_xscale &lt; 0
-        or (angle &gt; 90 and angle &lt; 270 and image_xscale &gt; 0))
-    {
-        if(weapon = weapons.bullet1)    
-            runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
-        if(weapon = weapons.bullet2)
-            runicBullet = instance_create(x - 50, y - 116, obj_rune_2);
-        
-        runicBullet.speed = 15;
-        runicBullet.direction = angle;
-        runicBullet.x_create = x;
-        runicBullet.y_create = y;
+if (hero_state == "falling")
+{       
+    if(onGround)
+        hero_state = "idle";
+    else
+    {    
+        y += jump_speed;
+        image_speed = 0;
+        sprite_index = spr_hero_jump;
+        image_index = 4;
     }   
 }
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -431,25 +323,51 @@ if(hero_state != "shoot")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if(hero_state == "shoot")
+            <string>///State = jump
+
+if (hero_state == "jump")
 {
-    if((angle &gt; 270 and angle &lt; 360 or angle &gt; 0 and angle &lt; 90) and image_xscale &lt; 0)
+    if (vert_speed &lt; 14)
+        vert_speed += grav;
+    
+    if(keyboard_check(ord('A')))
     {
-        draw_sprite_ext(spr_hero_hand, 1,
-            x + hand_hspeed,
-            y - sprite_height / 2 + hand_vspeed,
-            1, 1, angle, c_white, 1);
+        x -= 5;
+        image_xscale = 1;
     }
-    if (angle &gt; 90 and angle &lt; 270 and image_xscale &gt; 0){
-        draw_sprite_ext(spr_hero_hand, 0,
-            x + hand_hspeed,
-            y - sprite_height / 2 + hand_vspeed,
-            1, 1, angle - 180, c_white, 1);   
-    }   
-}
+    if(keyboard_check(ord('D')))
+    {
+        x += 5;
+        image_xscale = -1;
+    }       
+    image_speed = 0.3;
+    sprite_index = spr_hero_jump;
+    
+    if (image_index &gt;= 4 and !onGround)
+        image_index = 4;
+    
+    if (image_index &gt; 4 and image_index &lt; 5 and onGround)
+    {
+        image_index = 5;
+        jumped = false;
+    }
+    
+    if (image_index &gt;= 5.7)
+        hero_state = "idle";
+    
+    if (onGround)
+    {
+        if (!jumped)
+            vert_speed = 0;
+        else
+            vert_speed = -jump_speed;
+    }
 
-draw_self();
+    if (!onGround)
+        audio_stop_sound(walk_sound);
+
+    y += vert_speed;
+}
 </string>
           </argument>
         </arguments>
@@ -472,7 +390,7 @@ draw_self();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
+            <string>if (onGround)
 {
     hero_state = "jump";
     vert_speed = -jump_speed;
@@ -503,72 +421,6 @@ draw_self();
             <string>if ((maxhealth - 2) &gt;= 0)
 {
     maxhealth -= 2;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="68">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
-{
-    hero_state = "idle";
-}
-else
-{
-    if(hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="65">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (!place_free(x, y + 1) or platformCondition)
-{
-    hero_state = "idle";
-}
-else
-{
-    if(hero_state != "jump")
-    {
-        hero_state = "falling";
-    }
 }
 </string>
           </argument>

@@ -25,37 +25,44 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>enum weapons{
-    bullet1,
-    bullet2
-};
-weapon = weapons.bullet1;
+            <string>///Initializing basic parametres
 
 hero_state = "falling";
-grav = 1;
+grav = 0.5;
 vert_speed = 0;
 move_speed = 5;
-jump_speed = 24;
+jump_speed = 15;
 
-maxhealth = 8;
 jumped = false;
+onPlatform = false;
 
-platformCondition = false;
+maxenergy = 10;
+medical = 0;
+maxhealth = 4;
+
+enum weapons
+{
+    weapon_none, weapon_fire, weapon_ice, weapon_supra
+};
+
+weapon = weapons.weapon_none;
 
 color_warning = c_orange;
 color_danger = make_color_hsv(0, 250, 180);
 
-//For shooting state
-shooted = false;
-hand_hspeed = 0;
-hand_vspeed = 0;
-reverse = false;
+lerp_value = 0;
+colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
+
+promptObjectsCheck = false;
+objectToCheckText[0] = obj_stone_1;
+objectToCheckText[1] = obj_stone_2;
+objectToCheckText[2] = obj_medical;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="2">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -72,7 +79,12 @@ reverse = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>///Lerp-effect while damaged
+
+lerp_value = 1;
+maxhealth --;
+hero_state = "falling";
+</string>
           </argument>
         </arguments>
       </action>
@@ -96,10 +108,8 @@ reverse = false;
             <kind>1</kind>
             <string>///Position on ground
 
-platformCondition = position_meeting(x, y + 1, obj_platform) 
-    and instance_nearest(x, y, obj_platform).visible == true;
-
-onGround  = platformCondition or !place_free(x, y + 1)
+onPlatform = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
+onGround = onPlatform or !place_free(x, y + 1);
 </string>
           </argument>
         </arguments>
@@ -120,155 +130,21 @@ onGround  = platformCondition or !place_free(x, y + 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Calculate rotation of hand
-
-if(hero_state == "shoot")
-{
-    if(abs(hand_hspeed) &lt; 5 and abs(hand_vspeed) &lt; 5)
-    {
-        reverse = false;
-        hand_hspeed -= cos(angle * (pi / 180));
-        hand_vspeed += sin(angle * (pi / 180));
-    }else
-    {
-        if(reverse and (hand_hspeed &lt; 0 and hand_vspeed &gt; 0))
-        {
-            hand_hspeed += cos(angle * (pi / 180));
-            hand_vspeed -= sin(angle * (pi / 180));
-        }else
-        {
-            hero_state = "idle";
-        }
-        reverse = true;
-    }
-}else
-{
-    hand_hspeed = 0;
-    hand_vspeed = 0;
-    reverse = false;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///State = left
-
-if (hero_state == "left")
-{
-    x -= move_speed;
-    image_speed = 0.2;
-    if(onGround)
-    {
-        sprite_index = spr_hero_walk;
-        image_xscale = 1;
-        if(keyboard_check_released(ord('A')))
-            hero_state = "idle";
-            
-        
-    }else
-        hero_state = "falling";
-    
-        
-    if (!audio_is_playing(walk_sound))
-        audio_play_sound(walk_sound, 10, false);
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///State = right
-
-if (hero_state == "right")
-{
-    x += move_speed;
-    image_speed = 0.2;
-    if(onGround)
-    {
-        sprite_index = spr_hero_walk;
-        image_xscale = -1;
-        if(keyboard_check_released(ord('D')))
-            hero_state = "idle";
-            
-        
-    }else
-        hero_state = "falling";
-    
-        
-    if (!audio_is_playing(walk_sound))
-        audio_play_sound(walk_sound, 10, false);
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///State = idle
+            <string>///State = Idle
 
 if (hero_state == "idle")
 {
     image_speed = 0.04;
-    if(onGround){
-        sprite_index = spr_hero_idle;
-        
-        if(keyboard_check(ord('A')))
-            hero_state = "left";
-            
-        if(keyboard_check(ord('D')))
-            hero_state = "right";
-        
-    }
-    else
-        hero_state = "falling";
+    sprite_index = spr_hero_idle;
 }
 
+if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
+{    
+    if (hero_state != "jump")
+    {
+        hero_state = "falling"; //Falling when platform has disapeared
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -289,19 +165,26 @@ if (hero_state == "idle")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///State = fall
+            <string>///State = Falling
 
 if (hero_state == "falling")
-{       
-    if(onGround)
-        hero_state = "idle";
-    else
-    {    
+{
+    if (y + jump_speed &lt; 1936)
+    {
         y += jump_speed;
-        image_speed = 0;
-        sprite_index = spr_hero_jump;
-        image_index = 4;
-    }   
+    }
+    else
+    {
+        y += 1936 - y;
+    }
+    image_speed = 0;
+    sprite_index = spr_hero_jump;
+    image_index = 4;
+}
+
+if (onGround and hero_state == "falling")
+{    
+    hero_state = "idle";
 }
 </string>
           </argument>
@@ -323,57 +206,192 @@ if (hero_state == "falling")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///State = jump
+            <string>///State = Left
+
+if (hero_state == "left")
+{
+    image_speed = 0.2;
+    if (onGround) 
+    {
+        sprite_index = spr_hero_walk;
+    }
+    if (!audio_is_playing(walk_sound))
+    {
+        audio_play_sound(walk_sound, 10, false);
+    }
+}
+
+if (keyboard_check_released(ord("A")) xor keyboard_check_released(vk_left))
+{
+    if (onGround)
+    {
+        hero_state = "idle";
+    }
+    else
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "falling";
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Right
+
+if (hero_state == "right")
+{
+    image_speed = 0.2;
+    if (onGround) 
+    {
+        sprite_index = spr_hero_walk;
+    }
+    if (!audio_is_playing(walk_sound))
+    {
+        audio_play_sound(walk_sound, 10, false);
+    }
+}
+
+if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
+{
+    if (onGround)
+    {
+        hero_state = "idle";
+    }
+    else
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "falling";
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = Jump
 
 if (hero_state == "jump")
 {
-    if (vert_speed &lt; 14)
-        vert_speed += grav;
-    
-    if(keyboard_check(ord('A')))
+    if (vert_speed &lt; 18)
     {
-        x -= 5;
-        image_xscale = 1;
+        vert_speed += grav; //Gravity falling
     }
-    if(keyboard_check(ord('D')))
-    {
-        x += 5;
-        image_xscale = -1;
-    }       
+    
     image_speed = 0.3;
     sprite_index = spr_hero_jump;
     
     if (image_index &gt;= 4 and !onGround)
-        image_index = 4;
+    {
+        image_index = 4; //Image_index for falling movement
+    }
     
     if (image_index &gt; 4 and image_index &lt; 5 and onGround)
     {
-        image_index = 5;
+        image_index = 5; //Turn main_hero to idle animation
         jumped = false;
     }
     
     if (image_index &gt;= 5.7)
+    {
         hero_state = "idle";
+    }
     
     if (onGround)
     {
         if (!jumped)
+        {
             vert_speed = 0;
+        }
         else
+        {
             vert_speed = -jump_speed;
+        }
+    }
+    else
+    {
+        audio_stop_sound(walk_sound);
     }
 
-    if (!onGround)
-        audio_stop_sound(walk_sound);
+    if (y + vert_speed &lt; 1936)
+    {
+        y += vert_speed;
+    }
+    else
+    {
+        y += 1936 - y;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Hero jump via keyboard keys
 
-    y += vert_speed;
+if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
+{
+    if (onGround)
+    {
+        hero_state = "jump";
+        vert_speed = -jump_speed;
+        jumped = true;
+    }
 }
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="9" enumb="87">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -390,18 +408,68 @@ if (hero_state == "jump")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (onGround)
+            <string>///Left and Right movements via keyboard keys
+
+if ((x &gt; 56) and (keyboard_check(ord("A")) xor keyboard_check(vk_left)))
 {
-    hero_state = "jump";
-    vert_speed = -jump_speed;
-    jumped = true;
+    if (onGround)
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "left";
+        }
+        else
+        {
+            if (hero_state != "jump")
+            {
+                hero_state = "falling";
+            }
+        }        
+    }
+    else
+    {
+        if (hero_state != "jump")
+        {
+            hero_state = "falling";
+        }
+    }
+    x -= move_speed;
+    image_xscale = 1;
+}
+
+else
+{
+    if ((x &lt; room_width - 56) and (keyboard_check(ord("D")) xor keyboard_check(vk_right)))
+    {
+        if (onGround)
+        {
+            if (hero_state != "jump")
+            {
+                hero_state = "right";
+            }
+            else
+            {
+                if (hero_state != "jump")
+                {
+                    hero_state = "falling";
+                }
+            }        
+        }
+        else
+        {
+            if (hero_state != "jump")
+            {
+                hero_state = "falling";
+            }
+        }
+        x += move_speed;
+        image_xscale = -1;
+    }
 }
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="10" enumb="72">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -418,10 +486,179 @@ if (hero_state == "jump")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if ((maxhealth - 2) &gt;= 0)
+            <string>///Aid has damaged
+
+if (hero_state == "half_damaged")
 {
-    maxhealth -= 2;
+    if (alarm[0] == -1) 
+    {
+        alarm[0] = 5; //Lerp-effect shader
+    }
 }
+
+if (hero_state == "full_damaged")
+{
+    if (alarm[0] == -1)
+    {
+        alarm[0] = 5; //Lerp-effect shader
+    }
+    image_speed = 0.4;
+    sprite_index = spr_hero_damage;    
+}
+
+if (maxhealth &gt; 3)
+{
+    image_blend = c_white;
+}
+else
+{
+    if (maxhealth &gt; 1)
+    {
+        image_blend = color_warning;
+    }
+    else
+    {
+        image_blend = color_danger;
+    }
+}
+
+if (keyboard_check_released(ord("H"))) //Healing main_hero manually
+{
+    if (medical &gt; 1)
+    {
+        medical --;
+        maxhealth = 4;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check: Are any promptText objects near main_hero?
+
+for (k = 0; k &lt; array_length_1d(objectToCheckText); k++)
+{
+    promptObjectsCheck = distance_to_object(objectToCheckText[k]) &lt; 3;
+    if (promptObjectsCheck) break;
+}
+
+if (!promptObjectsCheck)
+{   
+    global.promptText = "";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Weapons' behaviour
+
+if (hero_state == "idle" &amp;&amp; weapon != weapons.weapon_none)
+{
+    if (image_xscale &gt; 0)
+    {
+        switch (weapon)
+        {
+            case weapons.weapon_fire:
+                runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
+            break;
+            case weapons.weapon_ice:
+                runicBullet = instance_create(x - 50, y - 116, obj_rune_2);
+            break;
+        }
+        runicBullet.direction = 180;
+    }
+    else
+    {
+        switch (weapon)
+        {
+            case weapons.weapon_fire:
+                runicBullet = instance_create(x + 50, y - 116, obj_rune_1);
+            break;
+            case weapons.weapon_ice:
+                runicBullet = instance_create(x + 50, y - 116, obj_rune_2);
+            break;
+        }
+        runicBullet.direction = 0;
+    }
+    
+    if ((maxenergy - 1) == 0)
+    {
+        weapon = weapons.weapon_none;
+    }
+    maxenergy --;
+    runicBullet.speed = 18;
+    runicBullet.xCreate = x;
+    runicBullet.yCreate = y;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw lerp-effect shader on main_hero
+
+if (shader_is_compiled(shader_lerp))
+{
+    shader_set(shader_lerp);
+    if (lerp_value &gt; 0)
+    {
+        lerp_value -= 0.1;
+    }
+    shader_set_uniform_f(colour_to_find, 1, 1, 1, lerp_value);
+}
+draw_self();
+shader_reset();
 </string>
           </argument>
         </arguments>

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>global.stack = ds_stack_create();
-if (room_get_name(room) == "StreetLevel")
+if (room_get_name(room) == "room_2")
 {
     var temp1 = instance_create(1000, 1800, obj_stone_1);
     var temp2 = instance_create(1000, 1800, obj_stone_2);
@@ -72,7 +72,7 @@ with (obj_stone_point)
             {
                 temp = ds_stack_pop(global.stack);
                 temp.x = points[rand].x;
-                temp.y = points[rand].y;
+                temp.y = points[rand].y - 2;
                 points[rand].objectOn = temp;
             }
         }        

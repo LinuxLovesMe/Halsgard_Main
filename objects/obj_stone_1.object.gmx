@@ -31,7 +31,7 @@
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="4" ename="obj_mainhero">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -48,16 +48,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(distance_to_object(obj_mainhero) &lt;= 0){
-
-    global.promptText = "Нажмите Shift, чтобы забрать руну";
-
-    if (keyboard_check(vk_shift)){
-        remove = true;
-        global.promptText = "";
-    }
-}else{
+            <string>global.promptText = "Для получения магической энергии нажми [Shift]";
+if (keyboard_check(vk_shift))
+{
+    obj_mainhero.maxenergy = 10;
+    obj_mainhero.weapon = weapons.weapon_fire;
+    remove = true;
     global.promptText = "";
+    scr_destruction();
 }
 </string>
           </argument>

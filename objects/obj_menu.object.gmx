@@ -89,21 +89,25 @@ if (push) scr_menu();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(Runic);
-draw_set_colour(c_black);
+            <string>myColor = make_color_rgb(226, 226, 226);
+draw_set_font(Runic);
+draw_set_colour(myColor);
 
-x = 794;
-y = 364;
+x = 788;
+y = 372;
 
 var m;
 for (m = 0; m &lt; array_length_1d(menu); m++)
 {
-    draw_text(x, y + (m * space), string(menu[m]));
+    draw_text_outline(x, y + (m * space), string(menu[m]), 1, c_black, 16);
 }
 
 var line = y + (curr_pos * space);
 
-draw_line_width(x, line + 42, 860, line + 42, 3);
+draw_set_colour(c_black);
+draw_line_width(x - 2, line + 42, 862, line + 42, 6);
+draw_set_colour(myColor);
+draw_line_width(x, line + 42, 860, line + 42, 2);
 </string>
           </argument>
         </arguments>

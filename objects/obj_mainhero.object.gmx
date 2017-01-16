@@ -42,7 +42,10 @@ maxhealth = 4;
 
 enum weapons
 {
-    weapon_none, weapon_fire, weapon_ice, weapon_supra
+    weapon_none, 
+    weapon_fire, 
+    weapon_ice, 
+    weapon_supra
 };
 
 weapon = weapons.weapon_none;
@@ -108,7 +111,9 @@ hero_state = "falling";
             <kind>1</kind>
             <string>///Position on ground
 
-onPlatform = position_meeting(x, y + 1, obj_platform) and instance_nearest(x, y, obj_platform).visible == true;
+onPlatform = position_meeting(x, y + 1, obj_platform) 
+    and instance_nearest(x, y, obj_platform).visible == true;
+
 onGround = onPlatform or !place_free(x, y + 1);
 </string>
           </argument>
@@ -136,15 +141,18 @@ if (hero_state == "idle")
 {
     image_speed = 0.04;
     sprite_index = spr_hero_idle;
+    
+    if(!onGround)
+        hero_state = "falling";
 }
 
-if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
+/*if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
 {    
     if (hero_state != "jump")
     {
         hero_state = "falling"; //Falling when platform has disapeared
     }
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -169,23 +177,19 @@ if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
 
 if (hero_state == "falling")
 {
-    if (y + jump_speed &lt; 1936)
-    {
+    if (y + jump_speed &lt; room_height - 2 * obj_ground.sprite_height)
         y += jump_speed;
-    }
     else
-    {
-        y += 1936 - y;
-    }
+        y += room_height - 2 * obj_ground.sprite_height - y;
     image_speed = 0;
     sprite_index = spr_hero_jump;
     image_index = 4;
+    
+    if (onGround)    
+        hero_state = "idle";
 }
 
-if (onGround and hero_state == "falling")
-{    
-    hero_state = "idle";
-}
+
 </string>
           </argument>
         </arguments>
@@ -212,29 +216,24 @@ if (hero_state == "left")
 {
     image_speed = 0.2;
     if (onGround) 
-    {
         sprite_index = spr_hero_walk;
-    }
+        
     if (!audio_is_playing(walk_sound))
-    {
         audio_play_sound(walk_sound, 10, false);
-    }
-}
 
-if (keyboard_check_released(ord("A")) xor keyboard_check_released(vk_left))
-{
-    if (onGround)
+    if (keyboard_check_released(ord("A")) xor keyboard_check_released(vk_left))
     {
-        hero_state = "idle";
-    }
-    else
-    {
-        if (hero_state != "jump")
+        if (onGround)
+            hero_state = "idle";
+        else
         {
-            hero_state = "falling";
+            if (hero_state != "jump")
+                hero_state = "falling";
         }
     }
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -261,26 +260,19 @@ if (hero_state == "right")
 {
     image_speed = 0.2;
     if (onGround) 
-    {
         sprite_index = spr_hero_walk;
-    }
+        
     if (!audio_is_playing(walk_sound))
-    {
         audio_play_sound(walk_sound, 10, false);
-    }
-}
 
-if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
-{
-    if (onGround)
+    if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
     {
-        hero_state = "idle";
-    }
-    else
-    {
-        if (hero_state != "jump")
+        if (onGround)
+            hero_state = "idle";
+        else
         {
-            hero_state = "falling";
+            if (hero_state != "jump")
+                hero_state = "falling";
         }
     }
 }
@@ -309,17 +301,13 @@ if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
 if (hero_state == "jump")
 {
     if (vert_speed &lt; 18)
-    {
         vert_speed += grav; //Gravity falling
-    }
     
     image_speed = 0.3;
     sprite_index = spr_hero_jump;
     
     if (image_index &gt;= 4 and !onGround)
-    {
         image_index = 4; //Image_index for falling movement
-    }
     
     if (image_index &gt; 4 and image_index &lt; 5 and onGround)
     {
@@ -328,34 +316,22 @@ if (hero_state == "jump")
     }
     
     if (image_index &gt;= 5.7)
-    {
         hero_state = "idle";
-    }
     
     if (onGround)
     {
         if (!jumped)
-        {
             vert_speed = 0;
-        }
         else
-        {
             vert_speed = -jump_speed;
-        }
     }
     else
-    {
         audio_stop_sound(walk_sound);
-    }
 
-    if (y + vert_speed &lt; 1936)
-    {
+    if (y + vert_speed &lt; room_height - 2 * obj_ground.sprite_height)
         y += vert_speed;
-    }
     else
-    {
-        y += 1936 - y;
-    }
+        y += room_height - 2 * obj_ground.sprite_height - y;
 }
 </string>
           </argument>

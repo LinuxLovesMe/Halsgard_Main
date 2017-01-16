@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="2" name="datafiles">
     <datafile>
       <name>TextPrologue.txt</name>
       <exists>-1</exists>
@@ -20,6 +20,23 @@
         </Config>
       </ConfigOptions>
       <filename>TextPrologue.txt</filename>
+    </datafile>
+    <datafile>
+      <name>advisor_text1.txt</name>
+      <exists>-1</exists>
+      <size>8782</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>advisor_text1.txt</filename>
     </datafile>
   </datafiles>
   <NewExtensions/>
@@ -78,11 +95,16 @@
       <sprite>sprites\spr_soviet_head</sprite>
       <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_pause_vignette</sprite>
+      <sprite>sprites\spr_dialogue</sprite>
     </sprites>
     <sprites name="always_items">
       <sprite>sprites\spr_medical</sprite>
       <sprite>sprites\spr_stone_1</sprite>
       <sprite>sprites\spr_stone_2</sprite>
+      <sprites name="game_end">
+        <sprite>sprites\spr_game_end</sprite>
+        <sprite>sprites\spr_game_end_text</sprite>
+      </sprites>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -157,8 +179,8 @@
     <objects name="controls">
       <object>objects\obj_textcontrol</object>
       <object>objects\obj_cursor</object>
-      <object>objects\obj_information</object>
       <object>objects\obj_room2_control</object>
+      <object>objects\obj_global_control</object>
     </objects>
     <objects name="always_items">
       <object>objects\obj_ground</object>
@@ -171,10 +193,17 @@
       <object>objects\obj_stone_2</object>
       <object>objects\obj_medical</object>
     </objects>
+    <objects name="UI">
+      <object>objects\obj_information</object>
+      <object>objects\obj_dialogue</object>
+      <object>objects\obj_input_text</object>
+    </objects>
+    <object>objects\object55</object>
+    <object>objects\object56</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room_1</room>
-    <room>rooms\room_2</room>
+    <room>rooms\level_menu</room>
+    <room>rooms\level_street</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

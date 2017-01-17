@@ -31,6 +31,10 @@
 }
 
 pause = paused.non_pause;
+
+instance_create(160, 336, obj_textcontrol);
+instance_create(160, 336, obj_cursor);
+audio_sound_gain(walk_sound, 0.2, 0);
 </string>
           </argument>
         </arguments>

@@ -49,13 +49,6 @@
   <sprites name="sprites">
     <sprite>sprites\spr_ground</sprite>
     <sprite>sprites\spr_light</sprite>
-    <sprites name="main_menu">
-      <sprite>sprites\spr_river</sprite>
-      <sprite>sprites\spr_clear</sprite>
-      <sprite>sprites\spr_fire</sprite>
-      <sprite>sprites\spr_birds</sprite>
-      <sprite>sprites\spr_buttons</sprite>
-    </sprites>
     <sprites name="main_hero">
       <sprite>sprites\spr_hero_walk</sprite>
       <sprite>sprites\spr_hero_idle</sprite>
@@ -80,18 +73,6 @@
       <sprite>sprites\spr_rune_1</sprite>
       <sprite>sprites\spr_rune_2</sprite>
     </sprites>
-    <sprites name="street_level">
-      <sprite>sprites\spr_platform</sprite>
-      <sprite>sprites\spr_tree_street</sprite>
-      <sprite>sprites\spr_lamp</sprite>
-      <sprite>sprites\spr_vsadnik</sprite>
-      <sprite>sprites\spr_bridge</sprite>
-      <sprite>sprites\spr_noise</sprite>
-      <sprite>sprites\spr_gnezdo</sprite>
-      <sprite>sprites\spr_glory_edge</sprite>
-      <sprite>sprites\spr_garage</sprite>
-      <sprite>sprites\spr_garage_doors</sprite>
-    </sprites>
     <sprites name="ui_elements">
       <sprite>sprites\spr_information</sprite>
       <sprite>sprites\spr_soviet_head</sprite>
@@ -108,12 +89,47 @@
         <sprite>sprites\spr_game_end_text</sprite>
       </sprites>
     </sprites>
+    <sprites name="levels">
+      <sprites name="main_menu">
+        <sprite>sprites\spr_river</sprite>
+        <sprite>sprites\spr_clear</sprite>
+        <sprite>sprites\spr_fire</sprite>
+        <sprite>sprites\spr_birds</sprite>
+        <sprite>sprites\spr_buttons</sprite>
+      </sprites>
+      <sprites name="street_level">
+        <sprite>sprites\spr_platform</sprite>
+        <sprite>sprites\spr_tree_street</sprite>
+        <sprite>sprites\spr_lamp</sprite>
+        <sprite>sprites\spr_vsadnik</sprite>
+        <sprite>sprites\spr_bridge</sprite>
+        <sprite>sprites\spr_noise</sprite>
+        <sprite>sprites\spr_gnezdo</sprite>
+        <sprite>sprites\spr_glory_edge</sprite>
+        <sprite>sprites\spr_garage</sprite>
+        <sprite>sprites\spr_garage_doors</sprite>
+      </sprites>
+      <sprites name="room_level">
+        <sprite>sprites\spr_axe_room</sprite>
+        <sprite>sprites\spr_boxes_room</sprite>
+        <sprite>sprites\spr_ladder_room</sprite>
+        <sprite>sprites\spr_lamp_room</sprite>
+        <sprite>sprites\spr_mask_room</sprite>
+        <sprite>sprites\spr_paper_room</sprite>
+        <sprite>sprites\spr_skull_room</sprite>
+        <sprite>sprites\spr_table_room</sprite>
+        <sprite>sprites\spr_table_ikea_room</sprite>
+        <sprite>sprites\spr_plant_room</sprite>
+        <sprite>sprites\spr_body_room</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_background</background>
     <background>background\street_level_back</background>
     <background>background\street_level_pain</background>
     <background>background\background_razlom</background>
+    <background>background\room_backgr</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -129,14 +145,6 @@
     <font>fonts\Kramola</font>
   </fonts>
   <objects name="objects">
-    <objects name="main_menu">
-      <object>objects\obj_menu</object>
-      <object>objects\obj_menu_music</object>
-      <object>objects\obj_fire</object>
-      <object>objects\obj_river</object>
-      <object>objects\obj_birds</object>
-      <object>objects\obj_buttons</object>
-    </objects>
     <objects name="effects">
       <objects name="destr_effect">
         <object>objects\obj_dest_01</object>
@@ -159,32 +167,12 @@
       <object>objects\obj_enemy_parent</object>
       <object>objects\obj_enemy_spawner</object>
     </objects>
-    <objects name="street_level">
-      <objects name="design">
-        <object>objects\obj_tree_street</object>
-        <object>objects\obj_vsadnik</object>
-        <object>objects\obj_bridge</object>
-        <object>objects\obj_zaborchik</object>
-      </objects>
-      <objects name="interactive">
-        <object>objects\obj_stone_point</object>
-        <object>objects\obj_stone_controller</object>
-        <object>objects\obj_gnezdo</object>
-        <object>objects\obj_lamp</object>
-        <object>objects\obj_slow_platform</object>
-        <object>objects\obj_fast_platform</object>
-        <object>objects\obj_perm_platform</object>
-        <object>objects\obj_platform</object>
-        <object>objects\obj_scene_controller</object>
-      </objects>
-      <object>objects\obj_garage</object>
-      <object>objects\obj_garage_doors</object>
-    </objects>
     <objects name="controls">
       <object>objects\obj_textcontrol</object>
       <object>objects\obj_cursor</object>
       <object>objects\obj_room2_control</object>
       <object>objects\obj_global_control</object>
+      <object>objects\obj_level_room_control</object>
     </objects>
     <objects name="always_items">
       <object>objects\obj_ground</object>
@@ -204,10 +192,56 @@
     </objects>
     <object>objects\object55</object>
     <object>objects\object56</object>
+    <objects name="levels">
+      <objects name="street_level">
+        <objects name="design">
+          <object>objects\obj_tree_street</object>
+          <object>objects\obj_vsadnik</object>
+          <object>objects\obj_bridge</object>
+          <object>objects\obj_zaborchik</object>
+        </objects>
+        <objects name="interactive">
+          <object>objects\obj_stone_point</object>
+          <object>objects\obj_stone_controller</object>
+          <object>objects\obj_gnezdo</object>
+          <object>objects\obj_lamp</object>
+          <object>objects\obj_slow_platform</object>
+          <object>objects\obj_fast_platform</object>
+          <object>objects\obj_perm_platform</object>
+          <object>objects\obj_platform</object>
+          <object>objects\obj_scene_controller</object>
+        </objects>
+        <object>objects\obj_garage</object>
+        <object>objects\obj_garage_doors</object>
+      </objects>
+      <objects name="main_menu">
+        <object>objects\obj_menu</object>
+        <object>objects\obj_menu_music</object>
+        <object>objects\obj_fire</object>
+        <object>objects\obj_river</object>
+        <object>objects\obj_birds</object>
+        <object>objects\obj_buttons</object>
+      </objects>
+      <objects name="room_level">
+        <object>objects\obj_table_ikea</object>
+        <object>objects\obj_lamp_room</object>
+        <object>objects\obj_mask_room</object>
+        <object>objects\obj_skull_room</object>
+        <object>objects\obj_table_room</object>
+        <object>objects\obj_paper_room</object>
+        <object>objects\obj_ladder_room</object>
+        <object>objects\obj_plant_room</object>
+        <object>objects\obj_boxes_room</object>
+        <object>objects\obj_body_room</object>
+        <object>objects\obj_axe_room</object>
+        <object>objects\obj_interacted</object>
+      </objects>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\level_menu</room>
     <room>rooms\level_street</room>
+    <room>rooms\level_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

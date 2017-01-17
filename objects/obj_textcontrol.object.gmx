@@ -33,8 +33,11 @@ global.promptText = "";
 global.greatInfo = "";
 
 instance_create(view_xview[0], view_yview[0] + view_hview[0] - 64, obj_information);
-alarm[0] = 1;
-file = file_text_open_read("TextPrologue.txt");
+//alarm[0] = 1;
+//file = file_text_open_read("TextPrologue.txt");
+file = -1;
+//We set file from another objects such as objects_control
+text_loaded = false;
 </string>
           </argument>
         </arguments>
@@ -98,7 +101,7 @@ file = file_text_open_read("TextPrologue.txt");
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!file_text_eof(file))
+            <string>if (!file_text_eof(file) and text_loaded == true)
 {
     string_full = file_text_readln(file);
     subString = "";
@@ -127,6 +130,8 @@ else
 {
     global.greatInfo = "";
     file_text_close(file);
+    text_loaded = false;
+    file = -1;
 }
 </string>
           </argument>
@@ -156,6 +161,12 @@ if (string_full == "&amp;Advicer")
 {
     sprite_index = spr_soviet_head;
 }
+
+if(!text_loaded and file != -1)
+{
+    text_loaded = true;
+    alarm[0] = 1;
+}
 </string>
           </argument>
         </arguments>
@@ -182,6 +193,7 @@ if (string_full == "&amp;Advicer")
 
 if (global.greatInfo = "")
 {
+    
     draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - obj_information.sprite_height + 16,
                     global.promptText, c_white, c_white, c_white, c_white, 1);
 }

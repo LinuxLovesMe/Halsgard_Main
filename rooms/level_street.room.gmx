@@ -16,8 +16,8 @@
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>1016</w>
-    <h>600</h>
+    <w>1936</w>
+    <h>1056</h>
     <showGrid>0</showGrid>
     <showObjects>-1</showObjects>
     <showTiles>-1</showTiles>
@@ -27,8 +27,8 @@
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
     <page>0</page>
-    <xoffset>-43</xoffset>
-    <yoffset>158</yoffset>
+    <xoffset>-310</xoffset>
+    <yoffset>35</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="-1" foreground="0" name="background_razlom" x="0" y="0" htiled="-1" vtiled="-1" hspeed="4" vspeed="0" stretch="0"/>
@@ -41,7 +41,7 @@
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
   </backgrounds>
   <views>
-    <view visible="-1" objName="obj_mainhero" xview="0" yview="1280" wview="1080" hview="720" xport="0" yport="0" wport="1080" hport="720" hborder="1080" vborder="720" hspeed="-1" vspeed="-1"/>
+    <view visible="-1" objName="obj_mainhero" xview="0" yview="1280" wview="1280" hview="720" xport="0" yport="0" wport="1780" hport="960" hborder="1280" vborder="720" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
@@ -312,7 +312,6 @@
     <instance objName="obj_tree_street" x="1942" y="1763" name="inst_02FBA362" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tree_street" x="3037" y="1756" name="inst_A1C56774" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_tree_street" x="3808" y="1744" name="inst_DC9D8EC4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_lamp" x="736" y="1691" name="inst_EAE1EE35" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lamp" x="1675" y="1680" name="inst_8E0C03EE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lamp" x="2586" y="1680" name="inst_2E92BE80" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_lamp" x="3395" y="1686" name="inst_4B6AE25A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
@@ -361,14 +360,15 @@
     <instance objName="obj_perm_platform" x="3408" y="1152" name="inst_20678ACA" locked="0" code="" scaleX="-0.600000023841858" scaleY="0.600000023841858" colour="3539992575" rotation="0"/>
     <instance objName="obj_fast_platform" x="2784" y="608" name="inst_C5DC13C7" locked="0" code="" scaleX="-0.600000023841858" scaleY="0.600000023841858" colour="3707764735" rotation="0"/>
     <instance objName="obj_gnezdo" x="2606" y="435" name="inst_F22FBD60" locked="0" code="" scaleX="0.253086417913437" scaleY="0.188976377248764" colour="4294967295" rotation="0"/>
-    <instance objName="obj_enemy_draugr" x="672" y="1936" name="inst_7C0919A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_enemy_draugr" x="1584" y="1936" name="inst_7C0919A5" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_enemy_punk" x="1056" y="1936" name="inst_70BBE7FA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_medical" x="1218" y="806" name="inst_692A138B" locked="0" code="" scaleX="0.300000011920929" scaleY="0.300000011920929" colour="4294967295" rotation="0"/>
     <instance objName="obj_medical" x="2964" y="1382" name="inst_3B7AD09E" locked="0" code="" scaleX="0.300000011920929" scaleY="0.300000011920929" colour="4294967295" rotation="0"/>
     <instance objName="obj_room2_control" x="160" y="336" name="inst_B250D2A8" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_mainhero" x="128" y="1920" name="inst_B6697C02" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_global_control" x="128" y="336" name="inst_D7151D8E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="object56" x="96" y="336" name="inst_CFC80F5A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_garage_doors" x="704" y="1936" name="inst_478AF2B0" locked="0" code="" scaleX="0.581632673740387" scaleY="0.660000026226044" colour="4294967295" rotation="0"/>
+    <instance objName="obj_garage" x="704" y="1952" name="inst_9537DC6B" locked="0" code="" scaleX="0.5" scaleY="0.5" colour="2533359615" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

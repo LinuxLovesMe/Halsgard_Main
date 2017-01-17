@@ -89,6 +89,8 @@
       <sprite>sprites\spr_noise</sprite>
       <sprite>sprites\spr_gnezdo</sprite>
       <sprite>sprites\spr_glory_edge</sprite>
+      <sprite>sprites\spr_garage</sprite>
+      <sprite>sprites\spr_garage_doors</sprite>
     </sprites>
     <sprites name="ui_elements">
       <sprite>sprites\spr_information</sprite>
@@ -175,6 +177,8 @@
         <object>objects\obj_platform</object>
         <object>objects\obj_scene_controller</object>
       </objects>
+      <object>objects\obj_garage</object>
+      <object>objects\obj_garage_doors</object>
     </objects>
     <objects name="controls">
       <object>objects\obj_textcontrol</object>

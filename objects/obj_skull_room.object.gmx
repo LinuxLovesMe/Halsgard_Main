@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+shift_text = "Нажмите [Shift], чтобы взять череп";
 text = "Череп. Я знал его обладателя: это был человек с бесконечным юмором и дивной фантазией";
 </string>
           </argument>

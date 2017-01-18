@@ -111,10 +111,11 @@ hero_state = "falling";
             <kind>1</kind>
             <string>///Position on ground
 
-onPlatform = position_meeting(x, y + 1, obj_platform) 
-    and instance_nearest(x, y, obj_platform).visible == true;
+onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
+    and instance_nearest(x, y, obj_for_standing_on).visible == true;
 
-onGround = onPlatform or !place_free(x, y + 1);
+//onGround = onPlatform or !place_free(x, y + 1);
+onGround = onPlatform or position_meeting(x, y + 1, obj_ground);
 </string>
           </argument>
         </arguments>
@@ -140,19 +141,20 @@ onGround = onPlatform or !place_free(x, y + 1);
 if (hero_state == "idle")
 {
     image_speed = 0.04;
-    sprite_index = spr_hero_idle;
-    
-    if(!onGround)
+    if(onGround){
+        sprite_index = spr_hero_idle;
+        
+        if(keyboard_check(ord('A')) xor keyboard_check(vk_left))
+            hero_state = "left";
+            
+        if(keyboard_check(ord('D')) xor keyboard_check(vk_right))
+            hero_state = "right";
+        
+    }
+    else
         hero_state = "falling";
 }
 
-/*if (position_meeting(x, y + 1, obj_platform) and (!onPlatform))
-{    
-    if (hero_state != "jump")
-    {
-        hero_state = "falling"; //Falling when platform has disapeared
-    }
-}*/
 </string>
           </argument>
         </arguments>
@@ -189,7 +191,6 @@ if (hero_state == "falling")
         hero_state = "idle";
 }
 
-
 </string>
           </argument>
         </arguments>
@@ -214,23 +215,21 @@ if (hero_state == "falling")
 
 if (hero_state == "left")
 {
+    if(x &gt; 60)
+        x -= move_speed;
     image_speed = 0.2;
-    if (onGround) 
+    if(onGround)
+    {
         sprite_index = spr_hero_walk;
+        image_xscale = 1;
+        if(keyboard_check_released(ord('A')) xor keyboard_check_released(vk_left))
+            hero_state = "idle";   
+    }else
+        hero_state = "falling";
+    
         
     if (!audio_is_playing(walk_sound))
         audio_play_sound(walk_sound, 10, false);
-
-    if (keyboard_check_released(ord("A")) xor keyboard_check_released(vk_left))
-    {
-        if (onGround)
-            hero_state = "idle";
-        else
-        {
-            if (hero_state != "jump")
-                hero_state = "falling";
-        }
-    }
 }
 
 
@@ -257,25 +256,24 @@ if (hero_state == "left")
             <string>///State = Right
 
 if (hero_state == "right")
-{
+{   
+    if(x &lt; (room_width - 60))
+        x += move_speed;
     image_speed = 0.2;
-    if (onGround) 
+    if(onGround)
+    {
         sprite_index = spr_hero_walk;
-        
+        image_xscale = -1;
+        if(keyboard_check_released(ord('D')) xor keyboard_check_released(vk_right))
+            hero_state = "idle";
+    
+    }else
+        hero_state = "falling";
+    
     if (!audio_is_playing(walk_sound))
         audio_play_sound(walk_sound, 10, false);
-
-    if (keyboard_check_released(ord("D")) xor keyboard_check_released(vk_right))
-    {
-        if (onGround)
-            hero_state = "idle";
-        else
-        {
-            if (hero_state != "jump")
-                hero_state = "falling";
-        }
-    }
 }
+
 </string>
           </argument>
         </arguments>
@@ -303,6 +301,17 @@ if (hero_state == "jump")
     if (vert_speed &lt; 18)
         vert_speed += grav; //Gravity falling
     
+    if(keyboard_check(ord('A')) xor keyboard_check(vk_right))
+    {
+        x -= 5;
+        image_xscale = 1;
+    }
+    if(keyboard_check(ord('D')) xor keyboard_check(vk_right))
+    {
+        x += 5;
+        image_xscale = -1;
+    }          
+        
     image_speed = 0.3;
     sprite_index = spr_hero_jump;
     
@@ -384,100 +393,19 @@ if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Left and Right movements via keyboard keys
-
-if ((x &gt; 56) and (keyboard_check(ord("A")) xor keyboard_check(vk_left)))
-{
-    if (onGround)
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "left";
-        }
-        else
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "falling";
-            }
-        }        
-    }
-    else
-    {
-        if (hero_state != "jump")
-        {
-            hero_state = "falling";
-        }
-    }
-    x -= move_speed;
-    image_xscale = 1;
-}
-
-else
-{
-    if ((x &lt; room_width - 56) and (keyboard_check(ord("D")) xor keyboard_check(vk_right)))
-    {
-        if (onGround)
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "right";
-            }
-            else
-            {
-                if (hero_state != "jump")
-                {
-                    hero_state = "falling";
-                }
-            }        
-        }
-        else
-        {
-            if (hero_state != "jump")
-            {
-                hero_state = "falling";
-            }
-        }
-        x += move_speed;
-        image_xscale = -1;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Aid has damaged
 
 if (hero_state == "half_damaged")
 {
     if (alarm[0] == -1) 
-    {
         alarm[0] = 5; //Lerp-effect shader
-    }
 }
 
 if (hero_state == "full_damaged")
 {
     if (alarm[0] == -1)
-    {
         alarm[0] = 5; //Lerp-effect shader
-    }
+
     image_speed = 0.4;
     sprite_index = spr_hero_damage;    
 }
@@ -489,13 +417,9 @@ if (maxhealth &gt; 3)
 else
 {
     if (maxhealth &gt; 1)
-    {
         image_blend = color_warning;
-    }
     else
-    {
         image_blend = color_danger;
-    }
 }
 
 if (keyboard_check_released(ord("H"))) //Healing main_hero manually
@@ -528,7 +452,7 @@ if (keyboard_check_released(ord("H"))) //Healing main_hero manually
             <kind>1</kind>
             <string>///Check: Are any promptText objects near main_hero?
 
-for (k = 0; k &lt; array_length_1d(objectToCheckText); k++)
+/*for (k = 0; k &lt; array_length_1d(objectToCheckText); k++)
 {
     promptObjectsCheck = distance_to_object(objectToCheckText[k]) &lt; 3;
     if (promptObjectsCheck) break;
@@ -537,7 +461,7 @@ for (k = 0; k &lt; array_length_1d(objectToCheckText); k++)
 if (!promptObjectsCheck)
 {   
     global.promptText = "";
-}
+}*/
 </string>
           </argument>
         </arguments>

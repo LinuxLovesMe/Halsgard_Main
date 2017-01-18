@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+shift_text = "Нажмите [Shift], чтобы взять записку";
 text = "Бумажка в мертвых руках. Похоже на начало детективной истории";
 </string>
           </argument>
@@ -73,7 +74,40 @@ text = "Бумажка в мертвых руках. Похоже на нача�
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+if(obj_mainhero.x &lt; x + 10 and obj_mainhero.x &gt; x - 10)
+{
+    global.promptText = shift_text;
+    near = true;
+}
+
+if(obj_mainhero.x &gt; x + 10 and obj_mainhero.x &lt; x - 10 and near)
+{
+    near = false;
+    global.promptText = "";
+}
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_mainhero">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

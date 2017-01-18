@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_interacted</parentName>
+  <parentName>obj_for_standing_on</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,8 +27,10 @@
             <kind>1</kind>
             <string>//event_inherited();
 text_printed = false;
+shift_text = "Нажмите [Shift], чтобы открыть ящики стола";
 text = "Стол. Сделан в знакомой минималистичной стилистике";
 
+near = false;
 </string>
           </argument>
         </arguments>
@@ -53,7 +55,6 @@ text = "Стол. Сделан в знакомой минималистично�
             <kind>1</kind>
             <string>global.promptText = "";
 text_printed = false;
-
 </string>
           </argument>
         </arguments>
@@ -76,7 +77,44 @@ text_printed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>if(text_printed)
+    global.promptText = text;
+    
+if(distance_to_object(obj_mainhero) != 0 and near)
+{
+    near = false;
+    global.promptText = "";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_mainhero">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
+if(obj_lamp_room.on)
+{
+    global.promptText = shift_text;
+    near = true;
+    if (keyboard_check(vk_shift)){}
+}
+
 </string>
           </argument>
         </arguments>
@@ -99,7 +137,8 @@ text_printed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>text_printed = true;
+alarm[0] = room_speed * 5;
 </string>
           </argument>
         </arguments>

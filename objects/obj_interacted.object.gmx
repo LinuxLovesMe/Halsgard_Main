@@ -26,7 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>text = ""
+shift_text = "";
 text_printed = false;
+
+near = false;
 </string>
           </argument>
         </arguments>
@@ -75,6 +78,37 @@ text_printed = false;
             <kind>1</kind>
             <string>if(text_printed)
     global.promptText = text;
+if(distance_to_object(obj_mainhero) != 0 and near)
+{
+    near = false;
+    global.promptText = "";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_mainhero">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
+global.promptText = shift_text;
+near = true;
+
 </string>
           </argument>
         </arguments>

@@ -49,6 +49,7 @@
   <sprites name="sprites">
     <sprite>sprites\spr_ground</sprite>
     <sprite>sprites\spr_light</sprite>
+    <sprite>sprites\spr_light2</sprite>
     <sprites name="main_hero">
       <sprite>sprites\spr_hero_walk</sprite>
       <sprite>sprites\spr_hero_idle</sprite>
@@ -184,6 +185,7 @@
       <object>objects\obj_stone_1</object>
       <object>objects\obj_stone_2</object>
       <object>objects\obj_medical</object>
+      <object>objects\obj_for_standing_on</object>
     </objects>
     <objects name="UI">
       <object>objects\obj_information</object>
@@ -208,7 +210,6 @@
           <object>objects\obj_slow_platform</object>
           <object>objects\obj_fast_platform</object>
           <object>objects\obj_perm_platform</object>
-          <object>objects\obj_platform</object>
           <object>objects\obj_scene_controller</object>
         </objects>
         <object>objects\obj_garage</object>
@@ -235,6 +236,7 @@
         <object>objects\obj_body_room</object>
         <object>objects\obj_axe_room</object>
         <object>objects\obj_interacted</object>
+        <object>objects\room_scenario</object>
       </objects>
     </objects>
   </objects>

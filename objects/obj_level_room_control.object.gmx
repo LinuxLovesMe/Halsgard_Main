@@ -29,6 +29,12 @@
 
 entered = true;
 alarm[0] = room_speed * 5;
+
+for (i = 0; i &lt; room_width; i += 32)
+{
+    instance_create(i, room_height - 32, obj_ground);
+    instance_create(i, room_height - 64, obj_ground);
+}
 </string>
           </argument>
         </arguments>

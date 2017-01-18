@@ -239,9 +239,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\level_menu</room>
-    <room>rooms\level_street</room>
     <room>rooms\level_room</room>
+    <room>rooms\level_street</room>
+    <room>rooms\level_menu</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

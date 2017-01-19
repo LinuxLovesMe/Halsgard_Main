@@ -301,7 +301,7 @@ if (hero_state == "jump")
     if (vert_speed &lt; 18)
         vert_speed += grav; //Gravity falling
     
-    if(keyboard_check(ord('A')) xor keyboard_check(vk_right))
+    if(keyboard_check(ord('A')) xor keyboard_check(vk_left))
     {
         x -= 5;
         image_xscale = 1;

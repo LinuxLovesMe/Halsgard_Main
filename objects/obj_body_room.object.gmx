@@ -27,6 +27,10 @@
             <kind>1</kind>
             <string>event_inherited();
 text = "Труп. Делает вид, что не замечает меня, молчун.";
+
+moved = false;
+x_offset = 50;
+y_offset = 15;
 </string>
           </argument>
         </arguments>
@@ -73,6 +77,16 @@ text = "Труп. Делает вид, что не замечает меня, м
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+if(moved)
+{
+    x -= 0.1;
+    y -= 0.1;
+    x_offset -= 0.2;
+    y_offset -= 0.1;   
+    if(x_offset &lt; 0 or y_offset &lt; 0)
+        moved = false;
+}
 </string>
           </argument>
         </arguments>

@@ -52,7 +52,7 @@ near = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.promptText = "";
+            <string>global.greatInfo = "";
 text_printed = false;
 </string>
           </argument>
@@ -77,7 +77,7 @@ text_printed = false;
           <argument>
             <kind>1</kind>
             <string>if(text_printed)
-    global.promptText = text;
+    global.greatInfo = text;
 if(distance_to_object(obj_mainhero) != 0 and near)
 {
     near = false;
@@ -132,7 +132,7 @@ near = true;
           <argument>
             <kind>1</kind>
             <string>text_printed = true;
-alarm[0] = room_speed * 5;
+alarm[0] = room_speed * 2;
 </string>
           </argument>
         </arguments>

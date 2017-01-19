@@ -32,6 +32,8 @@ obj_lamp_room.y = 660;
 
 instance_deactivate_object(obj_body_room);
 instance_deactivate_object(obj_paper_room);
+
+part2 = false;
 </string>
           </argument>
         </arguments>
@@ -62,6 +64,7 @@ instance_deactivate_object(obj_skull_room);
 instance_deactivate_object(obj_plant_room);
 instance_deactivate_object(obj_table_ikea);
 instance_deactivate_object(obj_boxes_room);
+instance_deactivate_object(obj_mask_room);
 </string>
           </argument>
         </arguments>
@@ -84,12 +87,17 @@ instance_deactivate_object(obj_boxes_room);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(obj_lamp_room.on)
+            <string>if(obj_lamp_room.on and !part2)
 {
+    part2 = true;
     instance_activate_object(obj_skull_room);
     instance_activate_object(obj_plant_room);
     instance_activate_object(obj_table_ikea);
     instance_activate_object(obj_boxes_room);
+    instance_activate_object(obj_mask_room);
+    instance_activate_object(obj_body_room);
+    instance_activate_object(obj_paper_room);
+    obj_body_room.moved = true;
 }
 </string>
           </argument>

@@ -55,6 +55,7 @@
       <sprite>sprites\spr_hero_idle</sprite>
       <sprite>sprites\spr_hero_jump</sprite>
       <sprite>sprites\spr_hero_damage</sprite>
+      <sprite>sprites\spr_hero_death</sprite>
     </sprites>
     <sprites name="monsters">
       <sprite>sprites\spr_draugr_walk</sprite>
@@ -76,10 +77,14 @@
     </sprites>
     <sprites name="ui_elements">
       <sprite>sprites\spr_information</sprite>
-      <sprite>sprites\spr_soviet_head</sprite>
       <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_pause_vignette</sprite>
       <sprite>sprites\spr_dialogue</sprite>
+      <sprites name="heads">
+        <sprite>sprites\spr_soviet_head</sprite>
+        <sprite>sprites\spr_hero_head</sprite>
+        <sprite>sprites\spr_anarchist_head</sprite>
+      </sprites>
     </sprites>
     <sprites name="always_items">
       <sprite>sprites\spr_medical</sprite>
@@ -122,6 +127,13 @@
         <sprite>sprites\spr_table_ikea_room</sprite>
         <sprite>sprites\spr_plant_room</sprite>
         <sprite>sprites\spr_body_room</sprite>
+        <sprites name="ikea_table">
+          <sprite>sprites\table_ikea2</sprite>
+          <sprite>sprites\table_ikea_door1</sprite>
+          <sprite>sprites\table_ikea_door2</sprite>
+          <sprite>sprites\table_ikea_door3</sprite>
+          <sprite>sprites\table_ikea_door4</sprite>
+        </sprites>
       </sprites>
     </sprites>
   </sprites>
@@ -140,6 +152,7 @@
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+    <shader type="GLSLES">shaders\shader_hero_soul.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\Runic</font>
@@ -165,8 +178,10 @@
       <object>objects\obj_mainhero</object>
       <object>objects\obj_enemy_draugr</object>
       <object>objects\obj_enemy_punk</object>
+      <object>objects\obj_punk_in_room</object>
       <object>objects\obj_enemy_parent</object>
       <object>objects\obj_enemy_spawner</object>
+      <object>objects\obj_hero_body</object>
     </objects>
     <objects name="controls">
       <object>objects\obj_textcontrol</object>

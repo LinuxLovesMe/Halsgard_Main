@@ -31,6 +31,10 @@ shift_text = "Нажмите [Shift], чтобы открыть ящики ст�
 text = "Стол. Сделан в знакомой минималистичной стилистике";
 
 near = false;
+
+doors_opened = false;
+
+angle = 0;
 </string>
           </argument>
         </arguments>
@@ -55,6 +59,7 @@ near = false;
             <kind>1</kind>
             <string>global.greatInfo = "";
 text_printed = false;
+obj_textcontrol.direct_speech = false;
 </string>
           </argument>
         </arguments>
@@ -78,7 +83,11 @@ text_printed = false;
           <argument>
             <kind>1</kind>
             <string>if(text_printed)
+{
     global.greatInfo = text;
+    obj_textcontrol.speech_sprite = spr_hero_head;
+    obj_textcontrol.direct_speech = true;
+}
     
 if(distance_to_object(obj_mainhero) != 0 and near)
 {
@@ -108,13 +117,14 @@ if(distance_to_object(obj_mainhero) != 0 and near)
           <argument>
             <kind>1</kind>
             <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
-if(obj_lamp_room.on)
-{
-    global.promptText = shift_text;
-    near = true;
-    if (keyboard_check(vk_shift)){}
-}
 
+if (keyboard_check_pressed(vk_shift) )
+{
+    if(!doors_opened)
+        doors_opened = true;
+    else
+        doors_opened = false;
+}
 </string>
           </argument>
         </arguments>
@@ -139,6 +149,56 @@ if(obj_lamp_room.on)
             <kind>1</kind>
             <string>text_printed = true;
 alarm[0] = room_speed * 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+var offset = x;
+
+/*if(!doors_opened)
+{
+     
+    draw_sprite(table_ikea_door1, 0, offset, y);
+    offset += sprite_get_width(table_ikea_door1);
+    draw_sprite(table_ikea_door2, 0, offset, y);
+    offset += sprite_get_width(table_ikea_door2);
+    draw_sprite(table_ikea_door3, 0, offset, y);
+    offset += sprite_get_width(table_ikea_door3);
+    draw_sprite(table_ikea_door4, 0, offset + 3, y);
+}
+else
+{   
+    angle += 1;
+    d3d_set_culling(true); 
+    d3d_transform_set_rotation_y(angle); 
+    d3d_transform_add_translation(offset, y, 0);
+    draw_sprite(table_ikea_door2, 0, offset, y); 
+    //draw_sprite_ext(game_card, 6, 0, 0, scale, scale, 0, c_white, 1); 
+    d3d_transform_set_rotation_y(angle + 180); 
+    d3d_transform_add_translation(offset, y, 0);
+    draw_sprite(table_ikea_door2, 0, offset, y); 
+    //draw_sprite_ext(game_card, value, 0, 0, scale, scale, 0, c_white, 1);  
+    d3d_transform_set_identity()
+}*/
 </string>
           </argument>
         </arguments>

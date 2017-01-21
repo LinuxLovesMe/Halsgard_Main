@@ -56,10 +56,7 @@ color_danger = make_color_hsv(0, 250, 180);
 lerp_value = 0;
 colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
 
-promptObjectsCheck = false;
-objectToCheckText[0] = obj_stone_1;
-objectToCheckText[1] = obj_stone_2;
-objectToCheckText[2] = obj_medical;
+outsouled = false;
 </string>
           </argument>
         </arguments>
@@ -149,7 +146,15 @@ if (hero_state == "idle")
             
         if(keyboard_check(ord('D')) xor keyboard_check(vk_right))
             hero_state = "right";
-        
+            
+        if(keyboard_check_pressed(ord('1')))
+            if(!outsouled)
+                hero_state = "outsouled";
+            else
+            {
+                if(distance_to_object(obj_hero_body) == 0)
+                    hero_state = "arise";        
+            }
     }
     else
         hero_state = "falling";
@@ -341,6 +346,81 @@ if (hero_state == "jump")
         y += vert_speed;
     else
         y += room_height - 2 * obj_ground.sprite_height - y;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = outsouled
+
+if (hero_state == "outsouled")
+{
+    sprite_index = spr_hero_death; 
+    if(image_index &gt;= 5)
+    {
+        outsouled = true;
+        image_speed = 0;
+        hero_state = "idle";
+        
+        instance_create(x, y, obj_hero_body);
+        obj_hero_body.image_xscale = image_xscale;
+    }
+    else
+        image_speed = 0.2;  
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = arise
+
+if (hero_state == "arise")
+{
+    sprite_index = spr_hero_death; 
+    if(image_index &lt;= 0.2)
+    {
+        outsouled = false;
+        image_speed = 0;
+        hero_state = "idle";
+        with(obj_hero_body)
+            instance_destroy();
+        //instance_create(x, y, obj_hero_body);
+    }
+    else
+        image_speed = -0.2;  
 }
 </string>
           </argument>
@@ -557,7 +637,14 @@ if (shader_is_compiled(shader_lerp))
     }
     shader_set_uniform_f(colour_to_find, 1, 1, 1, lerp_value);
 }
-draw_self();
+if(outsouled){
+    
+    shader_set(shader_hero_soul);  
+    draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, 0, c_white, 1);
+    shader_reset();
+}
+else
+    draw_self();
 shader_reset();
 </string>
           </argument>

@@ -54,6 +54,7 @@ near = false;
             <kind>1</kind>
             <string>global.greatInfo = "";
 text_printed = false;
+obj_textcontrol.direct_speech = false;
 </string>
           </argument>
         </arguments>
@@ -76,8 +77,12 @@ text_printed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(text_printed)
+            <string>/*if(text_printed)
+{
     global.greatInfo = text;
+    obj_textcontrol.speech_sprite = spr_hero_head;
+    obj_textcontrol.direct_speech = true;
+}*/
 if(distance_to_object(obj_mainhero) != 0 and near)
 {
     near = false;
@@ -108,7 +113,6 @@ if(distance_to_object(obj_mainhero) != 0 and near)
             <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
 global.promptText = shift_text;
 near = true;
-
 </string>
           </argument>
         </arguments>
@@ -133,6 +137,13 @@ near = true;
             <kind>1</kind>
             <string>text_printed = true;
 alarm[0] = room_speed * 2;
+
+if(text_printed)
+{
+    global.greatInfo = text;
+    obj_textcontrol.speech_sprite = spr_hero_head;
+    obj_textcontrol.direct_speech = true;
+}
 </string>
           </argument>
         </arguments>

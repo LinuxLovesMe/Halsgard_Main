@@ -38,6 +38,8 @@ instance_create(view_xview[0], view_yview[0] + view_hview[0] - 64, obj_informati
 file = -1;
 //We set file from another objects such as objects_control
 text_loaded = false;
+
+speech_sprite = spr_soviet_head;
 </string>
           </argument>
         </arguments>
@@ -201,7 +203,7 @@ else
 {
     if (direct_speech)
     {
-        draw_sprite(object_get_sprite(obj_textcontrol), 0, view_xview[0] + 3,
+        draw_sprite(speech_sprite, 0, view_xview[0] + 3,
                                     view_yview[0] + view_hview[0] - obj_information.sprite_height + 32);
                                                 
         draw_text_colour(view_xview[0] + 74, view_yview[0] + view_hview[0] - obj_information.sprite_height + 18,

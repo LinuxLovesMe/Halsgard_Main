@@ -32,8 +32,150 @@ obj_lamp_room.y = 660;
 
 instance_deactivate_object(obj_body_room);
 instance_deactivate_object(obj_paper_room);
+instance_deactivate_object(obj_plant_room);
 
 part2 = false;
+part3 = false;
+
+get_paper = false;
+
+raider1 = 0;
+raider2 = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>obj_textcontrol.direct_speech = false;
+global.greatInfo = "";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.greatInfo = "Чертов стол на замке!";
+obj_textcontrol.speech_sprite = spr_anarchist_head;
+obj_textcontrol.direct_speech = true;
+
+alarm[5] = room_speed * 5;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>raider2 = instance_create(room_width, 
+    room_height - sprite_get_height(spr_punk_walk),
+    obj_punk_in_room);
+raider2.dest_x = obj_table_ikea.x - obj_table_ikea.sprite_width / 2;
+
+alarm[4] = room_speed * 10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.greatInfo = "";
+
+raider1 = instance_create(room_width, 
+    room_height - sprite_get_height(spr_punk_walk),
+    obj_punk_in_room);
+raider1.dest_x = obj_table_ikea.x;
+
+alarm[3] = room_speed;    
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.greatInfo = "Попытайтесь укрыться за столом";
+alarm[2] = room_speed * 10;
 </string>
           </argument>
         </arguments>
@@ -58,13 +200,14 @@ part2 = false;
             <kind>1</kind>
             <string>obj_lamp_room.on = false;
 obj_lamp_room.x = 928;
-obj_lamp_room.y = 555;
+obj_lamp_room.y = 545;
 
 instance_deactivate_object(obj_skull_room);
-instance_deactivate_object(obj_plant_room);
 instance_deactivate_object(obj_table_ikea);
 instance_deactivate_object(obj_boxes_room);
 instance_deactivate_object(obj_mask_room);
+
+part2 = true;
 </string>
           </argument>
         </arguments>
@@ -87,9 +230,9 @@ instance_deactivate_object(obj_mask_room);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(obj_lamp_room.on and !part2)
+            <string>if(obj_lamp_room.on and part2)
 {
-    part2 = true;
+    part2 = false;
     instance_activate_object(obj_skull_room);
     instance_activate_object(obj_plant_room);
     instance_activate_object(obj_table_ikea);
@@ -98,6 +241,21 @@ instance_deactivate_object(obj_mask_room);
     instance_activate_object(obj_body_room);
     instance_activate_object(obj_paper_room);
     obj_body_room.moved = true;
+}
+
+if(get_paper == true and !part3)
+{   
+    part3 = true;
+    global.greatInfo = "Вы слышите грохот приближающихся шагов. Их обладатель явно опасен";
+    alarm[1] = room_speed * 5;
+}
+
+if(raider1 != 0 and raider2 != 0)
+{
+    if(raider1.x &gt;= raider2.x - 5 
+        and raider1.x &lt;= raider2.x + 5)
+        
+        raider1.x -= 10;
 }
 </string>
           </argument>

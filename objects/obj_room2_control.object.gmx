@@ -38,6 +38,7 @@ audio_play_sound(room2_music, 100, true);
 
 //Wait a step to load a file with dialogue
 alarm[0] = 1;
+
 </string>
           </argument>
         </arguments>
@@ -54,13 +55,14 @@ alarm[0] = 1;
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>obj_room2_control</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
             <string>obj_textcontrol.file = file_text_open_read("TextPrologue.txt");
+obj_textcontrol.speech_sprite = spr_soviet_head;
 </string>
           </argument>
         </arguments>

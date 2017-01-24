@@ -35,6 +35,46 @@ pause = paused.non_pause;
 instance_create(160, 336, obj_textcontrol);
 instance_create(160, 336, obj_cursor);
 audio_sound_gain(walk_sound, 0.2, 0);
+
+instance_create(160, 336, obj_inventory);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(pause = paused.non_pause)
+{
+    //instance_activate_all();
+    with(obj_moved)
+        state = old_state;
+    obj_inventory.hidden = true;
+}    
+else if(pause = paused.pause)
+{
+    //instance_deactivate_all(true);
+    //instance_activate_object(obj_inventory);
+    with(obj_moved)
+        state = "pause";
+        //move = false;
+    obj_inventory.hidden = false;
+}
 </string>
           </argument>
         </arguments>
@@ -87,13 +127,21 @@ audio_sound_gain(walk_sound, 0.2, 0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(pause = paused.non_pause)
+            <string>if(pause == paused.non_pause)
 {
     pause = paused.pause;
+    if(instance_exists(obj_rain))
+        obj_rain.pause_emit = true;
+    alarm[0] = 1;
+    with(obj_moved)
+        old_state = state;
 }    
-else if(pause = paused.pause)
+else if(pause == paused.pause)
 {
     pause = paused.non_pause;
+    if(instance_exists(obj_rain))
+        obj_rain.pause_emit = false;
+    alarm[0] = 1;//We set alarm because obj_rain must be triggered in its Step
 }
 </string>
           </argument>

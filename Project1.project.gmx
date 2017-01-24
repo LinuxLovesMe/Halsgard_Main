@@ -85,6 +85,7 @@
         <sprite>sprites\spr_hero_head</sprite>
         <sprite>sprites\spr_anarchist_head</sprite>
       </sprites>
+      <sprite>sprites\spr_inventory_cell</sprite>
     </sprites>
     <sprites name="always_items">
       <sprite>sprites\spr_medical</sprite>
@@ -136,6 +137,7 @@
         </sprites>
       </sprites>
     </sprites>
+    <sprite>sprites\sprite64</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_background</background>
@@ -182,6 +184,7 @@
       <object>objects\obj_enemy_parent</object>
       <object>objects\obj_enemy_spawner</object>
       <object>objects\obj_hero_body</object>
+      <object>objects\obj_moved</object>
     </objects>
     <objects name="controls">
       <object>objects\obj_textcontrol</object>
@@ -206,6 +209,7 @@
       <object>objects\obj_information</object>
       <object>objects\obj_dialogue</object>
       <object>objects\obj_input_text</object>
+      <object>objects\obj_inventory</object>
     </objects>
     <object>objects\object55</object>
     <object>objects\object56</object>
@@ -253,12 +257,16 @@
         <object>objects\obj_interacted</object>
         <object>objects\room_scenario</object>
       </objects>
+      <objects name="pre_level">
+        <object>objects\obj_pre_create</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\level_room</room>
-    <room>rooms\level_street</room>
+    <room>rooms\pre_level</room>
     <room>rooms\level_menu</room>
+    <room>rooms\level_street</room>
+    <room>rooms\level_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

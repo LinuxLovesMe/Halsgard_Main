@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-100</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_moved</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///Initializing basic parametres
+event_inherited();
 
-hero_state = "falling";
 grav = 0.5;
 vert_speed = 0;
 move_speed = 5;
@@ -56,6 +56,8 @@ color_danger = make_color_hsv(0, 250, 180);
 lerp_value = 0;
 colour_to_find = shader_get_uniform(shader_lerp, "f_Colour1");
 
+state = "falling"
+
 outsouled = false;
 </string>
           </argument>
@@ -83,7 +85,7 @@ outsouled = false;
 
 lerp_value = 1;
 maxhealth --;
-hero_state = "falling";
+state = "falling";
 </string>
           </argument>
         </arguments>
@@ -107,6 +109,8 @@ hero_state = "falling";
           <argument>
             <kind>1</kind>
             <string>///Position on ground
+
+event_inherited();
 
 onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
     and instance_nearest(x, y, obj_for_standing_on).visible == true;
@@ -135,29 +139,29 @@ onGround = onPlatform or position_meeting(x, y + 1, obj_ground);
             <kind>1</kind>
             <string>///State = Idle
 
-if (hero_state == "idle")
+if (state == "idle")
 {
     image_speed = 0.04;
     if(onGround){
         sprite_index = spr_hero_idle;
         
         if(keyboard_check(ord('A')) xor keyboard_check(vk_left))
-            hero_state = "left";
+            state = "left";
             
         if(keyboard_check(ord('D')) xor keyboard_check(vk_right))
-            hero_state = "right";
+            state = "right";
             
         if(keyboard_check_pressed(ord('1')))
             if(!outsouled)
-                hero_state = "outsouled";
+                state = "outsouled";
             else
             {
                 if(distance_to_object(obj_hero_body) == 0)
-                    hero_state = "arise";        
+                    state = "arise";        
             }
     }
     else
-        hero_state = "falling";
+        state = "falling";
 }
 
 </string>
@@ -182,7 +186,7 @@ if (hero_state == "idle")
             <kind>1</kind>
             <string>///State = Falling
 
-if (hero_state == "falling")
+if (state == "falling")
 {
     if (y + jump_speed &lt; room_height - 2 * obj_ground.sprite_height)
         y += jump_speed;
@@ -193,7 +197,7 @@ if (hero_state == "falling")
     image_index = 4;
     
     if (onGround)    
-        hero_state = "idle";
+        state = "idle";
 }
 
 </string>
@@ -218,7 +222,7 @@ if (hero_state == "falling")
             <kind>1</kind>
             <string>///State = Left
 
-if (hero_state == "left")
+if (state == "left")
 {
     if(x &gt; 60)
         x -= move_speed;
@@ -228,9 +232,9 @@ if (hero_state == "left")
         sprite_index = spr_hero_walk;
         image_xscale = 1;
         if(keyboard_check_released(ord('A')) xor keyboard_check_released(vk_left))
-            hero_state = "idle";   
+            state = "idle";   
     }else
-        hero_state = "falling";
+        state = "falling";
     
         
     if (!audio_is_playing(walk_sound))
@@ -260,7 +264,7 @@ if (hero_state == "left")
             <kind>1</kind>
             <string>///State = Right
 
-if (hero_state == "right")
+if (state == "right")
 {   
     if(x &lt; (room_width - 60))
         x += move_speed;
@@ -270,10 +274,10 @@ if (hero_state == "right")
         sprite_index = spr_hero_walk;
         image_xscale = -1;
         if(keyboard_check_released(ord('D')) xor keyboard_check_released(vk_right))
-            hero_state = "idle";
+            state = "idle";
     
     }else
-        hero_state = "falling";
+        state = "falling";
     
     if (!audio_is_playing(walk_sound))
         audio_play_sound(walk_sound, 10, false);
@@ -301,7 +305,7 @@ if (hero_state == "right")
             <kind>1</kind>
             <string>///State = Jump
 
-if (hero_state == "jump")
+if (state == "jump")
 {
     if (vert_speed &lt; 18)
         vert_speed += grav; //Gravity falling
@@ -330,7 +334,7 @@ if (hero_state == "jump")
     }
     
     if (image_index &gt;= 5.7)
-        hero_state = "idle";
+        state = "idle";
     
     if (onGround)
     {
@@ -369,14 +373,14 @@ if (hero_state == "jump")
             <kind>1</kind>
             <string>///State = outsouled
 
-if (hero_state == "outsouled")
+if (state == "outsouled")
 {
     sprite_index = spr_hero_death; 
     if(image_index &gt;= 5)
     {
         outsouled = true;
         image_speed = 0;
-        hero_state = "idle";
+        state = "idle";
         
         instance_create(x, y, obj_hero_body);
         obj_hero_body.image_xscale = image_xscale;
@@ -407,14 +411,14 @@ if (hero_state == "outsouled")
             <kind>1</kind>
             <string>///State = arise
 
-if (hero_state == "arise")
+if (state == "arise")
 {
     sprite_index = spr_hero_death; 
     if(image_index &lt;= 0.2)
     {
         outsouled = false;
         image_speed = 0;
-        hero_state = "idle";
+        state = "idle";
         with(obj_hero_body)
             instance_destroy();
         //instance_create(x, y, obj_hero_body);
@@ -444,11 +448,12 @@ if (hero_state == "arise")
             <kind>1</kind>
             <string>///Hero jump via keyboard keys
 
-if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
+if (state != "pause" 
+    and (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up)))
 {
     if (onGround)
     {
-        hero_state = "jump";
+        state = "jump";
         vert_speed = -jump_speed;
         jumped = true;
     }
@@ -475,13 +480,13 @@ if (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up))
             <kind>1</kind>
             <string>///Aid has damaged
 
-if (hero_state == "half_damaged")
+if (state == "half_damaged")
 {
     if (alarm[0] == -1) 
         alarm[0] = 5; //Lerp-effect shader
 }
 
-if (hero_state == "full_damaged")
+if (state == "full_damaged")
 {
     if (alarm[0] == -1)
         alarm[0] = 5; //Lerp-effect shader
@@ -566,7 +571,7 @@ if (!promptObjectsCheck)
             <kind>1</kind>
             <string>///Weapons' behaviour
 
-if (hero_state == "idle" &amp;&amp; weapon != weapons.weapon_none)
+if (state == "idle" &amp;&amp; weapon != weapons.weapon_none)
 {
     if (image_xscale &gt; 0)
     {

@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+can_take = true;
+
 shift_text = "Нажмите [Shift], чтобы взять череп";
 text = "Череп. Я знал его обладателя: это был человек с бесконечным юмором и дивной фантазией";
 </string>
@@ -74,6 +77,30 @@ text = "Череп. Я знал его обладателя: это был че�
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_mainhero">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+
 </string>
           </argument>
         </arguments>

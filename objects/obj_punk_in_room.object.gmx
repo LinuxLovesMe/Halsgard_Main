@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>maxhealth = 3;
+            <string>event_inherited();
+
+maxhealth = 3;
 seeHeight = 1680;
 
 near = false;

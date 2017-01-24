@@ -2,10 +2,10 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_moved</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,9 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>move = true;
 
-seeHeight = 1680;
+scale = 1;
+index = 0;
+
+state = 0;
+
+old_state = 0;
 </string>
           </argument>
         </arguments>
@@ -50,72 +55,24 @@ seeHeight = 1680;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///state = pause
+if(state == "pause")
+{
+    speed = 0;
+    x = xprevious;
+    y = yprevious;
+    image_speed = 0;
+    keyboard_key_release(ord("W"));
+    keyboard_key_release(ord("A"));
+    keyboard_key_release(ord("D"));
+}
 
-if (place_free(x, y + 1))
-{
-    gravity_direction = 270;
-    gravity = 1;    
-    if (vspeed &gt; 14)
-    {
-        vspeed = 14;
-    }   
+if(obj_global_control.pause == paused.pause
+    and state != "pause")
+{    
+    old_state = state;
+    state = "pause";
 }
-else
-{
-    gravity = 0;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (obj_mainhero.y &lt; seeHeight and distance_to_object(obj_mainhero) &gt; 3)
-{
-    seePlayer = false;
-}
-else
-{
-    seePlayer = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_ground">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>vspeed = 0;
 </string>
           </argument>
         </arguments>

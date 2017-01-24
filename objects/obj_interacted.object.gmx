@@ -30,6 +30,10 @@ shift_text = "";
 text_printed = false;
 
 near = false;
+
+taken = false;
+
+can_take = false;
 </string>
           </argument>
         </arguments>
@@ -88,6 +92,8 @@ if(distance_to_object(obj_mainhero) != 0 and near)
     near = false;
     global.promptText = "";
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -111,8 +117,25 @@ if(distance_to_object(obj_mainhero) != 0 and near)
           <argument>
             <kind>1</kind>
             <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
-global.promptText = shift_text;
-near = true;
+if(!near)
+{
+    global.promptText = shift_text;
+    near = true;
+}
+
+if (keyboard_check_pressed(vk_shift) 
+    and global.promptText == shift_text and !taken and can_take)
+{
+    for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
+    {
+        if(ds_list_find_value(global.inventory, i) == 0)
+        {
+           ds_list_insert(global.inventory, i, id);   
+           break;
+       }
+    }
+    taken = true;
+}
 </string>
           </argument>
         </arguments>
@@ -144,6 +167,30 @@ if(text_printed)
     obj_textcontrol.speech_sprite = spr_hero_head;
     obj_textcontrol.direct_speech = true;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(!taken)
+    draw_self();
 </string>
           </argument>
         </arguments>

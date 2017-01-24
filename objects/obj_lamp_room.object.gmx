@@ -186,11 +186,13 @@ if (keyboard_check_pressed(vk_shift)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(on)
-{
-    surface_set_target(surf);
-    
-    draw_clear(c_black);
+            <string>if !surface_exists(surf)
+    surf = surface_create(room_width, room_height);
+surface_set_target(surf);
+draw_clear(c_black);
+
+if(on)
+{ 
     draw_set_blend_mode(bm_src_colour);
     draw_sprite_ext(spr_light2, 0, 
         x * surf_scale, 
@@ -215,8 +217,6 @@ if (keyboard_check_pressed(vk_shift)
 }
 else
 {
-    surface_set_target(surf);
-    draw_clear(c_black);
     surface_reset_target();
     draw_surface_ext(surf, 0, 0, 1 / surf_scale, 1 / surf_scale, 0, c_white, 1);
     draw_self();

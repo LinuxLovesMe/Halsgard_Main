@@ -21,5 +21,6 @@
   <height>238</height>
   <frames>
     <frame index="0">images\spr_table_ikea_room_0.png</frame>
+    <frame index="1">images\spr_table_ikea_room_1.png</frame>
   </frames>
 </sprite>

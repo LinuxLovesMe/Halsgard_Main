@@ -37,6 +37,37 @@ yy = 0;
 
 old_x = 0;
 old_y = 0;
+
+move_octopus = 0;
+
+positions = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
+{
+    positions[i, 0] = view_xview[0] + 300 + 150 * cos((i * 45) * pi / 180);
+    positions[i, 1] = view_yview[0] + 300 + 150 * sin((i * 45) * pi / 180);
+}
 </string>
           </argument>
         </arguments>
@@ -63,27 +94,64 @@ old_y = 0;
 {
     for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
     {
-        xx = view_xview[0] + 300 + 150 * cos((i * 45) * pi / 180);
-        yy = view_yview[0] + 300 + 150 * sin((i * 45) * pi / 180);
-        
          if(point_in_rectangle(mouse_x, mouse_y, 
-            xx - sprite_width / 2, yy - sprite_width / 2,
-            xx + sprite_width / 2, yy + sprite_width / 2))
+            positions[i, 0] - sprite_width / 2, positions[i, 1] - sprite_width / 2,
+            positions[i, 0] + sprite_width / 2, positions[i, 1] + sprite_width / 2))
          {
             var temp2 = ds_list_find_value(global.inventory, i);
             if(temp2 == 0)
             { 
-                ds_list_insert(global.inventory, i, temp);
-                ds_list_insert(global.inventory, cell_num, 0);
+                ds_list_replace(global.inventory, i, temp);
+                ds_list_replace(global.inventory, cell_num, 0);
+                break;
             }
             else
             {
-                ds_list_insert(global.inventory, i, temp);
-                ds_list_insert(global.inventory, cell_num, temp2);
+                ds_list_replace(global.inventory, i, temp);
+                ds_list_replace(global.inventory, cell_num, temp2);
+                break;
             }
          }  
     }
     mouse_take = false;
+    temp = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="55">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(!hidden)
+{
+    for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
+    {   
+        if(point_in_rectangle(mouse_x, mouse_y,
+            positions[i, 0] - sprite_width / 2, positions[i, 1] - sprite_width / 2,
+            positions[i, 0] + sprite_width / 2, positions[i, 1] + sprite_width / 2))
+        {
+            a = ds_list_find_value(global.inventory, i);
+            ds_list_replace(global.inventory, i, 0);
+            a.destroy = true;       
+        }
+    }
+    
 }
 </string>
           </argument>
@@ -113,25 +181,33 @@ old_y = 0;
     {
         for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
         {
-            xx = view_xview[0] + 300 + 150 * cos((i * 45) * pi / 180);
-            yy = view_yview[0] + 300 + 150 * sin((i * 45) * pi / 180);
+            xx = positions[i, 0];
+            yy = positions[i, 1];
             if(point_in_rectangle(mouse_x, mouse_y, 
                 xx - sprite_width / 2, yy - sprite_width / 2,
                 xx + sprite_width / 2, yy + sprite_width / 2))
             {
+    
                 temp = ds_list_find_value(global.inventory, i);
-                mouse_take = true;
-                cell_num = i;
-                old_x = x;
-                old_y = y;
+                if(temp != 0)
+                {
+                    mouse_take = true;
+                    cell_num = i;
+                    old_x = x;
+                    old_y = y;
+                    move_octopus = 100;
+                }
                 break;
             }    
         }
     }
     else
     {
-        temp.x = mouse_x;
-        temp.y = mouse_y;   
+        if(temp != 0)
+        {
+            temp.x = mouse_x;
+            temp.y = mouse_y;   
+        }
     }
     
 }
@@ -161,36 +237,34 @@ old_y = 0;
 {
     for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
     {   
-        
         if(ds_list_find_value(global.inventory, i) != 0)
-        {
-            
+        {   
             temp_a = ds_list_find_value(global.inventory, i);
             if(mouse_take)
             {
                 if(i != cell_num)
                 {
-                    temp_a.x = view_xview[0] + 300 + 150 * cos((i * 45) * pi / 180);
-                    temp_a.y = view_yview[0] + 300 + 150 * sin((i * 45) * pi / 180);
+                    temp_a.x = positions[i, 0];
+                    temp_a.y = positions[i, 1];
                 }
             }
             else
             {
-                temp_a.x = view_xview[0] + 300 + 150 * cos((i * 45) * pi / 180);
-                temp_a.y = view_yview[0] + 300 + 150 * sin((i * 45) * pi / 180);
+                temp_a.x = positions[i, 0];
+                temp_a.y = positions[i, 1];
             }
-            if(temp_a.sprite_width != sprite_get_width(spr_inventory_cell)
-                xor temp_a.sprite_height != sprite_get_width(spr_inventory_cell))
+            if(temp_a.sprite_width &gt;= sprite_width
+                xor temp_a.sprite_height &gt;= sprite_width)
             {
                 if(temp_a.sprite_width &gt; temp_a.sprite_height)
                 {
-                    temp_a.image_xscale = sprite_get_width(spr_inventory_cell) / temp_a.sprite_width * 0.8;   
-                    temp_a.image_yscale = sprite_get_width(spr_inventory_cell) / temp_a.sprite_width * 0.8;       
+                    temp_a.image_xscale = sprite_width / temp_a.sprite_width * 0.8;   
+                    temp_a.image_yscale = sprite_width / temp_a.sprite_width * 0.8;       
                 }
                 else
                 {
-                    temp_a.image_xscale = sprite_get_width(spr_inventory_cell) / temp_a.sprite_height * 0.8;   
-                    temp_a.image_yscale = sprite_get_width(spr_inventory_cell) / temp_a.sprite_height * 0.8;
+                    temp_a.image_xscale = sprite_width / temp_a.sprite_height * 0.8;   
+                    temp_a.image_yscale = sprite_width / temp_a.sprite_height * 0.8;
                 }
             }
             draw_sprite_ext(temp_a.sprite_index, 0, 
@@ -226,9 +300,27 @@ old_y = 0;
 {
     for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
     {
-        draw_sprite(spr_inventory_cell, 0,
-            view_xview[0] + 300 + 150 * cos((i * 45) * pi / 180),
-            view_yview[0] + 300 + 150 * sin((i * 45) * pi / 180));    
+        var colour = 0;
+        if(i &lt; 4)
+            colour = c_red;
+        else
+            colour = c_white;
+            
+        if(move_octopus &gt; 0 and cell_num = i)
+        {
+            move_octopus -= 5;
+            draw_sprite_ext(spr_inventory_cell, 0,
+                positions[i, 0],
+                positions[i, 1],
+                1, 1, random_range(-30, 30), colour, 1);
+        }
+        else
+        {
+            draw_sprite_ext(spr_inventory_cell, 0,
+               positions[i, 0],
+               positions[i, 1],
+               1, 1, 0, colour, 1);
+        }
     }
     
 }

@@ -35,6 +35,8 @@ near = false;
 doors_opened = false;
 
 angle = 0;
+
+image_speed = 0;
 </string>
           </argument>
         </arguments>

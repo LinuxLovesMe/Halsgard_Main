@@ -76,6 +76,7 @@
       <sprite>sprites\spr_rune_2</sprite>
     </sprites>
     <sprites name="ui_elements">
+      <sprite>sprites\spr_cross</sprite>
       <sprite>sprites\spr_information</sprite>
       <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_pause_vignette</sprite>
@@ -137,7 +138,6 @@
         </sprites>
       </sprites>
     </sprites>
-    <sprite>sprites\sprite64</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_background</background>
@@ -204,6 +204,7 @@
       <object>objects\obj_stone_2</object>
       <object>objects\obj_medical</object>
       <object>objects\obj_for_standing_on</object>
+      <object>objects\obj_interacted</object>
     </objects>
     <objects name="UI">
       <object>objects\obj_information</object>
@@ -254,7 +255,6 @@
         <object>objects\obj_boxes_room</object>
         <object>objects\obj_body_room</object>
         <object>objects\obj_axe_room</object>
-        <object>objects\obj_interacted</object>
         <object>objects\room_scenario</object>
       </objects>
       <objects name="pre_level">
@@ -264,9 +264,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\pre_level</room>
+    <room>rooms\level_room</room>
     <room>rooms\level_menu</room>
     <room>rooms\level_street</room>
-    <room>rooms\level_room</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

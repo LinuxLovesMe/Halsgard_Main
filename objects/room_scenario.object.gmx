@@ -28,7 +28,7 @@
             <string>alarm[0] = room_speed * 2;
 
 obj_lamp_room.x = 208;
-obj_lamp_room.y = 660;
+obj_lamp_room.y = 680;
 
 instance_deactivate_object(obj_body_room);
 instance_deactivate_object(obj_paper_room);
@@ -64,7 +64,11 @@ raider2 = 0;
           <argument>
             <kind>1</kind>
             <string>obj_textcontrol.direct_speech = false;
+obj_table_ikea.image_index = 1;//broken table
 global.greatInfo = "";
+
+obj_punk_in_room.break_table = false;
+obj_punk_in_room.state = "leave";
 </string>
           </argument>
         </arguments>
@@ -91,7 +95,10 @@ global.greatInfo = "";
 obj_textcontrol.speech_sprite = spr_anarchist_head;
 obj_textcontrol.direct_speech = true;
 
-alarm[5] = room_speed * 5;
+obj_punk_in_room.break_table = true;
+obj_punk_in_room.state = "punch";
+
+alarm[5] = room_speed * 2;
 
 </string>
           </argument>
@@ -200,7 +207,7 @@ alarm[2] = room_speed * 10;
             <kind>1</kind>
             <string>obj_lamp_room.on = false;
 obj_lamp_room.x = 928;
-obj_lamp_room.y = 545;
+obj_lamp_room.y = 560;
 
 instance_deactivate_object(obj_skull_room);
 instance_deactivate_object(obj_table_ikea);
@@ -248,14 +255,6 @@ if(get_paper == true and !part3)
     part3 = true;
     global.greatInfo = "Вы слышите грохот приближающихся шагов. Их обладатель явно опасен";
     alarm[1] = room_speed * 5;
-}
-
-if(raider1 != 0 and raider2 != 0)
-{
-    if(raider1.x &gt;= raider2.x - 5 
-        and raider1.x &lt;= raider2.x + 5)
-        
-        raider1.x -= 10;
 }
 </string>
           </argument>

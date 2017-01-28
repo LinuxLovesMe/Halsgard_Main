@@ -58,7 +58,7 @@ alarm[0] = 10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(level_street);
+            <string>room_goto_next();
 </string>
           </argument>
         </arguments>

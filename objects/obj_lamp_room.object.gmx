@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 text = "Побитая лампа. Интересно, кто оставил ее здесь?";
-shift_text = "Нажмите [Shift], чтобы включить лампу";
+shift_text = "Нажмите [E], чтобы включить лампу";
 
 surf_scale = 1/8;
 light_size = 10;
@@ -38,6 +38,10 @@ surf = surface_create(room_width, room_height);
 alarm[1] = room_speed;
 
 on = true;
+got = false;
+
+light_x = 27 - sprite_width / 2;
+light_y = 27 - sprite_height / 2;
 </string>
           </argument>
         </arguments>
@@ -133,13 +137,21 @@ alarm[1] = room_speed / 3;
             <kind>1</kind>
             <string>event_inherited();
 
-if (keyboard_check_pressed(vk_shift) 
+if (keyboard_check_pressed(ord("E")) 
     and global.promptText == shift_text)
 {
     if(!on)
         on = true;
-    else
-        on = false;    
+    shift_text = "Нажмите [Shift], чтобы забрать лампу";
+    can_take = true;
+}
+
+if (keyboard_check_pressed(vk_shift) 
+    and global.promptText == shift_text
+    and can_take)
+{
+    on = false;
+    got = true;
 }
 </string>
           </argument>
@@ -186,7 +198,8 @@ if (keyboard_check_pressed(vk_shift)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if !surface_exists(surf)
+            <string>
+if !surface_exists(surf)
     surf = surface_create(room_width, room_height);
 surface_set_target(surf);
 draw_clear(c_black);
@@ -195,8 +208,8 @@ if(on)
 { 
     draw_set_blend_mode(bm_src_colour);
     draw_sprite_ext(spr_light2, 0, 
-        x * surf_scale, 
-        y * surf_scale, 
+        (x + light_x) * surf_scale, 
+        (y + light_y) * surf_scale, 
         light_size* surf_scale, 
         light_size * surf_scale, 
         0, c_yellow, light_strength);
@@ -209,7 +222,7 @@ if(on)
     
     draw_set_blend_mode_ext(bm_src_alpha, bm_one);
     draw_sprite_ext(spr_light, 0, 
-        x, y, 
+        x + light_x, y + light_y, 
         light_size, 
         light_size,
         0, c_yellow, 1);
@@ -219,9 +232,9 @@ else
 {
     surface_reset_target();
     draw_surface_ext(surf, 0, 0, 1 / surf_scale, 1 / surf_scale, 0, c_white, 1);
-    draw_self();
+    if(!got)
+        draw_self();
 }
-
 </string>
           </argument>
         </arguments>

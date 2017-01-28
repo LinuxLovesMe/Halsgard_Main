@@ -33,6 +33,8 @@ index = 0;
 state = 0;
 
 old_state = 0;
+
+onGround = false;
 </string>
           </argument>
         </arguments>
@@ -73,6 +75,42 @@ if(obj_global_control.pause == paused.pause
     old_state = state;
     state = "pause";
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Gravitation
+
+onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
+    and instance_nearest(x, y, obj_for_standing_on).visible == true;
+
+onGround = onPlatform or position_meeting(x, y + vspeed, obj_ground);
+
+if(!onGround){
+    gravity_direction = 270;
+    gravity = 1;
+}else{
+    gravity = 0;
+}
+
+if(vspeed &gt; 12)
+    vspeed = 12;
 </string>
           </argument>
         </arguments>

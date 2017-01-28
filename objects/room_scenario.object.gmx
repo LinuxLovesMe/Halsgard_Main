@@ -41,6 +41,38 @@ get_paper = false;
 
 raider1 = 0;
 raider2 = 0;
+
+mask_fallen = false;
+
+searching = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>obj_textcontrol.direct_speech = false;
+global.greatInfo = "";
+
+obj_punk_in_room.break_table = false;
+obj_punk_in_room.state = "run";
+
 </string>
           </argument>
         </arguments>
@@ -63,12 +95,17 @@ raider2 = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>obj_textcontrol.direct_speech = false;
-obj_table_ikea.image_index = 1;//broken table
-global.greatInfo = "";
-
-obj_punk_in_room.break_table = false;
-obj_punk_in_room.state = "leave";
+            <string>if(!mask_fallen)
+{
+    obj_textcontrol.direct_speech = false;
+    obj_table_ikea.image_index = 1;//broken table
+    global.greatInfo = "";
+    
+    obj_punk_in_room.break_table = false;
+    obj_punk_in_room.state = "leave";
+    
+    searching = false;
+}
 </string>
           </argument>
         </arguments>
@@ -91,15 +128,17 @@ obj_punk_in_room.state = "leave";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.greatInfo = "Чертов стол на замке!";
-obj_textcontrol.speech_sprite = spr_anarchist_head;
-obj_textcontrol.direct_speech = true;
-
-obj_punk_in_room.break_table = true;
-obj_punk_in_room.state = "punch";
-
-alarm[5] = room_speed * 2;
-
+            <string>if(!mask_fallen)
+{
+    global.greatInfo = "Чертов стол на замке!";
+    obj_textcontrol.speech_sprite = spr_anarchist_head;
+    obj_textcontrol.direct_speech = true;
+    
+    obj_punk_in_room.break_table = true;
+    obj_punk_in_room.state = "punch";
+    
+    alarm[5] = room_speed * 2;
+}
 </string>
           </argument>
         </arguments>
@@ -122,12 +161,14 @@ alarm[5] = room_speed * 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>raider2 = instance_create(room_width, 
-    room_height - sprite_get_height(spr_punk_walk),
+            <string>raider2 = instance_create(room_width - 100, 
+    room_height - 50,
     obj_punk_in_room);
 raider2.dest_x = obj_table_ikea.x - obj_table_ikea.sprite_width / 2;
 
-alarm[4] = room_speed * 10;
+alarm[4] = room_speed * 15;
+
+searching = true;
 </string>
           </argument>
         </arguments>
@@ -152,8 +193,8 @@ alarm[4] = room_speed * 10;
             <kind>1</kind>
             <string>global.greatInfo = "";
 
-raider1 = instance_create(room_width, 
-    room_height - sprite_get_height(spr_punk_walk),
+raider1 = instance_create(room_width - 100, 
+    room_height - 50,
     obj_punk_in_room);
 raider1.dest_x = obj_table_ikea.x;
 
@@ -255,6 +296,19 @@ if(get_paper == true and !part3)
     part3 = true;
     global.greatInfo = "Вы слышите грохот приближающихся шагов. Их обладатель явно опасен";
     alarm[1] = room_speed * 5;
+}
+if(instance_exists(obj_punk_in_room) and instance_number(obj_punk_in_room) == 2)
+{
+    if(raider2.state == "stay" and raider2.image_xscale == 1)
+        raider2.image_xscale = -1;
+}    
+if(mask_fallen and searching)
+{
+    global.greatInfo = "АААА, ДЕМОНЫ АТАКУЮТ!";
+    obj_textcontrol.speech_sprite = spr_anarchist_head;
+    obj_textcontrol.direct_speech = true;
+    alarm[6] = room_speed;
+    searching = false;
 }
 </string>
           </argument>

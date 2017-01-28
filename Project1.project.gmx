@@ -87,6 +87,7 @@
         <sprite>sprites\spr_anarchist_head</sprite>
       </sprites>
       <sprite>sprites\spr_inventory_cell</sprite>
+      <sprite>sprites\spr_question</sprite>
     </sprites>
     <sprites name="always_items">
       <sprite>sprites\spr_medical</sprite>

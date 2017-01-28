@@ -25,11 +25,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (obj_mainhero.y &gt; y and distance_to_point(obj_mainhero.x, obj_mainhero.y) == 0
+            <string>/*if (obj_mainhero.y &gt; y and distance_to_point(obj_mainhero.x, obj_mainhero.y) == 0
     and visible == true)
 {
-    obj_mainhero.y = y;
-    
+    obj_mainhero.y = y;  
+}*/
+if (obj_mainhero.y &gt; y and obj_mainhero.y &lt; y + 13
+    and visible == true)
+{
+    if(!obj_mainhero.outsouled)
+        obj_mainhero.y = y;  
 }
 </string>
           </argument>

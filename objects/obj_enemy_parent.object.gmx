@@ -27,7 +27,81 @@
             <kind>1</kind>
             <string>event_inherited();
 
-seeHeight = 1680;
+see_player = false;
+forget = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>state = "walk";
+forget = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_xscale = choose(-1, 1);
+alarm[2] = room_speed;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_xscale = -image_xscale;
+alarm[1] = room_speed * 1.5;
 </string>
           </argument>
         </arguments>
@@ -50,55 +124,15 @@ seeHeight = 1680;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-
-if (place_free(x, y + 1))
-{
-    gravity_direction = 270;
-    gravity = 1;    
-    if (vspeed &gt; 14)
-    {
-        vspeed = 14;
-    }   
-}
-else
-{
-    gravity = 0;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (obj_mainhero.y &lt; seeHeight and distance_to_object(obj_mainhero) &gt; 3)
-{
-    seePlayer = false;
-}
-else
-{
-    seePlayer = true;
-}
+            <string>///See player or not
+event_inherited();
+see_player = obj_mainhero.y &gt; y - sprite_height / 2 and !obj_mainhero.outsouled;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_ground">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -115,7 +149,15 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vspeed = 0;
+            <string>draw_self();
+
+if(state == "stay")
+{
+    draw_sprite_ext(spr_question, 0,
+        x + (image_xscale * sprite_width / 2),
+        y - sprite_height,
+        1, 1, 0, c_white, 1);
+}
 </string>
           </argument>
         </arguments>

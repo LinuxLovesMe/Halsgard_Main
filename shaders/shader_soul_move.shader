@@ -2,7 +2,7 @@
 // Simple passthrough vertex shader
 //
 attribute vec3 in_Position;                  // (x,y,z)
-//attribute vec3 in_Normal;                  // (x,y,z)     unused in this shader.
+//attribute vec3 in_Normal;                  // (x,y,z)     unused in this shader.	
 attribute vec4 in_Colour;                    // (r,g,b,a)
 attribute vec2 in_TextureCoord;              // (u,v)
 
@@ -24,15 +24,23 @@ void main()
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
-
+uniform float pixelH;
+uniform float pixelW;
 
 void main()
 {
-    vec4 colour = texture2D(gm_BaseTexture, v_vTexcoord);
-    colour.r = 0.5; 
-    colour.g = 0.5; 
-    colour.b = 0.5;
-    colour.a -= 0.4;
-    gl_FragColor = vec4(colour.r, colour.g, colour.b, colour.a);
+    vec2 offsetX;
+    vec2 offsetY;
+    offsetX.x = pixelW;
+    offsetY.y = pixelH;
+
+    float alpha = texture2D( gm_BaseTexture, v_vTexcoord ).a;
+    
+    alpha = max(alpha, texture2D( gm_BaseTexture, v_vTexcoord + offsetX).a);
+    alpha = max(alpha, texture2D( gm_BaseTexture, v_vTexcoord - offsetX).a);
+    alpha = max(alpha, texture2D( gm_BaseTexture, v_vTexcoord + offsetY).a);
+    alpha = max(alpha, texture2D( gm_BaseTexture, v_vTexcoord - offsetY).a);
+    gl_FragColor = v_vColour * texture2D( gm_BaseTexture, v_vTexcoord );
+    gl_FragColor.a = alpha;
 }
 

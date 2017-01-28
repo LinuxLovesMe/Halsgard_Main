@@ -28,13 +28,13 @@
             <string>event_inherited();
 
 maxhealth = 3;
-seeHeight = 1680;
 
 near = false;
 
 state = "fall";
 
 image_speed = 0;
+
 </string>
           </argument>
         </arguments>
@@ -57,11 +57,30 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///State = fall
-if(state == "fall")
+            <string>///State = approach to player
+
+if (state == "approach")
 {
-    if(!place_free(x, y + 1))
-        state = "walk";
+    randomize();
+    sprite_index = spr_punk_walk;
+    image_speed = random_range(0.08, 0.11);
+    
+    if (abs(x - obj_mainhero.x) &lt; random_range(40, 60))
+        state = "punch";
+    
+    if(!see_player)
+        state = "stay";              
+       
+    if (x &gt; obj_mainhero.x)
+    {
+        hspeed = -random_range(3.0, 4.4);
+        image_xscale = 1;
+    }
+    else
+    {
+        hspeed = random_range(3.0, 4.4);
+        image_xscale = -1;
+    }
 }
 </string>
           </argument>
@@ -85,48 +104,152 @@ if(state == "fall")
             <kind>1</kind>
             <string>///State = walk
 
+if(state == "walk")
+{
+    randomize();
+    image_speed = random_range(0.08, 0.11);
+    sprite_index = spr_punk_walk;
+    
+    if(see_player)
+        state = "approach";
+
+    if(x &lt; 100)
+        image_xscale = -1;   
+    if(x &gt; room_width - 100)
+        image_xscale = 1;   
+    
+    if(image_xscale == -1)
+        hspeed = random_range(3.0, 4.4);
+    else
+        hspeed = -random_range(3.0, 4.4);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = punch
+
+if(state == "punch")
+{
+    hspeed = 0;
+    sprite_index = spr_punk_punch;
+    image_speed = 0.2;   
+    
+    if(abs(x - obj_mainhero.x) &gt; 50)
+        state = "approach";   
+    
+    if(!see_player)
+        state = "stay";
+        
+    if (x &gt; obj_mainhero.x)
+        image_xscale = 1;
+    else
+        image_xscale = -1;         
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = stay
+
+if(state == "stay")
+{
+    sprite_index = spr_punk_walk;
+    image_index = 0;
+    image_speed = 0;
+    hspeed = 0;
+    if(!forget)
+    {
+        forget = true;
+        alarm[0] = room_speed * 1.5;
+    }
+    if(see_player)
+        state = "approach";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = fall
+if(state == "fall")
+{
+    if(onGround)
+        state = "walk";
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If health = 0
 event_inherited();
 
-if (state == "walk")
-{
-    image_speed = 0.1;
-    if (x &lt; obj_mainhero.x)
-    {
-        image_xscale = -1;
-    }
-    else 
-    {
-        if (x &gt; obj_mainhero.x)
-        {
-            image_xscale = 1;
-        }
-    }
-        
-    if (abs(x - obj_mainhero.x) &lt; abs(sprite_width))
-    {
-        near = true;        
-    }
-    else
-    {
-       near = false;
-    }
-       
-    if (!near)
-    {
-        if (x &gt; obj_mainhero.x)
-        {
-            hspeed = -4.2;
-        }
-        else
-        {
-            hspeed = 4.2;
-        }
-    }
-    else
-    {
-        hspeed = 0;
-    }
-}
+if (maxhealth &lt;= 0)
+    instance_destroy();
 </string>
           </argument>
         </arguments>

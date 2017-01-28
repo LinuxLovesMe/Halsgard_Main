@@ -26,31 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
-shift_text = "";
+shift_text = "Нажмите Shift, чтобы опрокинуть маску";
 text = "Маска. Такое впечатление, что глаза следят за мной. Не буду подходить близко.";
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
 </string>
           </argument>
         </arguments>
@@ -74,12 +51,20 @@ text = "Маска. Такое впечатление, что глаза сле�
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+if(vspeed &gt; 0 
+    and y &gt; obj_table_ikea.y - 3 
+    and y &lt; obj_table_ikea.y + 3)
+{
+    vspeed = 0;
+    room_scenario.mask_fallen = true;
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="1">
+    <event eventtype="4" ename="obj_mainhero">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -97,6 +82,34 @@ text = "Маска. Такое впечатление, что глаза сле�
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
+if(keyboard_check_pressed(vk_shift))
+{
+    vspeed = 3;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
 </string>
           </argument>
         </arguments>

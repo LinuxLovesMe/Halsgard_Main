@@ -109,14 +109,13 @@ state = "falling";
           <argument>
             <kind>1</kind>
             <string>///Position on ground
-
 event_inherited();
 
-onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
-    and instance_nearest(x, y, obj_for_standing_on).visible == true;
-
-//onGround = onPlatform or !place_free(x, y + 1);
-onGround = onPlatform or position_meeting(x, y + 1, obj_ground);
+if(outsouled)
+{
+    gravity = 0;
+    onGround = false;
+}
 </string>
           </argument>
         </arguments>
@@ -154,11 +153,6 @@ if (state == "idle")
         if(keyboard_check_pressed(ord('1')))
             if(!outsouled)
                 state = "outsouled";
-            else
-            {
-                if(distance_to_object(obj_hero_body) == 0)
-                    state = "arise";        
-            }
     }
     else
         state = "falling";
@@ -188,10 +182,6 @@ if (state == "idle")
 
 if (state == "falling")
 {
-    if (y + jump_speed &lt; room_height - 2 * obj_ground.sprite_height)
-        y += jump_speed;
-    else
-        y += room_height - 2 * obj_ground.sprite_height - y;
     image_speed = 0;
     sprite_index = spr_hero_jump;
     image_index = 4;
@@ -307,9 +297,6 @@ if (state == "right")
 
 if (state == "jump")
 {
-    if (vert_speed &lt; 18)
-        vert_speed += grav; //Gravity falling
-    
     if(keyboard_check(ord('A')) xor keyboard_check(vk_left))
     {
         x -= 5;
@@ -336,20 +323,8 @@ if (state == "jump")
     if (image_index &gt;= 5.7)
         state = "idle";
     
-    if (onGround)
-    {
-        if (!jumped)
-            vert_speed = 0;
-        else
-            vert_speed = -jump_speed;
-    }
-    else
+    if (!onGround)
         audio_stop_sound(walk_sound);
-
-    if (y + vert_speed &lt; room_height - 2 * obj_ground.sprite_height)
-        y += vert_speed;
-    else
-        y += room_height - 2 * obj_ground.sprite_height - y;
 }
 </string>
           </argument>
@@ -380,7 +355,7 @@ if (state == "outsouled")
     {
         outsouled = true;
         image_speed = 0;
-        state = "idle";
+        state = "outsouled_move";
         
         instance_create(x, y, obj_hero_body);
         obj_hero_body.image_xscale = image_xscale;
@@ -389,6 +364,78 @@ if (state == "outsouled")
         image_speed = 0.2;  
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///State = outsouled_move
+
+if(state == "outsouled_move")
+{
+    sprite_index = spr_hero_idle;
+    image_speed = 0;
+    image_index = 0;
+    
+    hspeed = 0;
+    vspeed = 0;
+    
+    if(keyboard_check(ord('A')) xor keyboard_check(vk_left))
+    {
+        if(x &gt; 50)
+        {
+            image_xscale = 1;
+            hspeed = -3;
+        }
+    }
+            
+    if(keyboard_check(ord('D')) xor keyboard_check(vk_right))
+    {
+        if(x &lt; room_width - 50)
+        {
+            image_xscale = -1;
+            hspeed = 3;
+        }
+    }
+    
+    if(keyboard_check(ord('W')) xor keyboard_check(vk_up))
+    {
+        if(y &gt; 50)
+            vspeed = -3;
+    }
+    
+    if(keyboard_check(ord('S')) xor keyboard_check(vk_down))
+    {
+        if(y &lt; room_height - 50)
+            vspeed = 3;
+    }
+    
+    if(keyboard_check(ord('1')))
+    {
+        if(obj_hero_body.y &lt; y + 20 and obj_hero_body.y &gt; y - 20
+            and distance_to_object(obj_hero_body) == 0)
+        {
+            state = "arise";        
+            hspeed = 0;
+            vspeed = 0;
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -448,13 +495,13 @@ if (state == "arise")
             <kind>1</kind>
             <string>///Hero jump via keyboard keys
 
-if (state != "pause" 
+if (state != "pause" and state != "outsouled_move"
     and (keyboard_check_pressed(ord("W")) xor keyboard_check_pressed(vk_up)))
 {
     if (onGround)
     {
         state = "jump";
-        vert_speed = -jump_speed;
+        vspeed = -22;
         jumped = true;
     }
 }
@@ -642,15 +689,17 @@ if (shader_is_compiled(shader_lerp))
     }
     shader_set_uniform_f(colour_to_find, 1, 1, 1, lerp_value);
 }
+shader_reset();
+
 if(outsouled){
-    
-    shader_set(shader_hero_soul);  
+    shader_set(shader_hero_soul);
     draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, 1, 0, c_white, 1);
     shader_reset();
 }
 else
+{
     draw_self();
-shader_reset();
+}
 </string>
           </argument>
         </arguments>

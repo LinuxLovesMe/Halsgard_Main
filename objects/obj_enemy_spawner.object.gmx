@@ -56,7 +56,7 @@ wait2 = false;
           <argument>
             <kind>1</kind>
             <string>///Punk Create
-instance_create(choose(0, room_width), room_height - 2 * obj_ground.sprite_height, obj_enemy_punk);
+instance_create(choose(100, room_width - 100), room_height - 2 * obj_ground.sprite_height, obj_enemy_punk);
 wait2 = false;
 </string>
           </argument>

@@ -119,6 +119,7 @@ if(distance_to_object(obj_mainhero) != 0 and near)
           <argument>
             <kind>1</kind>
             <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
+event_inherited();
 
 if (keyboard_check_pressed(vk_shift) )
 {

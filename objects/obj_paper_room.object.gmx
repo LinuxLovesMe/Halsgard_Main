@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_interacted</parentName>
+  <parentName>obj_taken</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -83,8 +83,12 @@ if(!taken)
             <kind>1</kind>
             <string>event_inherited();
 
-if(keyboard_check_pressed(vk_shift)){
+if(keyboard_check_pressed(vk_shift)
+    and global.promptText == shift_text 
+    and !taken){
+    
     room_scenario.get_paper = true;
+    taken = true;
 }
 </string>
           </argument>

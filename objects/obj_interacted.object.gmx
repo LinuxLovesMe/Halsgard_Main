@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-500</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -31,12 +31,7 @@ text_printed = false;
 
 near = false;
 
-taken = false;
-
 can_take = false;
-
-inventory_text = "";
-show_prompt = false;
 
 destroy = false;
 </string>
@@ -86,14 +81,24 @@ obj_textcontrol.direct_speech = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(distance_to_object(obj_mainhero) != 0 and near)
+            <string>
+/*if(distance_to_object(obj_mainhero) != 0 and near)
 {
     near = false;
     global.promptText = "";
+}*/
+if(near)
+{
+    if(!point_in_rectangle(
+        x, y,
+        obj_mainhero.x - 30,
+        obj_mainhero.y - obj_mainhero.sprite_height,
+        obj_mainhero.x + 30, obj_mainhero.y))
+    {
+        global.promptText = "";
+        near = false;
+    }
 }
-
-if(destroy)
-    instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -110,31 +115,26 @@ if(destroy)
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
-if(!near and !taken)
+            <string>with(other)
 {
-    global.promptText = shift_text;
-    near = true;
-}
-
-if (keyboard_check_pressed(vk_shift) 
-    and global.promptText == shift_text and !taken and can_take)
-{
-    for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
+    if(!near)
     {
-        if(ds_list_find_value(global.inventory, i) == 0)
+        if(point_in_rectangle(
+            x, y,
+            obj_mainhero.x - 30,
+            obj_mainhero.y - obj_mainhero.sprite_height,
+            obj_mainhero.x + 30, obj_mainhero.y))
         {
-           ds_list_replace(global.inventory, i, id);   
-           break;
-       }
+            global.promptText = shift_text;
+            near = true;
+        }
     }
-    taken = true;
 }
 </string>
           </argument>
@@ -160,88 +160,10 @@ if (keyboard_check_pressed(vk_shift)
             <kind>1</kind>
             <string>alarm[0] = room_speed * 2;
 
-if(!taken)
-{
-    global.greatInfo = text;
-    obj_textcontrol.speech_sprite = spr_hero_head;
-    obj_textcontrol.direct_speech = true;
-}
-else
-{
-    show_prompt = true;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="73">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(show_prompt)
-{
-    var s = string_width(inventory_text);
-    var w = 300;
-    
-    draw_rectangle_colour(
-        x + 50, y, x + 50 + w, y + 20 + 20 * (s / w),
-        c_black, c_black, c_black, c_black, false);
-        
-    draw_text_ext_colour(x + 60, y + 10, inventory_text,
-        16, w - 10, c_white, c_white, c_white, c_white, 1);
-        
-    draw_sprite(spr_cross, 0, 
-        x + 50 + w - sprite_get_width(spr_cross) / 2, 
-        y + 10);
-    
-    if(point_in_rectangle(mouse_x, mouse_y,
-        x + 50 + w - sprite_get_width(spr_cross) / 2,
-        y + 10 - sprite_get_height(spr_cross) / 2,
-        x + 50 + w + sprite_get_width(spr_cross) / 2,
-        y + 10 + sprite_get_height(spr_cross) / 2))
-    {
-        if(mouse_check_button_pressed(mb_left))
-            show_prompt = false;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(!taken)
-    draw_self();
+global.greatInfo = text;
+obj_textcontrol.speech_sprite = spr_hero_head;
+obj_textcontrol.direct_speech = true;
+
 </string>
           </argument>
         </arguments>

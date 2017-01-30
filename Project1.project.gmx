@@ -139,6 +139,9 @@
         </sprites>
       </sprites>
     </sprites>
+    <sprite>sprites\spr_music</sprite>
+    <sprite>sprites\spr_bandage</sprite>
+    <sprite>sprites\spr_money</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_background</background>
@@ -206,6 +209,8 @@
       <object>objects\obj_medical</object>
       <object>objects\obj_for_standing_on</object>
       <object>objects\obj_interacted</object>
+      <object>objects\obj_taken</object>
+      <object>objects\obj_searched</object>
     </objects>
     <objects name="UI">
       <object>objects\obj_information</object>
@@ -246,17 +251,22 @@
       </objects>
       <objects name="room_level">
         <object>objects\obj_table_ikea</object>
-        <object>objects\obj_lamp_room</object>
         <object>objects\obj_mask_room</object>
-        <object>objects\obj_skull_room</object>
         <object>objects\obj_table_room</object>
-        <object>objects\obj_paper_room</object>
         <object>objects\obj_ladder_room</object>
         <object>objects\obj_plant_room</object>
         <object>objects\obj_boxes_room</object>
         <object>objects\obj_body_room</object>
         <object>objects\obj_axe_room</object>
         <object>objects\room_scenario</object>
+        <objects name="taken">
+          <object>objects\obj_lamp_room</object>
+          <object>objects\obj_skull_room</object>
+          <object>objects\obj_paper_room</object>
+          <object>objects\obj_musical_instr</object>
+          <object>objects\obj_bandage</object>
+          <object>objects\obj_halsword</object>
+        </objects>
       </objects>
       <objects name="pre_level">
         <object>objects\obj_pre_create</object>

@@ -35,12 +35,20 @@ temp = 0;
 xx = 0;
 yy = 0;
 
-old_x = 0;
-old_y = 0;
-
 move_octopus = 0;
 
 positions = 0;
+
+for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
+{
+    t = ds_list_find_value(global.inventory, i);
+    if(t != 0)
+    {
+        t = instance_create(0, 0, asset_get_index(t));
+        t.taken = true;
+        ds_list_replace(global.inventory, i, t);
+    }        
+}
 </string>
           </argument>
         </arguments>
@@ -148,7 +156,10 @@ positions = 0;
         {
             a = ds_list_find_value(global.inventory, i);
             ds_list_replace(global.inventory, i, 0);
-            a.destroy = true;       
+            a.x = obj_mainhero.x;       
+            a.y = obj_mainhero.y - 50;
+            a.fallen = true;
+            a.taken = false;
         }
     }
     
@@ -210,6 +221,37 @@ positions = 0;
         }
     }
     
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
+{
+    t = ds_list_find_value(global.inventory, i);
+    if(t != 0)
+    {
+        t = object_get_name(t.object_index);
+        ds_list_replace(global.inventory, i, t);
+    }
 }
 </string>
           </argument>

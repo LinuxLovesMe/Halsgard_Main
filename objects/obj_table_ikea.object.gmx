@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//event_inherited();
+            <string>event_inherited();
 text_printed = false;
 shift_text = "Нажмите [Shift], чтобы открыть ящики стола";
 text = "Стол. Сделан в знакомой минималистичной стилистике";
@@ -37,6 +37,41 @@ doors_opened = false;
 angle = 0;
 
 image_speed = 0;
+
+insides = ds_list_create();
+searched = false;
+
+var a;
+a = instance_create(0, 0, obj_musical_instr);
+ds_list_add(insides, a);
+a = instance_create(0, 0, obj_bandage);
+ds_list_add(insides, a);
+a = instance_create(0, 0, obj_halsword);
+ds_list_add(insides, a);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ds_list_destroy(insides);
+instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -91,10 +126,17 @@ obj_textcontrol.direct_speech = false;
     obj_textcontrol.direct_speech = true;
 }
     
-if(distance_to_object(obj_mainhero) != 0 and near)
+if(near)
 {
-    near = false;
-    global.promptText = "";
+    if(!point_in_rectangle(
+        x - sprite_width / 4, y,
+        obj_mainhero.x - 30,
+        obj_mainhero.y - obj_mainhero.sprite_height,
+        obj_mainhero.x + 30, obj_mainhero.y))
+    {
+        global.promptText = "";
+        near = false;
+    }
 }
 </string>
           </argument>
@@ -121,13 +163,24 @@ if(distance_to_object(obj_mainhero) != 0 and near)
             <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
 event_inherited();
 
-if (keyboard_check_pressed(vk_shift) )
+if(!near)
 {
-    if(!doors_opened)
-        doors_opened = true;
-    else
-        doors_opened = false;
+    if(point_in_rectangle(
+        x - sprite_width / 4, y,
+        obj_mainhero.x - 30,
+        obj_mainhero.y - obj_mainhero.sprite_height,
+        obj_mainhero.x + 30, obj_mainhero.y))
+    {
+        global.promptText = shift_text;
+        near = true;
+    }
 }
+
+if (near and keyboard_check_pressed(vk_shift) )
+{
+    searched = true;
+}
+
 </string>
           </argument>
         </arguments>
@@ -157,7 +210,7 @@ alarm[0] = room_speed * 2;
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="73">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -174,34 +227,75 @@ alarm[0] = room_speed * 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-var offset = x;
+            <string>event_inherited();
 
-/*if(!doors_opened)
+var t = ds_list_size(insides);
+
+if(searched and t &gt; 0)
 {
-     
-    draw_sprite(table_ikea_door1, 0, offset, y);
-    offset += sprite_get_width(table_ikea_door1);
-    draw_sprite(table_ikea_door2, 0, offset, y);
-    offset += sprite_get_width(table_ikea_door2);
-    draw_sprite(table_ikea_door3, 0, offset, y);
-    offset += sprite_get_width(table_ikea_door3);
-    draw_sprite(table_ikea_door4, 0, offset + 3, y);
+    var topleft_x = view_xview[0] + 400;
+    var topleft_y = view_yview[0] + 200;
+    
+    draw_rectangle_colour(
+        topleft_x, topleft_y,
+        topleft_x + 500, topleft_y + 50 * t,
+        c_black, c_black, c_black, c_black, false);
+    
+    var offset = 0;
+    for(var i = 0; i &lt; ds_list_size(insides); i++)
+    {
+        t = ds_list_find_value(insides, i);
+        scalex = 40 / t.sprite_width;
+        scaley = 40 / t.sprite_height;
+        
+        draw_sprite_ext(t.sprite_index, 0,
+           topleft_x + (t.sprite_width * scalex) / 2, 
+           topleft_y + offset + (t.sprite_height * scaley) / 2,
+            scalex, scaley, 0, c_white, 1);
+        
+        draw_set_colour(c_white); 
+        draw_text_ext(topleft_x + (t.sprite_width * scalex) + 10, 
+           topleft_y + offset + (t.sprite_height * scaley) / 2,
+           t.name, 20, 500);
+           
+        if(point_in_rectangle(mouse_x, mouse_y,
+            topleft_x,
+            topleft_y + offset,
+            topleft_x + 500,
+            topleft_y + offset + 50))
+        {
+            if(mouse_check_button_pressed(mb_left))
+            {
+                for(var j = 0; j &lt; ds_list_size(global.inventory); j++)
+                {
+                    if(ds_list_find_value(global.inventory, j) == 0)
+                    {
+                       ds_list_replace(global.inventory, j, t);
+                       ds_list_delete(insides, i);   
+                       break;
+                   }
+                }
+                t.taken = true;
+            }
+        }
+        
+        offset += 50;
+    }
+    
+    draw_sprite(spr_cross, 0, 
+        topleft_x + 500 - sprite_get_width(spr_cross) / 2, 
+        topleft_y + sprite_get_height(spr_cross) / 2);
+        
+    if(point_in_rectangle(mouse_x, mouse_y,
+        topleft_x + 500 - sprite_get_width(spr_cross) / 2,
+        topleft_y - sprite_get_height(spr_cross) / 2,
+        topleft_x + 500 + sprite_get_width(spr_cross) / 2,
+        topleft_y + sprite_get_height(spr_cross) / 2))
+    {
+        if(mouse_check_button_pressed(mb_left))
+            searched = false;
+    }
 }
-else
-{   
-    angle += 1;
-    d3d_set_culling(true); 
-    d3d_transform_set_rotation_y(angle); 
-    d3d_transform_add_translation(offset, y, 0);
-    draw_sprite(table_ikea_door2, 0, offset, y); 
-    //draw_sprite_ext(game_card, 6, 0, 0, scale, scale, 0, c_white, 1); 
-    d3d_transform_set_rotation_y(angle + 180); 
-    d3d_transform_add_translation(offset, y, 0);
-    draw_sprite(table_ikea_door2, 0, offset, y); 
-    //draw_sprite_ext(game_card, value, 0, 0, scale, scale, 0, c_white, 1);  
-    d3d_transform_set_identity()
-}*/
 </string>
           </argument>
         </arguments>

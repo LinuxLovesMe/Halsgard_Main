@@ -288,7 +288,7 @@ part2 = true;
     instance_activate_object(obj_mask_room);
     instance_activate_object(obj_body_room);
     instance_activate_object(obj_paper_room);
-    obj_body_room.moved = true;
+    //obj_body_room.moved = true;
 }
 
 if(get_paper == true and !part3)

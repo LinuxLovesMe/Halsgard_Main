@@ -186,7 +186,6 @@
       <object>objects\obj_enemy_punk</object>
       <object>objects\obj_punk_in_room</object>
       <object>objects\obj_enemy_parent</object>
-      <object>objects\obj_enemy_spawner</object>
       <object>objects\obj_hero_body</object>
       <object>objects\obj_moved</object>
     </objects>
@@ -196,6 +195,7 @@
       <object>objects\obj_room2_control</object>
       <object>objects\obj_global_control</object>
       <object>objects\obj_level_room_control</object>
+      <object>objects\obj_enemy_spawner</object>
     </objects>
     <objects name="always_items">
       <object>objects\obj_ground</object>
@@ -275,9 +275,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\pre_level</room>
+    <room>rooms\level_street</room>
     <room>rooms\level_room</room>
     <room>rooms\level_menu</room>
-    <room>rooms\level_street</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

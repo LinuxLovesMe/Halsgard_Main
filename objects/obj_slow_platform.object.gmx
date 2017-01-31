@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var ranTime = irandom(10);
+            <string>event_inherited();
+
+var ranTime = irandom(10);
 
 alarm[0] = room_speed * (10 + ranTime);
 </string>
@@ -50,7 +52,9 @@ alarm[0] = room_speed * (10 + ranTime);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var diceRoll = irandom(3);
+            <string>event_inherited();
+
+var diceRoll = irandom(3);
 if (diceRoll == 1)
 {
     visible = false;

@@ -261,7 +261,7 @@ if(searched and t &gt; 0)
         if(point_in_rectangle(mouse_x, mouse_y,
             topleft_x,
             topleft_y + offset,
-            topleft_x + 500,
+            topleft_x + 450,
             topleft_y + offset + 50))
         {
             if(mouse_check_button_pressed(mb_left))

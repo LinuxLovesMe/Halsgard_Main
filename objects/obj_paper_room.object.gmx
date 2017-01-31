@@ -88,7 +88,6 @@ if(keyboard_check_pressed(vk_shift)
     and !taken){
     
     room_scenario.get_paper = true;
-    taken = true;
 }
 </string>
           </argument>

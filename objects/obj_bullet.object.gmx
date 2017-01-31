@@ -27,6 +27,10 @@
             <kind>1</kind>
             <string>xCreate = 0;
 yCreate = 0;
+image_xscale = 0.2;
+image_yscale = 0.2;
+destroy = false;
+
 </string>
           </argument>
         </arguments>

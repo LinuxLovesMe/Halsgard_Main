@@ -97,16 +97,20 @@ if(obj_global_control.pause == paused.pause
             <kind>1</kind>
             <string>///Gravitation
 
-onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
+/*onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
     and instance_nearest(x, y, obj_for_standing_on).visible == true;
 
 onGround = onPlatform or position_meeting(x, y + vspeed, obj_ground);
-
+*/
+onGround = position_meeting(x, y + 3, obj_for_standing_on) 
+    and instance_nearest(x, y, obj_for_standing_on).visible == true;
+    
 if(!onGround){
     gravity_direction = 270;
-    gravity = 1;
+    gravity = 0.8;
 }else{
     gravity = 0;
+    vspeed = 0;
 }
 
 if(vspeed &gt; 12)

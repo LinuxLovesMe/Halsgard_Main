@@ -116,6 +116,14 @@ if(outsouled)
     gravity = 0;
     onGround = false;
 }
+
+if (y &gt; obj_for_standing_on.y 
+    and y &lt; obj_for_standing_on.y + vspeed + 3
+    and onGround)
+{
+    if(!outsouled)
+        y = obj_for_standing_on.y; 
+}
 </string>
           </argument>
         </arguments>
@@ -314,13 +322,13 @@ if (state == "jump")
     if (image_index &gt;= 4 and !onGround)
         image_index = 4; //Image_index for falling movement
     
-    if (image_index &gt; 4 and image_index &lt; 5 and onGround)
+    if (image_index &gt;= 4 and image_index &lt; 5 and onGround)
     {
-        image_index = 5; //Turn main_hero to idle animation
-        jumped = false;
+        //image_index = 5; //Turn main_hero to idle animation
+        state = "idle";
     }
     
-    if (image_index &gt;= 5.7)
+    if (image_index &gt; 5 and onGround)
         state = "idle";
     
     if (!onGround)
@@ -421,7 +429,7 @@ if(state == "outsouled_move")
     
     if(keyboard_check(ord('S')) xor keyboard_check(vk_down))
     {
-        if(y &lt; room_height - 50)
+        if(y &lt; room_height - sprite_height)
             vspeed = 3;
     }
     
@@ -566,38 +574,6 @@ if (keyboard_check_released(ord("H"))) //Healing main_hero manually
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Check: Are any promptText objects near main_hero?
-
-/*for (k = 0; k &lt; array_length_1d(objectToCheckText); k++)
-{
-    promptObjectsCheck = distance_to_object(objectToCheckText[k]) &lt; 3;
-    if (promptObjectsCheck) break;
-}
-
-if (!promptObjectsCheck)
-{   
-    global.promptText = "";
-}*/
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="6" enumb="56">
       <action>
@@ -620,32 +596,21 @@ if (!promptObjectsCheck)
 
 if (state == "idle" &amp;&amp; weapon != weapons.weapon_none)
 {
+    switch (weapon)
+    {
+        case weapons.weapon_fire:
+            runicBullet = instance_create(x - image_xscale * 50, y - 116, obj_rune_1);
+        break;
+        
+        case weapons.weapon_ice:
+            runicBullet = instance_create(x - image_xscale * 50, y - 116, obj_rune_2);
+        break;
+    }
+    
     if (image_xscale &gt; 0)
-    {
-        switch (weapon)
-        {
-            case weapons.weapon_fire:
-                runicBullet = instance_create(x - 50, y - 116, obj_rune_1);
-            break;
-            case weapons.weapon_ice:
-                runicBullet = instance_create(x - 50, y - 116, obj_rune_2);
-            break;
-        }
         runicBullet.direction = 180;
-    }
     else
-    {
-        switch (weapon)
-        {
-            case weapons.weapon_fire:
-                runicBullet = instance_create(x + 50, y - 116, obj_rune_1);
-            break;
-            case weapons.weapon_ice:
-                runicBullet = instance_create(x + 50, y - 116, obj_rune_2);
-            break;
-        }
         runicBullet.direction = 0;
-    }
     
     if ((maxenergy - 1) == 0)
     {

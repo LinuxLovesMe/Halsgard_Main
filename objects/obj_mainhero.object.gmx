@@ -510,7 +510,6 @@ if (state != "pause" and state != "outsouled_move"
     {
         state = "jump";
         vspeed = -22;
-        jumped = true;
     }
 }
 </string>

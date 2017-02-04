@@ -29,6 +29,12 @@
 
 see_player = false;
 forget = false;
+
+frozen = 0;
+glowAlpha = 1;
+
+glowAlpha = 0;
+glowIncr = 0.05;
 </string>
           </argument>
         </arguments>
@@ -127,6 +133,130 @@ alarm[1] = room_speed * 1.5;
             <string>///See player or not
 event_inherited();
 see_player = obj_mainhero.y &gt; y - sprite_height / 2 and !obj_mainhero.outsouled;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Frozen
+if(frozen != 0){
+    glowAlpha += glowIncr;
+    if(glowAlpha &lt; 0 || glowAlpha &gt; 1)
+        glowIncr = -glowIncr;
+    speed = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_rune_2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (other) instance_destroy();
+
+if( frozen &lt; 4)
+{
+    state = "stay";
+    frozen++;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_rune_1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (other) instance_destroy();
+maxhealth --;
+if (maxhealth == 0) instance_destroy();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(frozen == 1){
+    draw_sprite_ext(spr_ice_block, 0, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(spr_ice_block, 0, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}else if(frozen == 2){
+    draw_sprite_ext(spr_ice_block, 1, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(spr_ice_block, 1, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}else if(frozen == 3){
+    draw_sprite_ext(spr_ice_block, 2, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(spr_ice_block, 2, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}else if(frozen == 4){
+    draw_sprite_ext(spr_ice_block, 3, x, y, 0.2, 0.2, 0, c_white, 0.3);
+    draw_set_blend_mode(bm_add);
+    draw_sprite_ext(spr_ice_block, 3, x, y, 0.2, 0.2, 0, c_blue, glowAlpha);
+    draw_set_blend_mode(bm_normal);
+}
 </string>
           </argument>
         </arguments>

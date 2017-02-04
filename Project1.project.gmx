@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="2" name="datafiles">
+  <datafiles number="3" name="datafiles">
     <datafile>
       <name>TextPrologue.txt</name>
       <exists>-1</exists>
@@ -37,6 +37,23 @@
         </Config>
       </ConfigOptions>
       <filename>advisor_text1.txt</filename>
+    </datafile>
+    <datafile>
+      <name>text2.txt</name>
+      <exists>-1</exists>
+      <size>9394</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>text2.txt</filename>
     </datafile>
   </datafiles>
   <NewExtensions/>
@@ -74,13 +91,13 @@
     <sprites name="weapons">
       <sprite>sprites\spr_rune_1</sprite>
       <sprite>sprites\spr_rune_2</sprite>
+      <sprite>sprites\spr_ice_block</sprite>
     </sprites>
     <sprites name="ui_elements">
       <sprite>sprites\spr_cross</sprite>
       <sprite>sprites\spr_information</sprite>
       <sprite>sprites\spr_cursor</sprite>
       <sprite>sprites\spr_pause_vignette</sprite>
-      <sprite>sprites\spr_dialogue</sprite>
       <sprites name="heads">
         <sprite>sprites\spr_soviet_head</sprite>
         <sprite>sprites\spr_hero_head</sprite>
@@ -88,6 +105,11 @@
       </sprites>
       <sprite>sprites\spr_inventory_cell</sprite>
       <sprite>sprites\spr_question</sprite>
+      <sprites name="dialogue">
+        <sprite>sprites\spr_dialogue</sprite>
+        <sprite>sprites\spr_bar_vert</sprite>
+        <sprite>sprites\spr_slider_vert</sprite>
+      </sprites>
     </sprites>
     <sprites name="always_items">
       <sprite>sprites\spr_medical</sprite>
@@ -142,6 +164,11 @@
     <sprite>sprites\spr_music</sprite>
     <sprite>sprites\spr_bandage</sprite>
     <sprite>sprites\spr_money</sprite>
+    <sprites name="Dialogue">
+      <sprite>sprites\spr_dialogue21</sprite>
+      <sprite>sprites\spr_dialogue22</sprite>
+      <sprite>sprites\spr_dialogue23</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\menu_background</background>
@@ -217,6 +244,10 @@
       <object>objects\obj_dialogue</object>
       <object>objects\obj_input_text</object>
       <object>objects\obj_inventory</object>
+      <object>objects\obj_dialogue_control</object>
+      <object>objects\obj_bar_vert</object>
+      <object>objects\obj_slider_vert</object>
+      <object>objects\obj_dialogue_new</object>
     </objects>
     <object>objects\object55</object>
     <object>objects\object56</object>
@@ -274,6 +305,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\dialogue</room>
     <room>rooms\pre_level</room>
     <room>rooms\level_street</room>
     <room>rooms\level_room</room>

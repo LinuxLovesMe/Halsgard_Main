@@ -36,7 +36,7 @@ input_text = instance_create(xx + 300, yy + 650, obj_input_text);
 
 companion = icon_oldman;
 
-file = file_text_open_read("advisor_text1.txt");
+file = file_text_open_read("text2.txt");
 
 info = 0;
 while(!file_text_eof(file))

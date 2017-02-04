@@ -84,8 +84,7 @@ if(!taken)
             <string>event_inherited();
 
 if(keyboard_check_pressed(vk_shift)
-    and global.promptText == shift_text 
-    and !taken){
+    and global.promptText == shift_text){
     
     room_scenario.get_paper = true;
 }

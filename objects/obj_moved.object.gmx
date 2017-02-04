@@ -35,6 +35,8 @@ state = 0;
 old_state = 0;
 
 onGround = false;
+
+stand_on = false;
 </string>
           </argument>
         </arguments>
@@ -64,6 +66,7 @@ if(state == "pause")
     x = xprevious;
     y = yprevious;
     image_speed = 0;
+    gravity = 0;
     keyboard_key_release(ord("W"));
     keyboard_key_release(ord("A"));
     keyboard_key_release(ord("D"));
@@ -102,13 +105,20 @@ if(obj_global_control.pause == paused.pause
 
 onGround = onPlatform or position_meeting(x, y + vspeed, obj_ground);
 */
-onGround = position_meeting(x, y + 3, obj_for_standing_on) 
-    and instance_nearest(x, y, obj_for_standing_on).visible == true;
-    
+onGround = position_meeting(x, y + 1, obj_for_standing_on) 
+    and instance_position(x, y + 1, obj_for_standing_on).visible == true;
+       
 if(!onGround){
+    if(stand_on)
+        stand_on = false;
     gravity_direction = 270;
     gravity = 0.8;
 }else{
+    if(!stand_on)
+    {
+        y = instance_position(x, y + 1, obj_for_standing_on).y; 
+        stand_on = true;
+    }
     gravity = 0;
     vspeed = 0;
 }

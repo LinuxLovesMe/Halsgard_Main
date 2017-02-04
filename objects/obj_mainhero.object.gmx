@@ -116,14 +116,6 @@ if(outsouled)
     gravity = 0;
     onGround = false;
 }
-
-if (y &gt; obj_for_standing_on.y 
-    and y &lt; obj_for_standing_on.y + vspeed + 3
-    and onGround)
-{
-    if(!outsouled)
-        y = obj_for_standing_on.y; 
-}
 </string>
           </argument>
         </arguments>
@@ -423,13 +415,13 @@ if(state == "outsouled_move")
     
     if(keyboard_check(ord('W')) xor keyboard_check(vk_up))
     {
-        if(y &gt; 50)
+        if(y &gt; sprite_height)
             vspeed = -3;
     }
     
     if(keyboard_check(ord('S')) xor keyboard_check(vk_down))
     {
-        if(y &lt; room_height - sprite_height)
+        if(y &lt; room_height - 50)
             vspeed = 3;
     }
     

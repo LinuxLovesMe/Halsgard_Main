@@ -305,11 +305,11 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\dialogue</room>
     <room>rooms\pre_level</room>
     <room>rooms\level_street</room>
     <room>rooms\level_room</room>
     <room>rooms\level_menu</room>
+    <room>rooms\dialogue</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

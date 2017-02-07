@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>200</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_interacted</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>remove = false;
+            <string>event_inherited();
+text = "Обелиск с руной льда";
+shift_text = "Для получения магической энергии нажми [Shift]";
+
+remove = false;
 </string>
           </argument>
         </arguments>
@@ -48,13 +52,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.promptText = "Для получения магической энергии нажми [Shift]";
-if (keyboard_check(vk_shift))
+            <string>event_inherited();
+
+if (keyboard_check_pressed(vk_shift))
 {
     obj_mainhero.maxenergy = 10;
     obj_mainhero.weapon = weapons.weapon_ice;
     remove = true;
-    global.promptText = "";
     scr_destruction();
 }
 </string>

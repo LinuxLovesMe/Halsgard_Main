@@ -247,7 +247,7 @@ alarm[2] = room_speed * 10;
           <argument>
             <kind>1</kind>
             <string>obj_lamp_room.on = false;
-obj_lamp_room.x = 928;
+obj_lamp_room.x = 830;
 obj_lamp_room.y = 560;
 
 instance_deactivate_object(obj_skull_room);

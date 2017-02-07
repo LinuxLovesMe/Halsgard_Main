@@ -102,7 +102,9 @@ if(fallen){
             <string>event_inherited();
 
 if (keyboard_check_pressed(vk_shift) 
-    and global.promptText == shift_text and !taken)
+    and global.promptText == shift_text 
+    and shift_text != "" 
+    and !taken)
 {
     for(var i = 0; i &lt; ds_list_size(global.inventory); i++)
     {
@@ -113,6 +115,7 @@ if (keyboard_check_pressed(vk_shift)
        }
     }
     taken = true;
+    shift_text = "";
 }
 </string>
           </argument>

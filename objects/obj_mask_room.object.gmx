@@ -59,6 +59,11 @@ if(vspeed &gt; 0
     vspeed = 0;
     room_scenario.mask_fallen = true;
 }
+
+if(obj_mainhero.outsouled)
+    show_text = true;
+else
+    show_text = false;
 </string>
           </argument>
         </arguments>
@@ -83,7 +88,7 @@ if(vspeed &gt; 0
             <kind>1</kind>
             <string>event_inherited();
 
-if(keyboard_check_pressed(vk_shift))
+if(keyboard_check_pressed(vk_shift) and show_text)
 {
     vspeed = 3;
 }

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-500</depth>
   <persistent>0</persistent>
-  <parentName>obj_interacted</parentName>
+  <parentName>obj_for_standing_on</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,10 +25,45 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
+            <string>///From obj_interacted
 
-insides = ds_list_create();
+event_inherited();
+
+text = "";
+shift_text = "";
+text_printed = false;
+
+near = false;
+destroy = false;
+
+show_text = true;
+show_old = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>insides = ds_list_create();
 searched = false;
+
+//Coordinates when interacted
+xx = x;
+yy = y;
 </string>
           </argument>
         </arguments>
@@ -58,7 +93,7 @@ instance_destroy();
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_mainhero">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -75,10 +110,135 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (near and keyboard_check_pressed(vk_shift) )
+            <string>///From obj_interacted
+
+global.greatInfo = "";
+text_printed = false;
+obj_textcontrol.direct_speech = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///From obj_interacted
+
+if(near)
 {
-    searched = true;
+    if(!point_in_rectangle(
+        xx, yy,
+        obj_mainhero.x - 30,
+        obj_mainhero.y - obj_mainhero.sprite_height,
+        obj_mainhero.x + 30, 
+        obj_mainhero.y + 10))
+    {
+        global.promptText = "";
+        near = false;
+    }
 }
+
+if(obj_mainhero.outsouled and show_text)
+{
+    show_old = show_text;
+    show_text = false;
+}
+
+if(!obj_mainhero.outsouled and show_old != -1)
+{
+    show_text = show_old;
+    show_old = -1;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_mainhero">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>other</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///From obj_interacted
+
+with(other)
+{
+    if(!near)
+    {
+        if(point_in_rectangle(
+            xx, yy,
+            obj_mainhero.x - 30,
+            obj_mainhero.y - obj_mainhero.sprite_height,
+            obj_mainhero.x + 30, 
+            obj_mainhero.y + 10))
+        {
+            if(show_text)
+            {
+                global.promptText = shift_text;
+                near = true;
+            }
+        }
+    }
+    
+    if (near and keyboard_check_pressed(vk_shift))
+        searched = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///From obj_interacted
+
+alarm[0] = room_speed * 2;
+
+global.greatInfo = text;
+obj_textcontrol.speech_sprite = spr_hero_head;
+obj_textcontrol.direct_speech = true;
 
 </string>
           </argument>
@@ -104,27 +264,68 @@ instance_destroy();
             <kind>1</kind>
             <string>event_inherited();
 
-if(searched)
+var t = ds_list_size(insides);
+
+if(searched and t &gt; 0)
 {
-    var t = ds_list_size(insides);
+    var topleft_x = view_xview[0] + 400;
+    var topleft_y = view_yview[0] + 200;
     
     draw_rectangle_colour(
-        view_xview[0] + 200, view_yview[0] + 200,
-        view_xview[0] + 500, view_yview[0] + 50 * t,
+        topleft_x, topleft_y,
+        topleft_x + 500, topleft_y + 50 * t,
         c_black, c_black, c_black, c_black, false);
-        
-    /*draw_text_ext_colour(x + 60, y + 10, inventory_text,
-        16, w - 10, c_white, c_white, c_white, c_white, 1);
-    */   
-    draw_sprite(spr_cross, 0, 
-        view_xview[0] + 500 - sprite_get_width(spr_cross) / 2, 
-        view_yview[0] + 200 + sprite_get_height(spr_cross) / 2);
     
+    var offset = 0;
+    for(var i = 0; i &lt; ds_list_size(insides); i++)
+    {
+        t = ds_list_find_value(insides, i);
+        scalex = 40 / t.sprite_width;
+        scaley = 40 / t.sprite_height;
+        
+        draw_sprite_ext(t.sprite_index, 0,
+           topleft_x + (t.sprite_width * scalex) / 2, 
+           topleft_y + offset + (t.sprite_height * scaley) / 2,
+            scalex, scaley, 0, c_white, 1);
+        
+        draw_set_colour(c_white); 
+        draw_text_ext(topleft_x + (t.sprite_width * scalex) + 10, 
+           topleft_y + offset + (t.sprite_height * scaley) / 2,
+           t.name, 20, 500);
+           
+        if(point_in_rectangle(mouse_x, mouse_y,
+            topleft_x,
+            topleft_y + offset,
+            topleft_x + 450,
+            topleft_y + offset + 50))
+        {
+            if(mouse_check_button_pressed(mb_left))
+            {
+                for(var j = 0; j &lt; ds_list_size(global.inventory); j++)
+                {
+                    if(ds_list_find_value(global.inventory, j) == 0)
+                    {
+                       ds_list_replace(global.inventory, j, t);
+                       ds_list_delete(insides, i);   
+                       break;
+                   }
+                }
+                t.taken = true;
+            }
+        }
+        
+        offset += 50;
+    }
+    
+    draw_sprite(spr_cross, 0, 
+        topleft_x + 500 - sprite_get_width(spr_cross) / 2, 
+        topleft_y + sprite_get_height(spr_cross) / 2);
+        
     if(point_in_rectangle(mouse_x, mouse_y,
-        view_xview[0] + 500 - sprite_get_width(spr_cross) / 2,
-        view_yview[0] + 200 - sprite_get_height(spr_cross) / 2,
-        view_xview[0] + 500 + sprite_get_width(spr_cross) / 2,
-        view_yview[0] + 200 + sprite_get_height(spr_cross) / 2))
+        topleft_x + 500 - sprite_get_width(spr_cross) / 2,
+        topleft_y - sprite_get_height(spr_cross) / 2,
+        topleft_x + 500 + sprite_get_width(spr_cross) / 2,
+        topleft_y + sprite_get_height(spr_cross) / 2))
     {
         if(mouse_check_button_pressed(mb_left))
             searched = false;

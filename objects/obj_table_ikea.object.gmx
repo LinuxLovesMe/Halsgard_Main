@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_for_standing_on</parentName>
+  <parentName>obj_searched</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -26,20 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited();
+
 text_printed = false;
 shift_text = "Нажмите [Shift], чтобы открыть ящики стола";
 text = "Стол. Сделан в знакомой минималистичной стилистике";
 
-near = false;
-
-doors_opened = false;
-
-angle = 0;
-
 image_speed = 0;
-
-insides = ds_list_create();
-searched = false;
 
 var a;
 a = instance_create(0, 0, obj_musical_instr);
@@ -48,254 +40,9 @@ a = instance_create(0, 0, obj_bandage);
 ds_list_add(insides, a);
 a = instance_create(0, 0, obj_halsword);
 ds_list_add(insides, a);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="1" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>ds_list_destroy(insides);
-instance_destroy();
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.greatInfo = "";
-text_printed = false;
-obj_textcontrol.direct_speech = false;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if(text_printed)
-{
-    global.greatInfo = text;
-    obj_textcontrol.speech_sprite = spr_hero_head;
-    obj_textcontrol.direct_speech = true;
-}
-    
-if(near)
-{
-    if(!point_in_rectangle(
-        x - sprite_width / 4, y,
-        obj_mainhero.x - 30,
-        obj_mainhero.y - obj_mainhero.sprite_height,
-        obj_mainhero.x + 30, obj_mainhero.y))
-    {
-        global.promptText = "";
-        near = false;
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_mainhero">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//global.promptText = "Нажми [Shift] для взаимодействия с предметом";
-event_inherited();
 
-if(!near)
-{
-    if(point_in_rectangle(
-        x - sprite_width / 4, y,
-        obj_mainhero.x - 30,
-        obj_mainhero.y - obj_mainhero.sprite_height,
-        obj_mainhero.x + 30, obj_mainhero.y))
-    {
-        global.promptText = shift_text;
-        near = true;
-    }
-}
-
-if (near and keyboard_check_pressed(vk_shift) )
-{
-    searched = true;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>text_printed = true;
-alarm[0] = room_speed * 2;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="73">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
-
-var t = ds_list_size(insides);
-
-if(searched and t &gt; 0)
-{
-    var topleft_x = view_xview[0] + 400;
-    var topleft_y = view_yview[0] + 200;
-    
-    draw_rectangle_colour(
-        topleft_x, topleft_y,
-        topleft_x + 500, topleft_y + 50 * t,
-        c_black, c_black, c_black, c_black, false);
-    
-    var offset = 0;
-    for(var i = 0; i &lt; ds_list_size(insides); i++)
-    {
-        t = ds_list_find_value(insides, i);
-        scalex = 40 / t.sprite_width;
-        scaley = 40 / t.sprite_height;
-        
-        draw_sprite_ext(t.sprite_index, 0,
-           topleft_x + (t.sprite_width * scalex) / 2, 
-           topleft_y + offset + (t.sprite_height * scaley) / 2,
-            scalex, scaley, 0, c_white, 1);
-        
-        draw_set_colour(c_white); 
-        draw_text_ext(topleft_x + (t.sprite_width * scalex) + 10, 
-           topleft_y + offset + (t.sprite_height * scaley) / 2,
-           t.name, 20, 500);
-           
-        if(point_in_rectangle(mouse_x, mouse_y,
-            topleft_x,
-            topleft_y + offset,
-            topleft_x + 450,
-            topleft_y + offset + 50))
-        {
-            if(mouse_check_button_pressed(mb_left))
-            {
-                for(var j = 0; j &lt; ds_list_size(global.inventory); j++)
-                {
-                    if(ds_list_find_value(global.inventory, j) == 0)
-                    {
-                       ds_list_replace(global.inventory, j, t);
-                       ds_list_delete(insides, i);   
-                       break;
-                   }
-                }
-                t.taken = true;
-            }
-        }
-        
-        offset += 50;
-    }
-    
-    draw_sprite(spr_cross, 0, 
-        topleft_x + 500 - sprite_get_width(spr_cross) / 2, 
-        topleft_y + sprite_get_height(spr_cross) / 2);
-        
-    if(point_in_rectangle(mouse_x, mouse_y,
-        topleft_x + 500 - sprite_get_width(spr_cross) / 2,
-        topleft_y - sprite_get_height(spr_cross) / 2,
-        topleft_x + 500 + sprite_get_width(spr_cross) / 2,
-        topleft_y + sprite_get_height(spr_cross) / 2))
-    {
-        if(mouse_check_button_pressed(mb_left))
-            searched = false;
-    }
-}
+xx = x - sprite_width / 4;
+yy = y - sprite_height / 2;
 </string>
           </argument>
         </arguments>

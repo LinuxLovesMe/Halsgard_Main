@@ -30,10 +30,10 @@ shift_text = "";
 text_printed = false;
 
 near = false;
-
-can_take = false;
-
 destroy = false;
+
+show_text = true;
+show_old = true;
 </string>
           </argument>
         </arguments>
@@ -81,13 +81,7 @@ obj_textcontrol.direct_speech = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-/*if(distance_to_object(obj_mainhero) != 0 and near)
-{
-    near = false;
-    global.promptText = "";
-}*/
-if(near)
+            <string>if(near)
 {
     if(!point_in_rectangle(
         x, y,
@@ -98,6 +92,18 @@ if(near)
         global.promptText = "";
         near = false;
     }
+}
+
+if(obj_mainhero.outsouled and show_text)
+{
+    show_old = show_text;
+    show_text = false;
+}
+
+if(!obj_mainhero.outsouled and show_old != -1)
+{
+    show_text = show_old;
+    show_old = -1;
 }
 </string>
           </argument>
@@ -129,10 +135,14 @@ if(near)
             x, y,
             obj_mainhero.x - 30,
             obj_mainhero.y - obj_mainhero.sprite_height,
-            obj_mainhero.x + 30, obj_mainhero.y))
+            obj_mainhero.x + 30, 
+            obj_mainhero.y + 10))
         {
-            global.promptText = shift_text;
-            near = true;
+            if(show_text)
+            {
+                global.promptText = shift_text;
+                near = true;
+            }
         }
     }
 }

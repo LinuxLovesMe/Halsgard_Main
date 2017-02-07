@@ -281,12 +281,10 @@
         <object>objects\obj_buttons</object>
       </objects>
       <objects name="room_level">
-        <object>objects\obj_table_ikea</object>
         <object>objects\obj_mask_room</object>
         <object>objects\obj_table_room</object>
         <object>objects\obj_ladder_room</object>
         <object>objects\obj_plant_room</object>
-        <object>objects\obj_boxes_room</object>
         <object>objects\obj_body_room</object>
         <object>objects\obj_axe_room</object>
         <object>objects\room_scenario</object>
@@ -297,6 +295,10 @@
           <object>objects\obj_musical_instr</object>
           <object>objects\obj_bandage</object>
           <object>objects\obj_halsword</object>
+        </objects>
+        <objects name="searched">
+          <object>objects\obj_boxes_room</object>
+          <object>objects\obj_table_ikea</object>
         </objects>
       </objects>
       <objects name="pre_level">

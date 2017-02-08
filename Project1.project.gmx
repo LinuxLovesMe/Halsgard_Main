@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="3" name="datafiles">
+  <datafiles number="4" name="datafiles">
     <datafile>
       <name>TextPrologue.txt</name>
       <exists>-1</exists>
@@ -55,263 +55,338 @@
       </ConfigOptions>
       <filename>text2.txt</filename>
     </datafile>
+    <datafile>
+      <name>ragn_text_1.txt</name>
+      <exists>-1</exists>
+      <size>872</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>ragn_text_1.txt</filename>
+    </datafile>
   </datafiles>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\PostFx Bundle</extension>
+    <extension index="1">extensions\HanifFlatUI</extension>
+  </NewExtensions>
   <sounds name="sound">
-    <sound>sound\menu_music</sound>
+    <sound>sound\snd_menu_music</sound>
     <sound>sound\rain_sound</sound>
-    <sound>sound\walk_sound</sound>
     <sound>sound\room2_music</sound>
+    <sound>sound\walk_sound</sound>
+    <sound>sound\snd_game_final</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_ground</sprite>
-    <sprite>sprites\spr_light</sprite>
-    <sprite>sprites\spr_light2</sprite>
-    <sprites name="main_hero">
-      <sprite>sprites\spr_hero_walk</sprite>
-      <sprite>sprites\spr_hero_idle</sprite>
-      <sprite>sprites\spr_hero_jump</sprite>
-      <sprite>sprites\spr_hero_damage</sprite>
-      <sprite>sprites\spr_hero_death</sprite>
-    </sprites>
-    <sprites name="monsters">
-      <sprite>sprites\spr_draugr_walk</sprite>
-      <sprite>sprites\spr_punk_walk</sprite>
-      <sprite>sprites\spr_draugr_rising</sprite>
-      <sprite>sprites\spr_punk_punch</sprite>
-      <sprite>sprites\spr_draugr_punch</sprite>
-    </sprites>
-    <sprites name="destr_effect">
-      <sprite>sprites\spr_dest_01</sprite>
-      <sprite>sprites\spr_dest_02</sprite>
-      <sprite>sprites\spr_dest_03</sprite>
-      <sprite>sprites\spr_dest_04</sprite>
-      <sprite>sprites\spr_dest_05</sprite>
-    </sprites>
-    <sprites name="weapons">
-      <sprite>sprites\spr_rune_1</sprite>
-      <sprite>sprites\spr_rune_2</sprite>
-      <sprite>sprites\spr_ice_block</sprite>
-    </sprites>
-    <sprites name="ui_elements">
-      <sprite>sprites\spr_cross</sprite>
-      <sprite>sprites\spr_information</sprite>
-      <sprite>sprites\spr_cursor</sprite>
-      <sprite>sprites\spr_pause_vignette</sprite>
-      <sprites name="heads">
-        <sprite>sprites\spr_soviet_head</sprite>
-        <sprite>sprites\spr_hero_head</sprite>
-        <sprite>sprites\spr_anarchist_head</sprite>
+    <sprites name="Main_Sprites">
+      <sprites name="main_hero">
+        <sprite>sprites\spr_hero_walk</sprite>
+        <sprite>sprites\spr_hero_idle</sprite>
+        <sprite>sprites\spr_hero_jump</sprite>
+        <sprite>sprites\spr_hero_damage</sprite>
+        <sprite>sprites\spr_hero_death</sprite>
       </sprites>
-      <sprite>sprites\spr_inventory_cell</sprite>
-      <sprite>sprites\spr_question</sprite>
       <sprites name="dialogue">
-        <sprite>sprites\spr_dialogue</sprite>
-        <sprite>sprites\spr_bar_vert</sprite>
-        <sprite>sprites\spr_slider_vert</sprite>
+        <sprites name="dialogue">
+          <sprite>sprites\spr_dialogue</sprite>
+          <sprite>sprites\spr_bar_vert</sprite>
+          <sprite>sprites\spr_slider_vert</sprite>
+        </sprites>
+        <sprite>sprites\spr_dialogue21</sprite>
+        <sprite>sprites\spr_dialogue22</sprite>
+        <sprite>sprites\spr_dialogue23</sprite>
       </sprites>
-    </sprites>
-    <sprites name="always_items">
-      <sprite>sprites\spr_medical</sprite>
-      <sprite>sprites\spr_stone_1</sprite>
-      <sprite>sprites\spr_stone_2</sprite>
-      <sprites name="game_end">
-        <sprite>sprites\spr_game_end</sprite>
-        <sprite>sprites\spr_game_end_text</sprite>
+      <sprites name="ui_elements">
+        <sprite>sprites\spr_cross</sprite>
+        <sprite>sprites\spr_pause_vignette</sprite>
+        <sprites name="heads">
+          <sprite>sprites\spr_soviet_head</sprite>
+          <sprite>sprites\spr_hero_head</sprite>
+          <sprite>sprites\spr_anarchist_head</sprite>
+        </sprites>
+        <sprite>sprites\spr_question</sprite>
+        <sprite>sprites\spr_inventory_cell</sprite>
       </sprites>
-    </sprites>
-    <sprites name="levels">
-      <sprites name="main_menu">
-        <sprite>sprites\spr_river</sprite>
-        <sprite>sprites\spr_clear</sprite>
-        <sprite>sprites\spr_fire</sprite>
-        <sprite>sprites\spr_birds</sprite>
-        <sprite>sprites\spr_buttons</sprite>
-      </sprites>
-      <sprites name="street_level">
-        <sprite>sprites\spr_platform</sprite>
-        <sprite>sprites\spr_tree_street</sprite>
-        <sprite>sprites\spr_lamp</sprite>
-        <sprite>sprites\spr_vsadnik</sprite>
-        <sprite>sprites\spr_bridge</sprite>
-        <sprite>sprites\spr_noise</sprite>
-        <sprite>sprites\spr_gnezdo</sprite>
-        <sprite>sprites\spr_glory_edge</sprite>
-        <sprite>sprites\spr_garage</sprite>
-        <sprite>sprites\spr_garage_doors</sprite>
-      </sprites>
-      <sprites name="room_level">
-        <sprite>sprites\spr_axe_room</sprite>
-        <sprite>sprites\spr_boxes_room</sprite>
-        <sprite>sprites\spr_ladder_room</sprite>
-        <sprite>sprites\spr_lamp_room</sprite>
-        <sprite>sprites\spr_mask_room</sprite>
-        <sprite>sprites\spr_paper_room</sprite>
-        <sprite>sprites\spr_skull_room</sprite>
-        <sprite>sprites\spr_table_room</sprite>
-        <sprite>sprites\spr_table_ikea_room</sprite>
-        <sprite>sprites\spr_plant_room</sprite>
-        <sprite>sprites\spr_body_room</sprite>
-        <sprites name="ikea_table">
-          <sprite>sprites\table_ikea2</sprite>
-          <sprite>sprites\table_ikea_door1</sprite>
-          <sprite>sprites\table_ikea_door2</sprite>
-          <sprite>sprites\table_ikea_door3</sprite>
-          <sprite>sprites\table_ikea_door4</sprite>
+      <sprites name="levels">
+        <sprites name="street_level">
+          <sprite>sprites\spr_platform</sprite>
+          <sprite>sprites\spr_tree_street</sprite>
+          <sprite>sprites\spr_lamp</sprite>
+          <sprite>sprites\spr_vsadnik</sprite>
+          <sprite>sprites\spr_bridge</sprite>
+          <sprite>sprites\spr_noise</sprite>
+          <sprite>sprites\spr_gnezdo</sprite>
+          <sprite>sprites\spr_glory_edge</sprite>
+          <sprite>sprites\spr_garage</sprite>
+          <sprite>sprites\spr_garage_doors</sprite>
+        </sprites>
+        <sprites name="room_level">
+          <sprite>sprites\spr_axe_room</sprite>
+          <sprite>sprites\spr_boxes_room</sprite>
+          <sprite>sprites\spr_ladder_room</sprite>
+          <sprite>sprites\spr_lamp_room</sprite>
+          <sprite>sprites\spr_mask_room</sprite>
+          <sprite>sprites\spr_paper_room</sprite>
+          <sprite>sprites\spr_skull_room</sprite>
+          <sprite>sprites\spr_table_room</sprite>
+          <sprite>sprites\spr_table_ikea_room</sprite>
+          <sprite>sprites\spr_plant_room</sprite>
+          <sprite>sprites\spr_body_room</sprite>
+          <sprites name="ikea_table">
+            <sprite>sprites\table_ikea2</sprite>
+            <sprite>sprites\table_ikea_door1</sprite>
+            <sprite>sprites\table_ikea_door2</sprite>
+            <sprite>sprites\table_ikea_door3</sprite>
+            <sprite>sprites\table_ikea_door4</sprite>
+          </sprites>
         </sprites>
       </sprites>
+      <sprites name="monsters">
+        <sprite>sprites\spr_draugr_walk</sprite>
+        <sprite>sprites\spr_punk_walk</sprite>
+        <sprite>sprites\spr_draugr_rising</sprite>
+        <sprite>sprites\spr_punk_punch</sprite>
+        <sprite>sprites\spr_draugr_punch</sprite>
+      </sprites>
+      <sprites name="destr_effect">
+        <sprite>sprites\spr_dest_01</sprite>
+        <sprite>sprites\spr_dest_02</sprite>
+        <sprite>sprites\spr_dest_03</sprite>
+        <sprite>sprites\spr_dest_04</sprite>
+        <sprite>sprites\spr_dest_05</sprite>
+      </sprites>
+      <sprites name="weapons">
+        <sprite>sprites\spr_rune_1</sprite>
+        <sprite>sprites\spr_rune_2</sprite>
+        <sprite>sprites\spr_ice_block</sprite>
+      </sprites>
+      <sprites name="always_items">
+        <sprite>sprites\spr_medical</sprite>
+        <sprite>sprites\spr_stone_1</sprite>
+        <sprite>sprites\spr_stone_2</sprite>
+      </sprites>
+      <sprite>sprites\spr_bandage</sprite>
+      <sprite>sprites\spr_light</sprite>
+      <sprite>sprites\spr_light2</sprite>
+      <sprite>sprites\spr_music</sprite>
+      <sprite>sprites\spr_money</sprite>
     </sprites>
-    <sprite>sprites\spr_music</sprite>
-    <sprite>sprites\spr_bandage</sprite>
-    <sprite>sprites\spr_money</sprite>
-    <sprites name="Dialogue">
-      <sprite>sprites\spr_dialogue21</sprite>
-      <sprite>sprites\spr_dialogue22</sprite>
-      <sprite>sprites\spr_dialogue23</sprite>
+    <sprites name="Expo_Sprites">
+      <sprite>sprites\spr_birds_animation</sprite>
+      <sprite>sprites\spr_blur_menu</sprite>
+      <sprite>sprites\spr_border_mosaic</sprite>
+      <sprite>sprites\spr_cafell</sprite>
+      <sprite>sprites\spr_card_beside</sprite>
+      <sprite>sprites\spr_card_burn</sprite>
+      <sprite>sprites\spr_card_winner</sprite>
+      <sprite>sprites\spr_clear</sprite>
+      <sprite>sprites\spr_cursor</sprite>
+      <sprite>sprites\spr_dialogue_1</sprite>
+      <sprite>sprites\spr_dialogue_2</sprite>
+      <sprite>sprites\spr_dialogue_3</sprite>
+      <sprite>sprites\spr_dialogue_4</sprite>
+      <sprite>sprites\spr_dialogue_5</sprite>
+      <sprite>sprites\spr_face_aid</sprite>
+      <sprite>sprites\spr_face_oldman</sprite>
+      <sprite>sprites\spr_final_font</sprite>
+      <sprite>sprites\spr_final_sprite</sprite>
+      <sprite>sprites\spr_fire</sprite>
+      <sprite>sprites\spr_gamecard_good</sprite>
+      <sprite>sprites\spr_gamecard_hell</sprite>
+      <sprite>sprites\spr_ground</sprite>
+      <sprite>sprites\spr_hero_face</sprite>
+      <sprite>sprites\spr_information</sprite>
+      <sprite>sprites\spr_no_logo</sprite>
+      <sprite>sprites\spr_option_menu</sprite>
+      <sprite>sprites\spr_paper_1</sprite>
+      <sprite>sprites\spr_paper_2</sprite>
+      <sprite>sprites\spr_phone_01</sprite>
+      <sprite>sprites\spr_phone_02</sprite>
+      <sprite>sprites\spr_prologue</sprite>
+      <sprite>sprites\spr_snowflake</sprite>
+      <sprite>sprites\spr_splash_font</sprite>
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_wall_font</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
-    <background>background\menu_background</background>
+    <background>background\room_background</background>
     <background>background\street_level_back</background>
-    <background>background\street_level_pain</background>
-    <background>background\background_razlom</background>
-    <background>background\room_backgr</background>
+    <background>background\back_main_menu</background>
+    <background>background\back_scratches</background>
+    <background>background\back_vhs_vignette</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
+    <script>scripts\debug_message.gml</script>
+    <script>scripts\draw_old_movie.gml</script>
+    <script>scripts\draw_text_outline.gml</script>
     <script>scripts\scr_destruction.gml</script>
     <script>scripts\scr_menu.gml</script>
-    <script>scripts\draw_text_outline.gml</script>
+    <script>scripts\set_window_size.gml</script>
   </scripts>
   <shaders name="shaders">
-    <shader type="GLSLES">shaders\shader_lerp.shader</shader>
     <shader type="GLSLES">shaders\shader_hero_soul.shader</shader>
+    <shader type="GLSLES">shaders\shader_lerp.shader</shader>
+    <shader type="GLSLES">shaders\shader_old_movie.shader</shader>
   </shaders>
   <fonts name="fonts">
-    <font>fonts\Runic</font>
-    <font>fonts\Kramola</font>
+    <font>fonts\Underdog_20</font>
+    <font>fonts\Runic_46</font>
+    <font>fonts\Runic_68</font>
+    <font>fonts\Underdog_30</font>
+    <font>fonts\Underdog_32</font>
   </fonts>
   <objects name="objects">
-    <objects name="effects">
-      <objects name="destr_effect">
-        <object>objects\obj_dest_01</object>
-        <object>objects\obj_dest_02</object>
-        <object>objects\obj_dest_03</object>
-        <object>objects\obj_dest_04</object>
-        <object>objects\obj_dest_05</object>
+    <objects name="Main_Objects">
+      <objects name="effects">
+        <objects name="destr_effect">
+          <object>objects\obj_dest_01</object>
+          <object>objects\obj_dest_02</object>
+          <object>objects\obj_dest_03</object>
+          <object>objects\obj_dest_04</object>
+          <object>objects\obj_dest_05</object>
+        </objects>
+        <object>objects\obj_parallax</object>
+        <object>objects\obj_light</object>
+        <object>objects\obj_noise</object>
+        <object>objects\obj_rain</object>
+        <object>objects\obj_rain_music</object>
       </objects>
-      <object>objects\obj_parallax</object>
-      <object>objects\obj_light</object>
-      <object>objects\obj_fade_effect</object>
-      <object>objects\obj_noise</object>
-      <object>objects\obj_rain</object>
-      <object>objects\obj_rain_music</object>
+      <objects name="characters">
+        <object>objects\obj_mainhero</object>
+        <object>objects\obj_enemy_draugr</object>
+        <object>objects\obj_moved</object>
+        <object>objects\obj_enemy_punk</object>
+        <object>objects\obj_punk_in_room</object>
+        <object>objects\obj_hero_body</object>
+        <object>objects\obj_enemy_parent</object>
+      </objects>
+      <objects name="controls">
+        <object>objects\obj_textcontrol</object>
+        <object>objects\obj_room2_control</object>
+        <object>objects\obj_global_control</object>
+        <object>objects\obj_level_room_control</object>
+        <object>objects\obj_enemy_spawner</object>
+      </objects>
+      <objects name="always_items">
+        <object>objects\obj_ground</object>
+        <objects name="hero_weapons">
+          <object>objects\obj_rune_1</object>
+          <object>objects\obj_rune_2</object>
+          <object>objects\obj_bullet</object>
+        </objects>
+        <object>objects\obj_stone_1</object>
+        <object>objects\obj_stone_2</object>
+        <object>objects\obj_medical</object>
+        <object>objects\obj_for_standing_on</object>
+        <object>objects\obj_interacted</object>
+        <object>objects\obj_taken</object>
+        <object>objects\obj_searched</object>
+      </objects>
+      <objects name="UI">
+        <object>objects\obj_information</object>
+        <object>objects\obj_dialogue</object>
+        <object>objects\obj_input_text</object>
+        <object>objects\obj_inventory</object>
+        <object>objects\obj_dialogue_control</object>
+        <object>objects\obj_bar_vert</object>
+        <object>objects\obj_slider_vert</object>
+        <object>objects\obj_dialogue_new</object>
+      </objects>
+      <objects name="levels">
+        <objects name="street_level">
+          <objects name="design">
+            <object>objects\obj_tree_street</object>
+            <object>objects\obj_vsadnik</object>
+            <object>objects\obj_bridge</object>
+            <object>objects\obj_zaborchik</object>
+          </objects>
+          <objects name="interactive">
+            <object>objects\obj_stone_point</object>
+            <object>objects\obj_stone_controller</object>
+            <object>objects\obj_gnezdo</object>
+            <object>objects\obj_lamp</object>
+            <object>objects\obj_slow_platform</object>
+            <object>objects\obj_fast_platform</object>
+            <object>objects\obj_perm_platform</object>
+            <object>objects\obj_scene_controller</object>
+          </objects>
+          <object>objects\obj_garage</object>
+          <object>objects\obj_garage_doors</object>
+        </objects>
+        <objects name="pre_level">
+          <object>objects\obj_pre_create</object>
+        </objects>
+        <objects name="room_level">
+          <object>objects\obj_mask_room</object>
+          <object>objects\obj_table_room</object>
+          <object>objects\obj_ladder_room</object>
+          <object>objects\obj_plant_room</object>
+          <object>objects\obj_body_room</object>
+          <object>objects\obj_axe_room</object>
+          <object>objects\room_scenario</object>
+          <objects name="taken">
+            <object>objects\obj_lamp_room</object>
+            <object>objects\obj_skull_room</object>
+            <object>objects\obj_paper_room</object>
+            <object>objects\obj_musical_instr</object>
+            <object>objects\obj_bandage</object>
+            <object>objects\obj_halsword</object>
+          </objects>
+          <objects name="searched">
+            <object>objects\obj_boxes_room</object>
+            <object>objects\obj_table_ikea</object>
+          </objects>
+        </objects>
+      </objects>
     </objects>
-    <objects name="characters">
-      <object>objects\obj_mainhero</object>
-      <object>objects\obj_enemy_draugr</object>
-      <object>objects\obj_enemy_punk</object>
-      <object>objects\obj_punk_in_room</object>
-      <object>objects\obj_enemy_parent</object>
-      <object>objects\obj_hero_body</object>
-      <object>objects\obj_moved</object>
-    </objects>
-    <objects name="controls">
-      <object>objects\obj_textcontrol</object>
+    <objects name="Expo_Objects">
+      <object>objects\obj_aid_card</object>
+      <object>objects\obj_birds</object>
+      <object>objects\obj_card_parent</object>
+      <object>objects\obj_cardgame_control</object>
       <object>objects\obj_cursor</object>
-      <object>objects\obj_room2_control</object>
-      <object>objects\obj_global_control</object>
-      <object>objects\obj_level_room_control</object>
-      <object>objects\obj_enemy_spawner</object>
-    </objects>
-    <objects name="always_items">
-      <object>objects\obj_ground</object>
-      <objects name="hero_weapons">
-        <object>objects\obj_rune_1</object>
-        <object>objects\obj_rune_2</object>
-        <object>objects\obj_bullet</object>
-      </objects>
-      <object>objects\obj_stone_1</object>
-      <object>objects\obj_stone_2</object>
-      <object>objects\obj_medical</object>
-      <object>objects\obj_for_standing_on</object>
-      <object>objects\obj_interacted</object>
-      <object>objects\obj_taken</object>
-      <object>objects\obj_searched</object>
-    </objects>
-    <objects name="UI">
-      <object>objects\obj_information</object>
-      <object>objects\obj_dialogue</object>
-      <object>objects\obj_input_text</object>
-      <object>objects\obj_inventory</object>
-      <object>objects\obj_dialogue_control</object>
-      <object>objects\obj_bar_vert</object>
-      <object>objects\obj_slider_vert</object>
-      <object>objects\obj_dialogue_new</object>
-    </objects>
-    <object>objects\object55</object>
-    <object>objects\object56</object>
-    <objects name="levels">
-      <objects name="street_level">
-        <objects name="design">
-          <object>objects\obj_tree_street</object>
-          <object>objects\obj_vsadnik</object>
-          <object>objects\obj_bridge</object>
-          <object>objects\obj_zaborchik</object>
-        </objects>
-        <objects name="interactive">
-          <object>objects\obj_stone_point</object>
-          <object>objects\obj_stone_controller</object>
-          <object>objects\obj_gnezdo</object>
-          <object>objects\obj_lamp</object>
-          <object>objects\obj_slow_platform</object>
-          <object>objects\obj_fast_platform</object>
-          <object>objects\obj_perm_platform</object>
-          <object>objects\obj_scene_controller</object>
-        </objects>
-        <object>objects\obj_garage</object>
-        <object>objects\obj_garage_doors</object>
-      </objects>
-      <objects name="main_menu">
-        <object>objects\obj_menu</object>
-        <object>objects\obj_menu_music</object>
-        <object>objects\obj_fire</object>
-        <object>objects\obj_river</object>
-        <object>objects\obj_birds</object>
-        <object>objects\obj_buttons</object>
-      </objects>
-      <objects name="room_level">
-        <object>objects\obj_mask_room</object>
-        <object>objects\obj_table_room</object>
-        <object>objects\obj_ladder_room</object>
-        <object>objects\obj_plant_room</object>
-        <object>objects\obj_body_room</object>
-        <object>objects\obj_axe_room</object>
-        <object>objects\room_scenario</object>
-        <objects name="taken">
-          <object>objects\obj_lamp_room</object>
-          <object>objects\obj_skull_room</object>
-          <object>objects\obj_paper_room</object>
-          <object>objects\obj_musical_instr</object>
-          <object>objects\obj_bandage</object>
-          <object>objects\obj_halsword</object>
-        </objects>
-        <objects name="searched">
-          <object>objects\obj_boxes_room</object>
-          <object>objects\obj_table_ikea</object>
-        </objects>
-      </objects>
-      <objects name="pre_level">
-        <object>objects\obj_pre_create</object>
-      </objects>
+      <object>objects\obj_dial_icon_1</object>
+      <object>objects\obj_dialogue_1</object>
+      <object>objects\obj_dialogue_fog</object>
+      <object>objects\obj_dialogue_rain</object>
+      <object>objects\obj_dialogue_snow</object>
+      <object>objects\obj_fade_effect</object>
+      <object>objects\obj_final_control</object>
+      <object>objects\obj_final_part</object>
+      <object>objects\obj_fire_12</object>
+      <object>objects\obj_menu</object>
+      <object>objects\obj_menu_music</object>
+      <object>objects\obj_mosaica</object>
+      <object>objects\obj_oldman_card</object>
+      <object>objects\obj_option_menu</object>
+      <object>objects\obj_paper_1</object>
+      <object>objects\obj_paper_2</object>
+      <object>objects\obj_ragn_control_1</object>
+      <object>objects\obj_ragn_control_2</object>
+      <object>objects\obj_snow_control</object>
+      <object>objects\obj_snowflake</object>
+      <object>objects\obj_wall</object>
+      <object>objects\obj_splash_screen</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\pre_level</room>
     <room>rooms\level_street</room>
     <room>rooms\level_room</room>
-    <room>rooms\level_menu</room>
     <room>rooms\dialogue</room>
+    <room>rooms\splash_screen</room>
+    <room>rooms\main_menu</room>
+    <room>rooms\ragnarok_intro</room>
+    <room>rooms\ragnarok_cards</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

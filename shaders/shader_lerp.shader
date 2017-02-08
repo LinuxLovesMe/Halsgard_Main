@@ -17,7 +17,7 @@ void main()
     v_vTexcoord = in_TextureCoord;
 }
 //######################_==_YOYO_SHADER_MARKER_==_######################@~//
-// lerp to colour fragment shader
+// Lerp to colour fragment shader
 //
 uniform vec4 f_Colour1;
 

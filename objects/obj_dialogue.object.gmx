@@ -121,14 +121,14 @@ if(input_text.text_entered)
           <argument>
             <kind>1</kind>
             <string>draw_self();
-draw_set_font(Kramola2);
+draw_set_font(Underdog_20);
 draw_sprite(icon_player, 0, xx + 130, yy + 510);
 draw_text_colour(xx + 90, yy + 600, "Эйд", c_white, c_white, c_white, c_white, 1);
 
 draw_sprite(companion, 0, xx + 130, yy + 100);
 draw_text_colour(xx + 40, yy + 200, "Советник", c_white, c_white, c_white, c_white, 1);
 
-draw_set_font(Kramola);
+draw_set_font(Underdog_20);
 draw_text_colour(xx + 30, yy + 250, "Осталось АР: 3", c_white, c_white, c_white, c_white, 1);
 draw_text_colour(xx + 30, yy + 270, "Принадлежность: -", c_white, c_white, c_white, c_white, 1);
 draw_text_colour(xx + 30, yy + 290, "Дружелюбность: 5", c_white, c_white, c_white, c_white, 1);

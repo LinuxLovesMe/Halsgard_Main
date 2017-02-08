@@ -3,11 +3,35 @@
   <spriteName>spr_cursor</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1000</depth>
+  <depth>-300</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>colour = 0;
+clr = c_white;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -51,6 +75,29 @@ image_yscale = 1;
             <kind>1</kind>
             <string>x = mouse_x;
 y = mouse_y;
+
+switch (colour)
+{
+	case 0: clr = c_white;
+	break;
+	
+	case 1: clr = make_color_hsv(24, 120, 250);
+	break;
+	
+	case 2: clr = make_color_hsv(90, 218, 250);
+	break;
+	
+	case 3: clr = make_color_hsv(128, 80, 250);
+	break;
+	
+	case 4: clr = make_color_hsv(194, 120, 250);
+	break
+	
+	case 5: clr = make_color_hsv(250, 240, 250);
+	break;
+}
+
+image_blend = clr;
 </string>
           </argument>
         </arguments>
@@ -75,7 +122,54 @@ y = mouse_y;
             <kind>1</kind>
             <string>image_xscale = 0.8;
 image_yscale = 0.8;
-alarm[0] = 4;
+alarm[0] = 2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="115">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>colour++;
+if (colour &gt; 5) colour = 0;
 </string>
           </argument>
         </arguments>

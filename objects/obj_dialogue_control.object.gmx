@@ -281,7 +281,7 @@ for(var i = 0; i &lt; 8; i++)
         and coords[i, 1] &gt; triangle_y3)
     {
         draw_set_colour(c_white);
-        draw_set_font(Kramola);
+        draw_set_font(Underdog_20);
         draw_text_ext(center_x - sprite_get_width(spr_dialogue23) / 3,
             center_y - sprite_get_height(spr_dialogue23) / 3,
             text, separator, sprite_get_width(spr_dialogue23));

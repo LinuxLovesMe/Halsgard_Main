@@ -256,7 +256,7 @@ if(ds_list_size(start) &gt; linesDisplayed)
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
-draw_set_font(Kramola);
+draw_set_font(Underdog_20);
 //draw_text(x + 150 + padding, y + padding, str);
 
 for(var i = 1; i &lt;=iterator; i++)

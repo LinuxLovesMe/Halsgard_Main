@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-200</depth>
+  <depth>-180</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,39 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>fadespeed = 10;
-newroom = 0;
-fadealpha = 0;
+            <string>alpha = 1;
 </string>
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>301</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_set_alarm</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>fadespeed</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -74,11 +48,12 @@ fadealpha = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = fadespeed;
-fadealpha += 0.1;
-if (fadealpha &gt; 1.1)
+            <string>if (alpha &gt; 0)
 {
-    room_goto(newroom);
+    alpha -= 0.01;
+}
+else
+{
     instance_destroy();
 }
 </string>
@@ -86,7 +61,7 @@ if (fadealpha &gt; 1.1)
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="64">
+    <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -103,9 +78,10 @@ if (fadealpha &gt; 1.1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_alpha(fadealpha);
-draw_rectangle_color(0,0, room_width, room_height, c_black, c_black, c_black, c_black, false);
-draw_set_alpha(1.0);
+            <string>draw_set_colour(c_black);
+draw_set_alpha(alpha);
+draw_rectangle(0, 0, room_width, room_height, 0);
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>

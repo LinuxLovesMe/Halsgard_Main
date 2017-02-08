@@ -203,7 +203,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(Kramola);
+            <string>draw_set_font(Underdog_20);
 draw_set_valign(fa_center);
 
 if(txt = "")

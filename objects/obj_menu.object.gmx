@@ -25,12 +25,24 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>menu[0] = "НОВОЕ ПРИКЛЮЧЕНИЕ";
-menu[1] = "НАСТРОЙКИ";
-menu[2] = "ПОКИНУТЬ ПРИКЛЮЧЕНИЕ";
+            <string>menu[0] = "ПРОДОЛЖИТЬ";
+menu[1] = "НОВОЕ ПРИКЛЮЧЕНИЕ";
+menu[2] = "НАСТРОЙКИ";
+menu[3] = "ПОКИНУТЬ ПРИКЛЮЧЕНИЕ";
 
-space = 74;
+space = 90;
 curr_pos = 0;
+
+menu_x = 1254;
+menu_y = 514;
+
+menu_0_height = menu_y + space;
+menu_1_height = menu_0_height + space;
+menu_2_height = menu_1_height + space;
+menu_3_height = menu_2_height + space;
+
+instance_create(0, 0, obj_cursor);
+instance_create(0, 0, obj_snow_control);
 </string>
           </argument>
         </arguments>
@@ -54,8 +66,8 @@ curr_pos = 0;
           <argument>
             <kind>1</kind>
             <string>var move = 0;
-move -= max(keyboard_check_pressed(ord("W")), 0);
-move += max(keyboard_check_pressed(ord("S")), 0);
+move -= max(keyboard_check_pressed(ord("W")), keyboard_check_pressed(vk_up));
+move += max(keyboard_check_pressed(ord("S")), keyboard_check_pressed(vk_down));
 
 if (move != 0)
 {
@@ -64,9 +76,37 @@ if (move != 0)
     if (curr_pos &gt; array_length_1d(menu) - 1) curr_pos = 0;
 }
 
+if (point_in_rectangle(mouse_x, mouse_y, menu_x, menu_y, menu_x + string_width(menu[0]), menu_0_height))
+{
+    curr_pos = 0;
+    if (mouse_check_button_released(mb_left)) scr_menu();
+}
+
+if (point_in_rectangle(mouse_x, mouse_y, menu_x, menu_0_height + 1, menu_x + string_width(menu[1]), menu_1_height))
+{
+    curr_pos = 1;
+    if (mouse_check_button_released(mb_left)) scr_menu();
+}
+
+if (point_in_rectangle(mouse_x, mouse_y, menu_x, menu_1_height + 1, menu_x + string_width(menu[2]), menu_2_height))
+{
+    curr_pos = 2;
+    if (mouse_check_button_released(mb_left)) scr_menu();
+}
+
+if (point_in_rectangle(mouse_x, mouse_y, menu_x, menu_2_height + 1, menu_x + string_width(menu[3]), menu_3_height))
+{
+    curr_pos = 3;
+    if (mouse_check_button_released(mb_left)) scr_menu();
+}
+
 var push;
 push = max(keyboard_check_released(vk_enter), 0);
-if (push) scr_menu();
+
+if (push and !instance_exists(obj_option_menu))
+{
+    scr_menu();
+}
 </string>
           </argument>
         </arguments>
@@ -89,25 +129,21 @@ if (push) scr_menu();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>myColor = make_color_rgb(226, 226, 226);
-draw_set_font(Runic);
-draw_set_colour(myColor);
-
-x = 788;
-y = 372;
+            <string>draw_set_color(c_white);
+draw_set_font(Runic_46);
 
 var m;
 for (m = 0; m &lt; array_length_1d(menu); m++)
 {
-    draw_text_outline(x, y + (m * space), string(menu[m]), 1, c_black, 16);
+    draw_text_outline(menu_x, menu_y + (m * space), string(menu[m]), 2, c_black, 16);
 }
 
-var line = y + (curr_pos * space);
+var line = menu_y + (curr_pos * space);
 
-draw_set_colour(c_black);
-draw_line_width(x - 2, line + 42, 862, line + 42, 6);
-draw_set_colour(myColor);
-draw_line_width(x, line + 42, 860, line + 42, 2);
+draw_set_color(c_black);
+draw_line_width(menu_x - 2, line + 56, 1366, line + 56, 8);
+draw_set_color(c_white);
+draw_line_width(menu_x, line + 56, 1364, line + 56, 2);
 </string>
           </argument>
         </arguments>

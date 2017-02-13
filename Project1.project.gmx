@@ -85,6 +85,20 @@
     <sound>sound\snd_game_final</sound>
   </sounds>
   <sprites name="sprites">
+    <sprites name="room_forest">
+      <sprite>sprites\forest_background</sprite>
+      <sprite>sprites\forest_oldman</sprite>
+      <sprite>sprites\forest_runering</sprite>
+      <sprite>sprites\forest_garage</sprite>
+      <sprite>sprites\forest_mainhero</sprite>
+      <sprite>sprites\forest_ground_1</sprite>
+      <sprite>sprites\forest_ground_2</sprite>
+      <sprite>sprites\forest_wrong_ground</sprite>
+      <sprite>sprites\forest_svalka</sprite>
+      <sprite>sprites\forest_gertrude_vein</sprite>
+      <sprite>sprites\forest_stairs</sprite>
+      <sprite>sprites\forest_big_stone</sprite>
+    </sprites>
     <sprites name="Main_Sprites">
       <sprites name="main_hero">
         <sprite>sprites\spr_hero_walk</sprite>
@@ -245,6 +259,21 @@
     <font>fonts\Underdog_32</font>
   </fonts>
   <objects name="objects">
+    <objects name="room_forest">
+      <object>objects\obj_forest_controller</object>
+      <object>objects\obj_big_stone</object>
+      <object>objects\obj_stairs</object>
+      <object>objects\obj_oldman</object>
+      <object>objects\obj_player</object>
+      <object>objects\obj_ground_1</object>
+      <object>objects\obj_ground_2</object>
+      <object>objects\obj_vein</object>
+      <object>objects\obj_wrong_ground</object>
+      <object>objects\obj_svalka</object>
+      <object>objects\obj_ext_garage</object>
+      <object>objects\obj_runering</object>
+      <object>objects\obj_background</object>
+    </objects>
     <objects name="Main_Objects">
       <objects name="effects">
         <objects name="destr_effect">
@@ -380,6 +409,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\pre_level</room>
+    <room>rooms\room_forest</room>
     <room>rooms\level_street</room>
     <room>rooms\level_room</room>
     <room>rooms\dialogue</room>

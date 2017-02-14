@@ -236,6 +236,7 @@
     <background>background\back_main_menu</background>
     <background>background\back_scratches</background>
     <background>background\back_vhs_vignette</background>
+    <background>background\forest</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -272,7 +273,6 @@
       <object>objects\obj_svalka</object>
       <object>objects\obj_ext_garage</object>
       <object>objects\obj_runering</object>
-      <object>objects\obj_background</object>
     </objects>
     <objects name="Main_Objects">
       <objects name="effects">
@@ -355,6 +355,7 @@
           <object>objects\obj_pre_create</object>
         </objects>
         <objects name="room_level">
+          <object>objects\obj_lamp_room</object>
           <object>objects\obj_mask_room</object>
           <object>objects\obj_table_room</object>
           <object>objects\obj_ladder_room</object>
@@ -363,7 +364,6 @@
           <object>objects\obj_axe_room</object>
           <object>objects\room_scenario</object>
           <objects name="taken">
-            <object>objects\obj_lamp_room</object>
             <object>objects\obj_skull_room</object>
             <object>objects\obj_paper_room</object>
             <object>objects\obj_musical_instr</object>

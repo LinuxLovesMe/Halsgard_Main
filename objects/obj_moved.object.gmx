@@ -71,13 +71,13 @@ if(state == "pause")
     keyboard_key_release(ord("A"));
     keyboard_key_release(ord("D"));
 }
-
+/*
 if(obj_global_control.pause == paused.pause
     and state != "pause")
 {    
     old_state = state;
     state = "pause";
-}
+}*/
 </string>
           </argument>
         </arguments>
@@ -108,12 +108,19 @@ onGround = onPlatform or position_meeting(x, y + vspeed, obj_ground);
 onGround = position_meeting(x, y + 1, obj_for_standing_on) 
     and instance_position(x, y + 1, obj_for_standing_on).visible == true;
        
-if(!onGround){
-    if(stand_on)
-        stand_on = false;
-    gravity_direction = 270;
-    gravity = 0.8;
-}else{
+if(!onGround)
+{
+    if(state != "pause")
+    {
+        if(stand_on)
+            stand_on = false;
+        gravity_direction = 270;
+        gravity = 0.8;
+    }
+    else
+        gravity = 0;
+}else
+{
     if(!stand_on)
     {
         y = instance_position(x, y + 1, obj_for_standing_on).y; 

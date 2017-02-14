@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -103,12 +103,36 @@ dialogue_window = 0;
 center_x = view_xview[0] + view_wview[0] / 2; 
 center_y = view_yview[0] + view_hview[0] / 2; 
 
+//Vertices of triangle button
+triangle_x1 = center_x - 50;
+triangle_y1 = center_y + 50;
+triangle_x2 = center_x + 50;
+triangle_y2 = center_y + 50;
+triangle_x3 = center_x;
+triangle_y3 = center_y + 50 + 86.6;
+
+//Compute coordinates for eight variants of choose  
+for(var i = 0; i &lt; 8; i++)
+{
+    //X coordinate
+    coords[i, 0] = center_x - 
+    (sprite_get_width(spr_dialogue22) / 2 - 50) * 
+    cos((-angle + i * 45) * pi / 180);
+    //Y coordinate
+    coords[i, 1] = center_y - 
+    (sprite_get_height(spr_dialogue22) / 2 - 50) * 
+     sin((-angle + i * 45) * pi / 180);   
+     //Angle (to rotate a sprite)
+     coords[i, 2] = angle - i * 45 - 90;
+}
+
 dialogue_new = instance_create(center_x - sprite_get_width(spr_dialogue) / 2,
     center_y - sprite_get_height(spr_dialogue) / 2, 
     obj_dialogue_new);
 instance_deactivate_object(obj_dialogue_new);
 instance_deactivate_object(obj_slider_vert);
 instance_deactivate_object(obj_bar_vert);
+
 </string>
           </argument>
         </arguments>
@@ -227,7 +251,8 @@ for(var i = 0; i &lt; 8; i++)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Draw three rings
+            <string>
+//Draw three rings
 draw_sprite_ext(spr_dialogue21, 0,
     center_x,
     center_y,
@@ -303,12 +328,14 @@ for(var i = 0; i &lt; 8; i++)
                     instance_activate_object(obj_bar_vert);
                     dialogue_new.set_data = true;
                     dialogue_new.info = ds_map_find_value(this_info, first);
+                    dialogue_new.pointer = 0;
                     instance_deactivate_object(obj_dialogue_control);
                 }
             }
         }
     }
 }
+
 </string>
           </argument>
         </arguments>

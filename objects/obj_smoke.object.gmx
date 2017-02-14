@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -25,19 +25,22 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(160, 336, obj_rain);
-instance_create(0, 0, obj_noise);
-instance_create(160, 336, obj_rain_music);
-instance_create(160, 336, obj_stone_controller);
-instance_create(160, 336, obj_enemy_spawner);
-audio_sound_gain(room2_music, 0.14, 1);
-audio_play_sound(room2_music, 100, true);
+            <string>    /*tex1 = 0;
+tex2 = 0;
+
+tex1 = sprite_get_texture(spr_medical, 0);
+textureA = shader_get_sampler_index(smoke_shader, "texture");
+res = shader_get_uniform(smoke_shader, "res");
+
+x = view_xview[0] + view_wview[0] / 2;
+y = view_yview[0] + view_hview[0] / 2;
+*/
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="5">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -54,8 +57,67 @@ audio_play_sound(room2_music, 100, true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>audio_stop_all();
+            <string>part_particles_create(smoke, x, y + sprite_height/2, smoketrail, 10);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//effect_create_below(ef_smoke, obj_mainhero.x, obj_mainhero.y, choose(0, 1, 2), c_gray);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+shader_set(smoke_shader);
 
+shader_set_uniform_f(res, view_wview[0], view_hview[0]);
+texture_set_stage(textureA, tex1);
+draw_sprite(spr_medical, 0, x, y);
+
+shader_reset();
+
+//draw_sprite(spr_medical, 0, x, y);
+
+var temp = tex1;
+tex1 = tex2;
+tex2 = temp;
+*/
 </string>
           </argument>
         </arguments>

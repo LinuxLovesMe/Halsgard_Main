@@ -37,6 +37,17 @@ instance_create(160, 336, obj_cursor);
 audio_sound_gain(walk_sound, 0.2, 0);
 
 instance_create(160, 336, obj_inventory);
+
+instance_create(160, 336, obj_dialogue_control);
+instance_deactivate_object(obj_dialogue_control);
+
+set_pause_from_other = false;
+
+//Es gibt Situationen, wenn man nicht pause
+//mit ESC benutzen koennen
+esc_forbidden = false;
+
+dialogue_on = false;
 </string>
           </argument>
         </arguments>
@@ -61,19 +72,90 @@ instance_create(160, 336, obj_inventory);
             <kind>1</kind>
             <string>if(pause = paused.non_pause)
 {
-    //instance_activate_all();
     with(obj_moved)
         state = old_state;
-    obj_inventory.hidden = true;
+    if(!esc_forbidden)
+        obj_inventory.hidden = true;
 }    
 else if(pause = paused.pause)
 {
-    //instance_deactivate_all(true);
-    //instance_activate_object(obj_inventory);
     with(obj_moved)
         state = "pause";
-        //move = false;
-    obj_inventory.hidden = false;
+    if(!esc_forbidden)
+        obj_inventory.hidden = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(set_pause_from_other)
+{
+    set_pause_from_other = false;
+    
+    if(pause == paused.pause)
+    {
+        if(instance_exists(obj_rain))
+            obj_rain.pause_emit = true;
+        alarm[0] = 1;
+        with(obj_moved)
+            old_state = state;
+    }    
+    else if(pause == paused.non_pause)
+    {
+        if(instance_exists(obj_rain))
+            obj_rain.pause_emit = false;
+        alarm[0] = 1;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If dialogue is on
+
+if(dialogue_on)
+{
+    if(!instance_exists(obj_dialogue_control))
+        instance_activate_object(obj_dialogue_control);
+}
+else
+{
+    if(instance_exists(obj_dialogue_control))
+        instance_deactivate_object(obj_dialogue_control);
 }
 </string>
           </argument>
@@ -97,7 +179,7 @@ else if(pause = paused.pause)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(pause == paused.pause)
+            <string>if(pause == paused.pause and !esc_forbidden)
 {
     draw_set_blend_mode(bm_add);
     draw_sprite_ext(spr_pause_vignette, 0, 
@@ -127,22 +209,27 @@ else if(pause = paused.pause)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(pause == paused.non_pause)
+            <string>if(!dialogue_on)//Escape from dialogue with this button too
 {
-    pause = paused.pause;
-    if(instance_exists(obj_rain))
-        obj_rain.pause_emit = true;
-    alarm[0] = 1;
-    with(obj_moved)
-        old_state = state;
-}    
-else if(pause == paused.pause)
-{
-    pause = paused.non_pause;
-    if(instance_exists(obj_rain))
-        obj_rain.pause_emit = false;
-    alarm[0] = 1;//We set alarm because obj_rain must be triggered in its Step
+    if(pause == paused.non_pause and !esc_forbidden)
+    {
+        pause = paused.pause;
+        if(instance_exists(obj_rain))
+            obj_rain.pause_emit = true;
+        alarm[0] = 1;
+        with(obj_moved)
+            old_state = state;
+    }    
+    else if(pause == paused.pause and !esc_forbidden)
+    {
+        pause = paused.non_pause;
+        if(instance_exists(obj_rain))
+            obj_rain.pause_emit = false;
+        alarm[0] = 1;//We set alarm because obj_rain must be triggered in its Step
+    }
 }
+else
+    dialogue_on = false;
 </string>
           </argument>
         </arguments>

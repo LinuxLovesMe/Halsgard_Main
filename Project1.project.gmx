@@ -251,6 +251,7 @@
     <shader type="GLSLES">shaders\shader_hero_soul.shader</shader>
     <shader type="GLSLES">shaders\shader_lerp.shader</shader>
     <shader type="GLSLES">shaders\shader_old_movie.shader</shader>
+    <shader type="GLSLES">shaders\shader_blur.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\Underdog_20</font>
@@ -292,7 +293,6 @@
       <objects name="characters">
         <object>objects\obj_mainhero</object>
         <object>objects\obj_enemy_draugr</object>
-        <object>objects\obj_moved</object>
         <object>objects\obj_enemy_punk</object>
         <object>objects\obj_punk_in_room</object>
         <object>objects\obj_hero_body</object>
@@ -319,6 +319,8 @@
         <object>objects\obj_interacted</object>
         <object>objects\obj_taken</object>
         <object>objects\obj_searched</object>
+        <object>objects\obj_moved</object>
+        <object>objects\obj_playable</object>
       </objects>
       <objects name="UI">
         <object>objects\obj_information</object>

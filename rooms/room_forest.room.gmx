@@ -52,7 +52,7 @@
   </views>
   <instances>
     <instance objName="obj_ground" x="14" y="958" name="inst_306D08FE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="obj_oldman" x="416" y="936" name="inst_7CD5CCBA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_oldman" x="608" y="928" name="inst_7CD5CCBA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ext_garage" x="2240" y="940" name="inst_F0F756FB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_runering" x="1316" y="684" name="inst_EDBDC2FA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_svalka" x="2912" y="940" name="inst_FAD928DC" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

@@ -48,6 +48,36 @@ set_pause_from_other = false;
 esc_forbidden = false;
 
 dialogue_on = false;
+
+back_to_circle = false;//This variable set up when 
+//Player goe back to dialogue_control
+//And will be readen from other objects
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Set blur
+surf_blur_pass = surface_create(view_wview[0], view_hview[0]
+    - obj_information.sprite_height);
+application_surface_draw_enable(false);
+uscale = shader_get_uniform(shader_blur, "u_Scale" );
 </string>
           </argument>
         </arguments>
@@ -74,6 +104,8 @@ dialogue_on = false;
 {
     with(obj_moved)
         state = old_state;
+    with(obj_playable)
+        playable = true;
     if(!esc_forbidden)
         obj_inventory.hidden = true;
 }    
@@ -81,6 +113,8 @@ else if(pause = paused.pause)
 {
     with(obj_moved)
         state = "pause";
+    with(obj_playable)
+        playable = false;
     if(!esc_forbidden)
         obj_inventory.hidden = false;
 }
@@ -117,6 +151,8 @@ else if(pause = paused.pause)
         alarm[0] = 1;
         with(obj_moved)
             old_state = state;
+        with(obj_playable)
+            playable = false;
     }    
     else if(pause == paused.non_pause)
     {
@@ -156,6 +192,48 @@ else
 {
     if(instance_exists(obj_dialogue_control))
         instance_deactivate_object(obj_dialogue_control);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="77">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw blur shader
+
+draw_surface(application_surface, 0, 0);
+surface_reset_target();
+
+if(pause == paused.pause and esc_forbidden)
+{
+    if !surface_exists(surf_blur_pass)
+        surf_blur_pass = surface_create(view_wview[0], view_hview[0]
+            - obj_information.sprite_height);
+
+    shader_set(shader_blur);
+    shader_set_uniform_f(uscale, 0.003, 0.0);
+    surface_set_target(surf_blur_pass);
+    draw_surface(application_surface, 0, 0);
+    surface_reset_target();
+    shader_set_uniform_f(uscale, 0.0, 0.004);
+    draw_surface(surf_blur_pass, 0, 0);
+    shader_reset();
 }
 </string>
           </argument>
@@ -219,6 +297,8 @@ else
         alarm[0] = 1;
         with(obj_moved)
             old_state = state;
+        with(obj_playable)
+            playable = false;
     }    
     else if(pause == paused.pause and !esc_forbidden)
     {

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-500</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_playable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>text = ""
+            <string>event_inherited();
+
+text = ""
 shift_text = "";
 text_printed = false;
 
@@ -34,6 +36,10 @@ destroy = false;
 
 show_text = true;
 show_old = true;
+
+//Coordinates when interacted
+xx = x;
+yy = y;
 </string>
           </argument>
         </arguments>
@@ -84,7 +90,7 @@ obj_textcontrol.direct_speech = false;
             <string>if(near)
 {
     if(!point_in_rectangle(
-        x, y,
+        xx, yy,
         obj_mainhero.x - 30,
         obj_mainhero.y - obj_mainhero.sprite_height,
         obj_mainhero.x + 30, obj_mainhero.y))
@@ -132,7 +138,7 @@ if(!obj_mainhero.outsouled and show_old != -1)
     if(!near)
     {
         if(point_in_rectangle(
-            x, y,
+            xx, yy,
             obj_mainhero.x - 30,
             obj_mainhero.y - obj_mainhero.sprite_height,
             obj_mainhero.x + 30, 

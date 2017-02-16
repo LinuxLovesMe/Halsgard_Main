@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_playable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>move = true;
+            <string>event_inherited();
+
+move = true;
 
 scale = 1;
 index = 0;
@@ -100,11 +102,8 @@ if(obj_global_control.pause == paused.pause
             <kind>1</kind>
             <string>///Gravitation
 
-/*onPlatform = position_meeting(x, y + 1, obj_for_standing_on) 
-    and instance_nearest(x, y, obj_for_standing_on).visible == true;
+event_inherited();
 
-onGround = onPlatform or position_meeting(x, y + vspeed, obj_ground);
-*/
 onGround = position_meeting(x, y + 1, obj_for_standing_on) 
     and instance_position(x, y + 1, obj_for_standing_on).visible == true;
        

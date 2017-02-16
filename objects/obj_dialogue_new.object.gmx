@@ -3,7 +3,7 @@
   <spriteName>spr_dialogue</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1000</depth>
+  <depth>-900</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -335,10 +335,11 @@ for(i = 1; i &lt;= visibles; i++)
                     }
                     else
                     {
-                        instance_deactivate_object(obj_dialogue_new);
                         instance_deactivate_object(obj_slider_vert);
                         instance_deactivate_object(obj_bar_vert);
-                        instance_activate_object(obj_dialogue_control);
+                        obj_global_control.dialogue_on = true;
+                        obj_global_control.back_to_circle = true;
+                        instance_deactivate_object(obj_dialogue_new);   
                     }  
                 }
             }
@@ -364,10 +365,11 @@ for(i = 1; i &lt;= visibles; i++)
                     }
                     else
                     {
-                        instance_deactivate_object(obj_dialogue_new);
                         instance_deactivate_object(obj_slider_vert);
                         instance_deactivate_object(obj_bar_vert);
-                        instance_activate_object(obj_dialogue_control);
+                        obj_global_control.dialogue_on = true;
+                        obj_global_control.back_to_circle = true;
+                        instance_deactivate_object(obj_dialogue_new);
                     }  
                 }
             }

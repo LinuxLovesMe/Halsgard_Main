@@ -237,6 +237,11 @@
     <background>background\back_scratches</background>
     <background>background\back_vhs_vignette</background>
     <background>background\forest</background>
+    <background>background\background6</background>
+    <background>background\background7</background>
+    <background>background\background8</background>
+    <background>background\background9</background>
+    <background>background\background10</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -408,12 +413,14 @@
       <object>objects\obj_wall</object>
       <object>objects\obj_splash_screen</object>
     </objects>
+    <object>objects\obj_control</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\room9</room>
     <room>rooms\pre_level</room>
-    <room>rooms\room_forest</room>
     <room>rooms\level_street</room>
     <room>rooms\level_room</room>
+    <room>rooms\room_forest</room>
     <room>rooms\dialogue</room>
     <room>rooms\splash_screen</room>
     <room>rooms\main_menu</room>

@@ -74,8 +74,7 @@ back_to_circle = false;//This variable set up when
           <argument>
             <kind>1</kind>
             <string>/// Set blur
-surf_blur_pass = surface_create(view_wview[0], view_hview[0]
-    - obj_information.sprite_height);
+surf_blur_pass = surface_create(view_wview[0], view_hview[0]);
 application_surface_draw_enable(false);
 uscale = shader_get_uniform(shader_blur, "u_Scale" );
 </string>
@@ -223,8 +222,7 @@ surface_reset_target();
 if(pause == paused.pause and esc_forbidden)
 {
     if !surface_exists(surf_blur_pass)
-        surf_blur_pass = surface_create(view_wview[0], view_hview[0]
-            - obj_information.sprite_height);
+        surf_blur_pass = surface_create(view_wview[0], view_hview[0]);
 
     shader_set(shader_blur);
     shader_set_uniform_f(uscale, 0.003, 0.0);

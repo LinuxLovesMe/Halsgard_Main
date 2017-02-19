@@ -13,7 +13,6 @@
   <code>for (i = 0; i &lt; room_width; i+= 32)
 {
     instance_create(i, room_height - 32, obj_ground);
-    //instance_create(i, room_height - 64, obj_ground));
 }
 instance_create(0, 0, obj_cursor);</code>
   <enableViews>-1</enableViews>
@@ -21,8 +20,8 @@ instance_create(0, 0, obj_cursor);</code>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
   <makerSettings>
     <isSet>-1</isSet>
-    <w>988</w>
-    <h>772</h>
+    <w>1345</w>
+    <h>769</h>
     <showGrid>0</showGrid>
     <showObjects>-1</showObjects>
     <showTiles>-1</showTiles>
@@ -31,18 +30,18 @@ instance_create(0, 0, obj_cursor);</code>
     <showViews>0</showViews>
     <deleteUnderlyingObj>0</deleteUnderlyingObj>
     <deleteUnderlyingTiles>-1</deleteUnderlyingTiles>
-    <page>0</page>
-    <xoffset>-343</xoffset>
-    <yoffset>207</yoffset>
+    <page>3</page>
+    <xoffset>-209</xoffset>
+    <yoffset>-213</yoffset>
   </makerSettings>
   <backgrounds>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="-1" foreground="0" name="background6" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="-1" foreground="0" name="background7" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="background9" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
-    <background visible="-1" foreground="-1" name="background8" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
-    <background visible="-1" foreground="-1" name="background9" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
-    <background visible="-1" foreground="-1" name="background10" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="background8" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="background9" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="-1" foreground="0" name="background10" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
   </backgrounds>
   <views>
@@ -56,9 +55,12 @@ instance_create(0, 0, obj_cursor);</code>
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="obj_mainhero" x="416" y="832" name="inst_CE426CC3" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ground" x="-64" y="512" name="inst_10299E81" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_control" x="96" y="416" name="inst_83098960" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_koleso" x="1632" y="608" name="inst_D93A8012" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_moryak" x="768" y="928" name="inst_7F978805" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_garaga" x="2368" y="928" name="inst_E28BB006" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_mainhero" x="384" y="864" name="inst_30D65B02" locked="0" code="" scaleX="-1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

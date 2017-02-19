@@ -414,10 +414,16 @@
       <object>objects\obj_splash_screen</object>
     </objects>
     <object>objects\obj_control</object>
+    <object>objects\obj_koleso</object>
+    <object>objects\obj_garaga</object>
+    <object>objects\obj_moryak</object>
+    <object>objects\obj_lestnitsa</object>
+    <object>objects\obj_vein_vein</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room9</room>
     <room>rooms\pre_level</room>
+    <room>rooms\room9</room>
+    <room>rooms\room10</room>
     <room>rooms\level_street</room>
     <room>rooms\level_room</room>
     <room>rooms\room_forest</room>

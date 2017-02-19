@@ -8,6 +8,29 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(160, 336, obj_textcontrol);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -36,7 +59,6 @@ background_y[2]=floor(view_yview[0]*0.4);
 background_y[4]=floor(view_yview[0]*0.2); 
 background_y[5]=floor(view_yview[0]*0.2); 
 background_y[6]=floor(view_yview[0]*0.01);
-
 </string>
           </argument>
         </arguments>

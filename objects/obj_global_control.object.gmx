@@ -82,6 +82,33 @@ uscale = shader_get_uniform(shader_blur, "u_Scale" );
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parallax
+parallax[0] = 0;
+
+for(var i = 0; background_visible[i]; i++)
+{
+    parallax[i] = background_x[i] / 100;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="0">
       <action>
@@ -192,6 +219,33 @@ else
 {
     if(instance_exists(obj_dialogue_control))
         instance_deactivate_object(obj_dialogue_control);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Parallax step
+
+for(var i = 0; background_visible[i]; i++)
+{
+    background_x[i] = parallax[i] * view_xview;
+    //parallax[i] = background_x[i];
 }
 </string>
           </argument>

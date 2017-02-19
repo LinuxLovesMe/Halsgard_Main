@@ -254,6 +254,7 @@ instance_deactivate_object(obj_skull_room);
 instance_deactivate_object(obj_table_ikea);
 instance_deactivate_object(obj_boxes_room);
 instance_deactivate_object(obj_mask_room);
+global.greatInfo = "";
 
 part2 = true;
 </string>

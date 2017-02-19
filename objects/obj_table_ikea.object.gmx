@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_searched</parentName>
+  <parentName>obj_for_standing_on</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-text_printed = false;
+/*text_printed = false;
 shift_text = "Нажмите [Shift], чтобы открыть ящики стола";
 text = "Стол. Сделан в знакомой минималистичной стилистике";
 
@@ -42,7 +42,7 @@ a = instance_create(0, 0, obj_halsword);
 ds_list_add(insides, a);
 
 xx = x - sprite_width / 4;
-yy = y - sprite_height / 2;
+yy = y - sprite_height / 2;*/
 </string>
           </argument>
         </arguments>

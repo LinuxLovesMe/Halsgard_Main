@@ -30,8 +30,8 @@ instance_create(0, 0, obj_noise);
 instance_create(160, 336, obj_rain_music);
 instance_create(160, 336, obj_stone_controller);
 instance_create(160, 336, obj_enemy_spawner);
-audio_sound_gain(room2_music, 0.14, 1);
-audio_play_sound(room2_music, 100, true);
+//audio_sound_gain(room2_music, 0.14, 1);
+//audio_play_sound(room2_music, 100, true);
 </string>
           </argument>
         </arguments>

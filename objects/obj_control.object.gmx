@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-200</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,14 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = view_xview[0];
-y = view_yview[0] + view_hview[0] - sprite_height;
+            <string>instance_create(160, 336, obj_textcontrol);
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="73">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -49,10 +48,17 @@ y = view_yview[0] + view_hview[0] - sprite_height;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite_ext(spr_information, 0, 
-    view_xview[0], 
-    view_yview[0] + view_hview[0] - sprite_height,
-    1, 1, 0, c_white, 1);
+            <string>background_x[1]=floor(view_xview[0]*0.8);
+background_x[2]=floor(view_xview[0]*0.4);
+background_x[4]=floor(view_xview[0]*0.2);
+background_x[5]=floor(view_xview[0]*0.2);
+background_x[6]=floor(view_xview[0]*0.01);
+
+background_y[1]=floor(view_yview[0]*0.8);
+background_y[2]=floor(view_yview[0]*0.4);
+background_y[4]=floor(view_yview[0]*0.2); 
+background_y[5]=floor(view_yview[0]*0.2); 
+background_y[6]=floor(view_yview[0]*0.01);
 </string>
           </argument>
         </arguments>

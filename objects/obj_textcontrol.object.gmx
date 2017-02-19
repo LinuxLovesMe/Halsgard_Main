@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-210</depth>
+  <depth>-300</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -32,7 +32,7 @@ direct_speech = false;
 global.promptText = "";
 global.greatInfo = "";
 
-instance_create(view_xview[0], view_yview[0] + view_hview[0] - 64, obj_information);
+//instance_create(view_xview[0], view_yview[0] + view_hview[0] - 64, obj_information);
 //alarm[0] = 1;
 //file = file_text_open_read("TextPrologue.txt");
 file = -1;
@@ -196,7 +196,7 @@ if(!text_loaded and file != -1)
 if (global.greatInfo = "")
 {
     
-    draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - obj_information.sprite_height + 16,
+    draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - 32,
                     global.promptText, c_white, c_white, c_white, c_white, 1);
 }
 else
@@ -204,14 +204,14 @@ else
     if (direct_speech)
     {
         draw_sprite(speech_sprite, 0, view_xview[0] + 3,
-                                    view_yview[0] + view_hview[0] - obj_information.sprite_height + 32);
+                                    view_yview[0] + view_hview[0] - 32);
                                                 
-        draw_text_colour(view_xview[0] + 74, view_yview[0] + view_hview[0] - obj_information.sprite_height + 18,
+        draw_text_colour(view_xview[0] + 74, view_yview[0] + view_hview[0] - 32,
                         global.greatInfo, c_white, c_white, c_white, c_white, 1);
     }
     else
     {
-        draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - obj_information.sprite_height + 18,
+        draw_text_colour(view_xview[0] + 16, view_yview[0] + view_hview[0] - 32,
                         global.greatInfo, c_white, c_white, c_white, c_white, 1);
     }
 }

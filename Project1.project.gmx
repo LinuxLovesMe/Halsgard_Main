@@ -229,9 +229,6 @@
       <sprite>sprites\spr_wall</sprite>
       <sprite>sprites\spr_wall_font</sprite>
     </sprites>
-    <sprites name="effects">
-      <sprite>sprites\spr_leafs</sprite>
-    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\room_background</background>
@@ -240,13 +237,11 @@
     <background>background\back_scratches</background>
     <background>background\back_vhs_vignette</background>
     <background>background\forest</background>
-    <backgrounds name="back_forest">
-      <background>background\forest1</background>
-      <background>background\forest2</background>
-      <background>background\forest3</background>
-      <background>background\forest4</background>
-      <background>background\forest5</background>
-    </backgrounds>
+    <background>background\background6</background>
+    <background>background\background7</background>
+    <background>background\background8</background>
+    <background>background\background9</background>
+    <background>background\background10</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -299,7 +294,6 @@
         <object>objects\obj_noise</object>
         <object>objects\obj_rain</object>
         <object>objects\obj_rain_music</object>
-        <object>objects\obj_leaffall</object>
       </objects>
       <objects name="characters">
         <object>objects\obj_mainhero</object>
@@ -419,12 +413,20 @@
       <object>objects\obj_wall</object>
       <object>objects\obj_splash_screen</object>
     </objects>
+    <object>objects\obj_control</object>
+    <object>objects\obj_koleso</object>
+    <object>objects\obj_garaga</object>
+    <object>objects\obj_moryak</object>
+    <object>objects\obj_lestnitsa</object>
+    <object>objects\obj_vein_vein</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\pre_level</room>
-    <room>rooms\room_forest</room>
-    <room>rooms\level_room</room>
+    <room>rooms\room9</room>
+    <room>rooms\room10</room>
     <room>rooms\level_street</room>
+    <room>rooms\level_room</room>
+    <room>rooms\room_forest</room>
     <room>rooms\dialogue</room>
     <room>rooms\splash_screen</room>
     <room>rooms\main_menu</room>

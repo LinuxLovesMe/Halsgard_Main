@@ -46,7 +46,7 @@ part_emitter_region(part_leafSys, part_leafEmit,
     -100, 500, 
     ps_shape_line, ps_distr_linear);
 
-part_emitter_stream(part_leafSys, part_leafEmit, part_leaf, -5);
+part_emitter_stream(part_leafSys, part_leafEmit, part_leaf, -4);
 
 pause_emit = false;
 

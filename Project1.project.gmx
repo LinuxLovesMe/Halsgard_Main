@@ -83,6 +83,17 @@
     <sound>sound\room2_music</sound>
     <sound>sound\walk_sound</sound>
     <sound>sound\snd_game_final</sound>
+    <sounds name="forest">
+      <sound>sound\woodpecker1</sound>
+      <sound>sound\woodpecker2</sound>
+      <sound>sound\woodpecker3</sound>
+      <sound>sound\crow</sound>
+      <sound>sound\wolf</sound>
+      <sound>sound\owl1</sound>
+      <sound>sound\owl2</sound>
+      <sound>sound\owl3</sound>
+      <sound>sound\monster</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="room_forest">
@@ -246,6 +257,7 @@
       <background>background\forest3</background>
       <background>background\forest4</background>
       <background>background\forest5</background>
+      <background>background\fog</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths"/>

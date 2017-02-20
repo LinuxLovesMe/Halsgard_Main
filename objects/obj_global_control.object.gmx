@@ -100,7 +100,7 @@ uscale = shader_get_uniform(shader_blur, "u_Scale" );
             <string>///Parallax
 parallax[0] = 0;
 
-for(var i = 0; background_visible[i]; i++)
+for(var i = 0; background_visible[i] and i &lt; 5; i++)
 {
     parallax[i] = background_x[i] / 100;
 }
@@ -241,7 +241,7 @@ else
             <kind>1</kind>
             <string>///Parallax step
 
-for(var i = 0; background_visible[i]; i++)
+for(var i = 0; background_visible[i] and i &lt; 5; i++)
 {
     background_x[i] = parallax[i] * view_xview;
     //parallax[i] = background_x[i];

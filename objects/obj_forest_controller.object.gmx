@@ -161,6 +161,9 @@ instance_create(0, 0, obj_leaffall);
             <string>///Play sounds
 sound_number = 0;
 alarm[2] = irandom_range(room_speed, 5 * room_speed);
+
+var snd = audio_play_sound(sound_forest, 10, true);
+audio_sound_gain(snd, 0.05, 0);
 </string>
           </argument>
         </arguments>
@@ -469,6 +472,8 @@ part_type_destroy(partFog);
 part_system_destroy(partFogSys);
 instance_destroy();
 */
+
+audio_stop_sound(sound_forest);
 </string>
           </argument>
         </arguments>

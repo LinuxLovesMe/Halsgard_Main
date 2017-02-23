@@ -78,6 +78,7 @@
     <extension index="1">extensions\HanifFlatUI</extension>
   </NewExtensions>
   <sounds name="sound">
+    <sound>sound\cough</sound>
     <sound>sound\snd_menu_music</sound>
     <sound>sound\rain_sound</sound>
     <sound>sound\room2_music</sound>
@@ -93,6 +94,7 @@
       <sound>sound\owl2</sound>
       <sound>sound\owl3</sound>
       <sound>sound\monster</sound>
+      <sound>sound\sound_forest</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">
@@ -109,6 +111,11 @@
       <sprite>sprites\forest_gertrude_vein</sprite>
       <sprite>sprites\forest_stairs</sprite>
       <sprite>sprites\forest_big_stone</sprite>
+      <sprites name="oldman">
+        <sprite>sprites\oldman_walk</sprite>
+        <sprite>sprites\oldman_cough</sprite>
+        <sprite>sprites\oldman_see</sprite>
+      </sprites>
     </sprites>
     <sprites name="Main_Sprites">
       <sprites name="main_hero">
@@ -284,6 +291,7 @@
   </fonts>
   <objects name="objects">
     <objects name="room_forest">
+      <object>objects\obj_adviser</object>
       <object>objects\obj_forest_controller</object>
       <object>objects\obj_big_stone</object>
       <object>objects\obj_stairs</object>

@@ -141,7 +141,7 @@ if(state == "walk")
         cough_cooldown = true;
         alarm[1] = irandom_range(room_speed * 3, room_speed * 9);
         state = "cough";
-        audio_play_sound_at(obj_adviser, x, y, 0, 100, 300, 1, false, 30);
+        audio_play_sound_at(obj_adviser, x, y, 0, 100, 600, 1, false, 50);
     }
 }
 </string>
@@ -169,7 +169,7 @@ if(state == "walk")
 if(state == "see")
 {
     sprite_index = oldman_see;
-    if(image_index &lt; 14)
+    if(image_index &lt; 19)
         image_speed = 0.1;
     else
         image_speed = 0;
@@ -187,6 +187,7 @@ if(state == "see")
         cough_cooldown = true;
         alarm[1] = irandom_range(room_speed * 3, room_speed * 9);
         state = "cough";
+        audio_play_sound_at(obj_adviser, x, y, 0, 100, 300, 1, false, 50);
     }
 }
 </string>
@@ -216,7 +217,7 @@ if(state == "cough")
     sprite_index = oldman_cough;
     image_speed = 0.1;
     hspeed = 0;
-    if(image_index &gt;= 11)
+    if(image_index &gt;= 14)
         state = old_state;
 }
 </string>

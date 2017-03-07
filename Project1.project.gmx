@@ -116,6 +116,11 @@
         <sprite>sprites\oldman_cough</sprite>
         <sprite>sprites\oldman_see</sprite>
       </sprites>
+      <sprites name="punk">
+        <sprite>sprites\spr_anarchyst_walk</sprite>
+        <sprite>sprites\spr_punk_slash_prepare</sprite>
+        <sprite>sprites\spr_punk_slash</sprite>
+      </sprites>
     </sprites>
     <sprites name="Main_Sprites">
       <sprites name="main_hero">
@@ -249,6 +254,7 @@
     </sprites>
     <sprites name="effects">
       <sprite>sprites\spr_leafs</sprite>
+      <sprite>sprites\spr_needles</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -304,6 +310,7 @@
       <object>objects\obj_svalka</object>
       <object>objects\obj_ext_garage</object>
       <object>objects\obj_runering</object>
+      <object>objects\obj_anarchyst_walk</object>
     </objects>
     <objects name="Main_Objects">
       <objects name="effects">

@@ -121,6 +121,9 @@
         <sprite>sprites\spr_punk_slash_prepare</sprite>
         <sprite>sprites\spr_punk_slash</sprite>
       </sprites>
+      <sprites name="hero_spider">
+        <sprite>sprites\spr_hero_spider_walk</sprite>
+      </sprites>
     </sprites>
     <sprites name="Main_Sprites">
       <sprites name="main_hero">

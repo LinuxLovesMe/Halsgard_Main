@@ -216,11 +216,11 @@ if (state == "left")
 {
     if(x &gt; 60)
         x -= move_speed;
-    image_speed = 0.2;
+    image_speed = 1.0;
     if(onGround)
     {
-        sprite_index = spr_hero_walk;
-        image_xscale = 1;
+        sprite_index = spr_hero_spider_walk;
+        image_xscale = -1;
         if(keyboard_check_released(ord('A')) xor keyboard_check_released(vk_left))
             state = "idle";   
     }else
@@ -246,7 +246,7 @@ if (state == "left")
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>obj_mainhero</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -258,11 +258,11 @@ if (state == "right")
 {   
     if(x &lt; (room_width + 1))
         x += move_speed;
-    image_speed = 0.2;
+    image_speed = 1.0;
     if(onGround)
     {
-        sprite_index = spr_hero_walk;
-        image_xscale = -1;
+        sprite_index = spr_hero_spider_walk;
+        image_xscale = 1;
         if(keyboard_check_released(ord('D')) xor keyboard_check_released(vk_right))
             state = "idle";
     
